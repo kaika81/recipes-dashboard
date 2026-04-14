@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>דשבורד מתכונים</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      color: #222;
+      display: flex;
+      height: 100vh;
+    }
+    .sidebar {
+      width: 220px;
+      background: #f0f0f0;
+      border-left: 1px solid #d8d8d8;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .sidebar h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+    .sidebar button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: none;
+      border-radius: 8px;
+      background: #ffffff;
+      cursor: pointer;
+      text-align: right;
+      font-size: 15px;
+    }
+    .sidebar button:hover { background: #e8e8e8; }
+    .content {
+      flex: 1;
+      display: flex;
+      min-width: 0;
+    }
+    .list-panel {
+      width: 340px;
+      background: #fff;
+      border-left: 1px solid #d8d8d8;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .list-header h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .back-btn {
+      border: none;
+      background: #ececec;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      display: none;
+    }
+    .item {
+      padding: 12px;
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      background: #fff;
+    }
+    .item:hover {
+      background: #f8f8f8;
+      border-color: #cfcfcf;
+    }
+    .recipe-panel {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .placeholder {
+      color: #777;
+      font-size: 18px;
+    }
+    .selected-title {
+      margin-top: 0;
+      font-size: 28px;
+    }
+    .recipe-text {
+      white-space: pre-wrap;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>קטגוריות</h2>
+    <button data-category="main">מנה עיקרית</button>
+    <button data-category="side">תוספת</button>
+    <button data-category="dessert">קינוח</button>
+    <button data-category="starters">מנות פתיחה</button>
+    <button data-category="baked">מאפים</button>
+    <button data-category="breakfast">ארוחת בוקר</button>
+    <button data-category="salad">סלטים</button>
+  </aside>
+
+  <main class="content">
+    <section class="list-panel">
+      <div class="list-header">
+        <h3 id="listTitle">בחר קטגוריה</h3>
+        <button id="backBtn" class="back-btn">חזור</button>
+      </div>
+      <div id="list"></div>
+    </section>
+
+    <section class="recipe-panel">
+      <div id="recipe" class="placeholder">כאן יוצג הפריט שנבחר</div>
+    </section>
+  </main>
+
+  <script src="recipes.js"></script>
+  <script>
+    const categoryLabels = {
+      main: 'מנה עיקרית',
+      side: 'תוספת',
+      dessert: 'קינוח',
+      starters: 'מנות פתיחה',
+      baked: 'מאפים',
+      breakfast: 'ארוחת בוקר',
+      salad: 'סלטים'
+    };
+
+    const listEl = document.getElementById('list');
+    const listTitleEl = document.getElementById('listTitle');
+    const recipeEl = document.getElementById('recipe');
+    const backBtnEl = document.getElementById('backBtn');
+
+    let currentCategoryKey = null;
+    let pathStack = [];
+
+    function resetRecipePanel() {
+      recipeEl.className = 'placeholder';
+      recipeEl.textContent = 'כאן יוצג הפריט שנבחר';
+    }
+
+    function renderRecipe(name, text) {
+      if (text && text.trim() !== '') {
+        recipeEl.className = '';
+        recipeEl.innerHTML = '<h1 class="selected-title">' + name + '</h1><div class="recipe-text">' + text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
+      } else {
+        recipeEl.className = '';
+        recipeEl.innerHTML = '<h1 class="selected-title">' + name + '</h1>';
+      }
+    }
+
+    function getCurrentNode() {
+      let node = data[currentCategoryKey];
+      for (const step of pathStack) {
+        node = node[step];
+      }
+      return node;
+    }
+
+    function renderList(node, title) {
+      listEl.innerHTML = '';
+      listTitleEl.textContent = title;
+      backBtnEl.style.display = pathStack.length > 0 ? 'inline-block' : 'none';
+
+      const keys = Object.keys(node);
+      if (keys.length === 0) {
+        listEl.innerHTML = '<div class="placeholder">אין פריטים בקטגוריה הזו כרגע</div>';
+        return;
+      }
+
+      keys.forEach((key) => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'item';
+        itemEl.textContent = key;
+        itemEl.addEventListener('click', () => {
+          const value = node[key];
+          if (value && typeof value === 'object' && !Array.isArray(value)) {
+            pathStack.push(key);
+            renderList(value, key);
+            renderRecipe(key, '');
+          } else {
+            renderRecipe(key, value);
+          }
+        });
+        listEl.appendChild(itemEl);
+      });
+    }
+
+    function loadCategory(categoryKey) {
+      currentCategoryKey = categoryKey;
+      pathStack = [];
+      resetRecipePanel();
+      renderList(data[categoryKey], categoryLabels[categoryKey]);
+    }
+
+    backBtnEl.addEventListener('click', () => {
+      if (!currentCategoryKey) return;
+      if (pathStack.length > 0) {
+        pathStack.pop();
+      }
+      const node = getCurrentNode();
+      const title = pathStack.length > 0 ? pathStack[pathStack.length - 1] : categoryLabels[currentCategoryKey];
+      renderList(node, title);
+      resetRecipePanel();
+    });
+
+    document.querySelectorAll('.sidebar button[data-category]').forEach((button) => {
+      button.addEventListener('click', () => {
+        loadCategory(button.dataset.category);
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
