@@ -1,439 +1,281 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>דשבורד מתכונים</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
 
-    :root {
-      --bg: #f6f7fb;
-      --panel: #ffffff;
-      --panel-soft: #eef2ff;
-      --border: #d8def0;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --accent: #dbe7ff;
-      --accent-strong: #c4d7ff;
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
-    }
-
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#d9eaa3",
+                    "on-secondary-fixed-variant": "#864d2f",
+                    "on-tertiary-fixed": "#4d4634",
+                    "secondary-fixed": "#ffdbcc",
+                    "inverse-on-surface": "#9d9d9c",
+                    "error-dim": "#791903",
+                    "on-primary-fixed-variant": "#536129",
+                    "surface-container": "#edeeed",
+                    "on-primary-container": "#495720",
+                    "outline-variant": "#b0b2b1",
+                    "primary-fixed": "#d9eaa3",
+                    "primary-fixed-dim": "#cbdc96",
+                    "on-tertiary": "#fff8ef",
+                    "on-secondary": "#fff7f5",
+                    "on-error": "#fff7f6",
+                    "on-error-container": "#6e1400",
+                    "error-container": "#fd795a",
+                    "inverse-surface": "#0d0e0e",
+                    "on-secondary-fixed": "#643116",
+                    "secondary-container": "#ffdbcc",
+                    "on-background": "#303333",
+                    "surface-bright": "#faf9f8",
+                    "on-surface": "#303333",
+                    "error": "#a73b21",
+                    "surface-variant": "#e1e3e2",
+                    "tertiary-fixed-dim": "#ebdec6",
+                    "secondary-dim": "#7c4428",
+                    "background": "#faf9f8",
+                    "tertiary-dim": "#5a5240",
+                    "on-primary": "#f2ffc7",
+                    "tertiary-container": "#f9edd4",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#faf9f8",
+                    "on-secondary-container": "#7b4327",
+                    "tertiary-fixed": "#f9edd4",
+                    "surface-tint": "#56652c",
+                    "on-surface-variant": "#5d605f",
+                    "secondary-fixed-dim": "#ffc9b0",
+                    "surface-dim": "#d8dad9",
+                    "tertiary": "#675e4b",
+                    "surface-container-highest": "#e1e3e2",
+                    "surface-container-low": "#f3f4f3",
+                    "surface-container-high": "#e7e8e7",
+                    "on-tertiary-fixed-variant": "#6a624f",
+                    "outline": "#787b7a",
+                    "primary-dim": "#4a5821",
+                    "primary": "#56652c",
+                    "secondary": "#8b5032",
+                    "on-tertiary-container": "#605845",
+                    "on-primary-fixed": "#37440e",
+                    "inverse-primary": "#e7f9b0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Be Vietnam Pro"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f8;
+            color: #303333;
+        }
+        h1, h2, h3 {
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
+    </style>
+<style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    .app {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    .app-header {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 18px 18px 14px;
-      margin-bottom: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .app-title {
-      margin: 0 0 14px;
-      font-size: 28px;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .back-btn {
-      border: none;
-      background: var(--panel-soft);
-      border-radius: 12px;
-      padding: 10px 14px;
-      cursor: pointer;
-      font-size: 14px;
-      display: none;
-    }
-
-    .back-btn:hover {
-      background: var(--accent);
-    }
-
-    .screen-title {
-      margin: 0;
-      font-size: 20px;
-      flex: 1;
-    }
-
-    .category-strip {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: thin;
-    }
-
-    .category-strip button {
-      border: 1px solid transparent;
-      background: var(--panel-soft);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 12px 16px;
-      font-size: 15px;
-      cursor: pointer;
-      white-space: nowrap;
-      flex: 0 0 auto;
-    }
-
-    .category-strip button:hover,
-    .category-strip button.active {
-      background: var(--accent);
-      border-color: var(--accent-strong);
-    }
-
-    .screen {
-      display: none;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 16px;
-      min-height: 420px;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 14px;
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--panel);
-      padding: 16px;
-      cursor: pointer;
-      min-height: 92px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-1px);
-      border-color: var(--accent-strong);
-      background: #f9fbff;
-    }
-
-    .card-title {
-      font-size: 17px;
-      line-height: 1.4;
-    }
-
-    .card-arrow {
-      color: var(--muted);
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .empty-state {
-      color: var(--muted);
-      font-size: 17px;
-      padding: 8px 4px;
-    }
-
-    .recipe-view {
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    .recipe-title {
-      margin: 0 0 12px;
-      font-size: 32px;
-      line-height: 1.2;
-    }
-
-    .recipe-text {
-      white-space: pre-wrap;
-      line-height: 1.95;
-      font-size: 17px;
-    }
-
-    .recipe-placeholder {
-      color: var(--muted);
-      font-size: 18px;
-      text-align: center;
-      padding: 40px 12px;
-    }
-
-    @media (max-width: 768px) {
-      .app {
-        padding: 10px;
-      }
-
-      .app-header {
-        padding: 14px 14px 12px;
-        border-radius: 18px;
-      }
-
-      .app-title {
-        font-size: 24px;
-        margin-bottom: 12px;
-      }
-
-      .screen {
-        padding: 12px;
-        border-radius: 18px;
-        min-height: calc(100vh - 180px);
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .card {
-        min-height: 64px;
-        padding: 14px;
-      }
-
-      .card-title {
-        font-size: 16px;
-      }
-
-      .screen-title {
-        font-size: 18px;
-      }
-
-      .recipe-title {
-        font-size: 25px;
-      }
-
-      .recipe-text {
-        font-size: 16px;
-        line-height: 1.85;
-      }
+      min-height: max(884px, 100dvh);
     }
   </style>
-</head>
-<body>
-  <div class="app">
-    <header class="app-header">
-      <h1 class="app-title">המתכונים שלי</h1>
-      <div class="topbar">
-        <button id="backBtn" class="back-btn">חזור</button>
-        <h2 id="screenTitle" class="screen-title">בחר קטגוריה</h2>
-      </div>
-      <div class="category-strip" id="categoryStrip">
-        <button data-category="main">מנה עיקרית</button>
-        <button data-category="side">תוספת</button>
-        <button data-category="dessert">קינוח</button>
-        <button data-category="starters">מנות פתיחה</button>
-        <button data-category="baked">מאפים</button>
-        <button data-category="breakfast">ארוחת בוקר</button>
-        <button data-category="salad">סלטים</button>
-      </div>
-    </header>
-
-    <main>
-      <section id="listScreen" class="screen active">
-        <div id="listGrid" class="grid"></div>
-      </section>
-
-      <section id="recipeScreen" class="screen">
-        <div class="recipe-view" id="recipeView">
-          <div class="recipe-placeholder">כאן יוצג המתכון שבחרת</div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script src="recipes.js"></script>
-  <script>
-    const categoryLabels = {
-      main: 'מנה עיקרית',
-      side: 'תוספת',
-      dessert: 'קינוח',
-      starters: 'מנות פתיחה',
-      baked: 'מאפים',
-      breakfast: 'ארוחת בוקר',
-      salad: 'סלטים'
-    };
-
-    const categoryButtons = document.querySelectorAll('#categoryStrip button[data-category]');
-    const listGrid = document.getElementById('listGrid');
-    const listScreen = document.getElementById('listScreen');
-    const recipeScreen = document.getElementById('recipeScreen');
-    const recipeView = document.getElementById('recipeView');
-    const screenTitle = document.getElementById('screenTitle');
-    const backBtn = document.getElementById('backBtn');
-
-    let currentCategoryKey = null;
-    let pathStack = [];
-    let selectedRecipeName = '';
-
-    function escapeHtml(text) {
-      return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    function setActiveCategory(categoryKey) {
-      categoryButtons.forEach((button) => {
-        button.classList.toggle('active', button.dataset.category === categoryKey);
-      });
-    }
-
-    function showScreen(screenName) {
-      listScreen.classList.toggle('active', screenName === 'list');
-      recipeScreen.classList.toggle('active', screenName === 'recipe');
-    }
-
-    function updateHeader() {
-      if (!currentCategoryKey) {
-        screenTitle.textContent = 'בחר קטגוריה';
-        backBtn.style.display = 'none';
-        return;
-      }
-
-      if (showingRecipe()) {
-        screenTitle.textContent = selectedRecipeName || 'מתכון';
-        backBtn.style.display = 'inline-block';
-        return;
-      }
-
-      const title = pathStack.length > 0
-        ? pathStack[pathStack.length - 1]
-        : categoryLabels[currentCategoryKey];
-
-      screenTitle.textContent = title;
-      backBtn.style.display = (pathStack.length > 0 || selectedRecipeName) ? 'inline-block' : 'none';
-    }
-
-    function getCurrentNode() {
-      let node = data[currentCategoryKey];
-      for (const step of pathStack) {
-        node = node[step];
-      }
-      return node;
-    }
-
-    function showingRecipe() {
-      return recipeScreen.classList.contains('active');
-    }
-
-    function renderList(node) {
-      listGrid.innerHTML = '';
-      const keys = Object.keys(node || {});
-
-      if (!keys.length) {
-        listGrid.innerHTML = '<div class="empty-state">אין פריטים בקטגוריה הזו כרגע</div>';
-        return;
-      }
-
-      keys.forEach((key) => {
-        const value = node[key];
-        const card = document.createElement('button');
-        card.type = 'button';
-        card.className = 'card';
-        card.innerHTML = '<span class="card-title">' + escapeHtml(key) + '</span><span class="card-arrow">‹</span>';
-
-        card.addEventListener('click', () => {
-          if (value && typeof value === 'object' && !Array.isArray(value)) {
-            pathStack.push(key);
-            selectedRecipeName = '';
-            showScreen('list');
-            renderList(value);
-            updateHeader();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          } else {
-            selectedRecipeName = key;
-            renderRecipe(key, value);
-            showScreen('recipe');
-            updateHeader();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        });
-
-        listGrid.appendChild(card);
-      });
-    }
-
-    function renderRecipe(name, text) {
-      if (text && text.trim() !== '') {
-        recipeView.innerHTML = '<h3 class="recipe-title">' + escapeHtml(name) + '</h3><div class="recipe-text">' + escapeHtml(text) + '</div>';
-      } else {
-        recipeView.innerHTML = '<h3 class="recipe-title">' + escapeHtml(name) + '</h3><div class="recipe-placeholder">עדיין לא הוזן מתכון לפריט הזה</div>';
-      }
-    }
-
-    function loadCategory(categoryKey) {
-      currentCategoryKey = categoryKey;
-      pathStack = [];
-      selectedRecipeName = '';
-      setActiveCategory(categoryKey);
-      renderList(data[categoryKey] || {});
-      showScreen('list');
-      updateHeader();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    backBtn.addEventListener('click', () => {
-      if (showingRecipe()) {
-        selectedRecipeName = '';
-        showScreen('list');
-        updateHeader();
-        return;
-      }
-
-      if (pathStack.length > 0) {
-        pathStack.pop();
-        renderList(getCurrentNode());
-        updateHeader();
-        return;
-      }
-
-      currentCategoryKey = null;
-      selectedRecipeName = '';
-      setActiveCategory('');
-      listGrid.innerHTML = '<div class="empty-state">בחר קטגוריה למעלה כדי להתחיל</div>';
-      showScreen('list');
-      updateHeader();
-    });
-
-    categoryButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        loadCategory(button.dataset.category);
-      });
-    });
-
-    listGrid.innerHTML = '<div class="empty-state">בחר קטגוריה למעלה כדי להתחיל</div>';
-    updateHeader();
-  </script>
-</body>
-</html>
+  </head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Top AppBar (from Shared Components JSON) -->
+<header class="bg-[#faf9f8] dark:bg-stone-950 w-full sticky top-0 z-50 flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="text-[#56652c] dark:text-[#d9eaa3] scale-95 duration-150 active:opacity-80">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="font-['Be_Vietnam_Pro'] font-bold text-lg tracking-tight text-[#56652c] dark:text-[#d9eaa3]">The Culinary Atelier</span>
+</div>
+<button class="text-[#56652c] dark:text-[#d9eaa3] scale-95 duration-150 active:opacity-80">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</header>
+<main class="px-6 pt-8 pb-32 max-w-2xl mx-auto">
+<!-- Hero Section without Image -->
+<div class="mb-10">
+<div class="mb-4 inline-flex items-center px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-[10px] uppercase tracking-widest font-bold">
+                Main Course
+            </div>
+<h1 class="text-4xl md:text-5xl font-black text-on-background leading-[1.1] mb-6">
+                Gourmet Lemon Rosemary Chicken
+            </h1>
+<!-- Metadata Bento-style Grid -->
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-surface-container-low p-4 rounded-lg flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="schedule">schedule</span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-semibold">Prep Time</span>
+<span class="text-sm font-bold">45 min</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="restaurant">restaurant</span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-semibold">Servings</span>
+<span class="text-sm font-bold">4 People</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="bar_chart">bar_chart</span>
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-semibold">Difficulty</span>
+<span class="text-sm font-bold">Easy</span>
+</div>
+</div>
+</div>
+<!-- Ingredients Section -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold tracking-tight">Ingredients</h2>
+<span class="text-xs text-primary font-bold px-3 py-1 bg-primary-container/30 rounded-full">8 items</span>
+</div>
+<div class="space-y-3">
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
+<span class="flex-1 text-on-surface font-medium">4 organic chicken breasts</span>
+<span class="text-on-surface-variant text-sm italic">500g</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
+<span class="flex-1 text-on-surface font-medium">Fresh rosemary sprigs</span>
+<span class="text-on-surface-variant text-sm italic">3 sprigs</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
+<span class="flex-1 text-on-surface font-medium">Lemons, thinly sliced</span>
+<span class="text-on-surface-variant text-sm italic">2 large</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
+<span class="flex-1 text-on-surface font-medium">Extra virgin olive oil</span>
+<span class="text-on-surface-variant text-sm italic">3 tbsp</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
+<span class="flex-1 text-on-surface font-medium">Garlic cloves, minced</span>
+<span class="text-on-surface-variant text-sm italic">4 cloves</span>
+</label>
+<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
+<span class="flex-1 text-on-surface font-medium">Sea salt &amp; black pepper</span>
+<span class="text-on-surface-variant text-sm italic">To taste</span>
+</label>
+</div>
+</section>
+<!-- Preparation Steps -->
+<section class="mb-12">
+<h2 class="text-2xl font-bold tracking-tight mb-8">Preparation</h2>
+<div class="space-y-10 relative">
+<!-- Step 1 -->
+<div class="flex gap-6 relative">
+<div class="flex-none">
+<span class="text-5xl font-black text-primary/10 leading-none select-none">01</span>
+</div>
+<div class="flex-1">
+<h3 class="text-lg font-bold mb-2">Marinate the Protein</h3>
+<p class="text-on-surface-variant leading-relaxed font-body">
+                            In a large bowl, whisk together the olive oil, minced garlic, and chopped rosemary. Place the chicken breasts in the marinade, ensuring they are well coated. Cover and refrigerate for at least 30 minutes.
+                        </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex gap-6 relative">
+<div class="flex-none">
+<span class="text-5xl font-black text-primary/10 leading-none select-none">02</span>
+</div>
+<div class="flex-1">
+<h3 class="text-lg font-bold mb-2">Sear for Texture</h3>
+<p class="text-on-surface-variant leading-relaxed font-body">
+                            Heat a cast-iron skillet over medium-high heat. Place the chicken breasts skin-side down and sear for 5-6 minutes until golden brown and crispy. Flip the chicken and cook for another 2 minutes.
+                        </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex gap-6 relative">
+<div class="flex-none">
+<span class="text-5xl font-black text-primary/10 leading-none select-none">03</span>
+</div>
+<div class="flex-1">
+<h3 class="text-lg font-bold mb-2">Bake with Citrus</h3>
+<p class="text-on-surface-variant leading-relaxed font-body">
+                            Arrange the thinly sliced lemons around and on top of the chicken. Transfer the skillet to a preheated oven at 200°C (400°F). Roast for 15-20 minutes until the internal temperature reaches 75°C.
+                        </p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex gap-6 relative">
+<div class="flex-none">
+<span class="text-5xl font-black text-primary/10 leading-none select-none">04</span>
+</div>
+<div class="flex-1">
+<h3 class="text-lg font-bold mb-2">Rest and Serve</h3>
+<p class="text-on-surface-variant leading-relaxed font-body">
+                            Remove from the oven and let the chicken rest for 5 minutes before slicing. This ensures the juices redistribute for maximum tenderness. Garnish with fresh rosemary.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Chef's Notes (Tips) -->
+<section class="mb-12">
+<div class="bg-secondary-container p-6 rounded-xl relative overflow-hidden">
+<div class="absolute -top-4 -right-4 opacity-10">
+<span class="material-symbols-outlined text-[80px]" data-icon="lightbulb">lightbulb</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="text-on-secondary-container font-bold text-lg">Chef's Notes</h3>
+</div>
+<p class="text-on-secondary-container/90 leading-relaxed font-medium">
+                    For a deeper flavor profile, add a splash of dry white wine to the skillet before transferring it to the oven. It creates a beautiful deglazed sauce that pairs perfectly with roasted potatoes or a light spring salad.
+                </p>
+</div>
+</section>
+<!-- Start Cooking Button -->
+<div class="fixed bottom-24 left-0 right-0 px-6 flex justify-center pointer-events-none">
+<button class="pointer-events-auto bg-gradient-to-r from-primary to-primary-dim text-white font-bold px-10 py-5 rounded-full shadow-lg scale-100 hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="play_arrow">play_arrow</span>
+                Start Cooking Mode
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation (from Shared Components JSON) -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center px-4 py-4 pb-8 bg-[#faf9f8]/80 dark:bg-stone-950/80 backdrop-blur-xl rounded-t-[3rem] z-50 shadow-[0_-8px_24px_rgba(48,51,51,0.06)]">
+<div class="flex flex-col items-center justify-center text-[#303333] dark:text-stone-400 px-6 py-2 hover:text-[#8b5032] transition-all">
+<span class="material-symbols-outlined mb-1" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#303333] dark:text-stone-400 px-6 py-2 hover:text-[#8b5032] transition-all">
+<span class="material-symbols-outlined mb-1" data-icon="bookmark">bookmark</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Saved</span>
+</div>
+<!-- Active Tab: Cook -->
+<div class="flex flex-col items-center justify-center bg-[#56652c] text-white rounded-[999px] px-6 py-2 active:scale-90 duration-300">
+<span class="material-symbols-outlined mb-1" data-icon="timer">timer</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Cook</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#303333] dark:text-stone-400 px-6 py-2 hover:text-[#8b5032] transition-all">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Profile</span>
+</div>
+</nav>
+</body></html>
