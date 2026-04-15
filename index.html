@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA additions -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8A9A5B">
+  <link rel="icon" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+
   <title>דשבורד מתכונים</title>
+
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
       --bg: #f6f7fb;
@@ -71,10 +77,6 @@
       display: none;
     }
 
-    .back-btn:hover {
-      background: var(--accent);
-    }
-
     .screen-title {
       margin: 0;
       font-size: 20px;
@@ -86,25 +88,19 @@
       gap: 10px;
       overflow-x: auto;
       padding-bottom: 4px;
-      scrollbar-width: thin;
     }
 
     .category-strip button {
-      border: 1px solid transparent;
       background: var(--panel-soft);
-      color: var(--text);
       border-radius: 999px;
       padding: 12px 16px;
       font-size: 15px;
       cursor: pointer;
       white-space: nowrap;
-      flex: 0 0 auto;
     }
 
-    .category-strip button:hover,
     .category-strip button.active {
       background: var(--accent);
-      border-color: var(--accent-strong);
     }
 
     .screen {
@@ -112,7 +108,6 @@
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 22px;
-      box-shadow: var(--shadow);
       padding: 16px;
       min-height: 420px;
     }
@@ -130,122 +125,37 @@
     .card {
       border: 1px solid var(--border);
       border-radius: 18px;
-      background: var(--panel);
       padding: 16px;
       cursor: pointer;
-      min-height: 92px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-1px);
-      border-color: var(--accent-strong);
-      background: #f9fbff;
-    }
-
-    .card-title {
-      font-size: 17px;
-      line-height: 1.4;
-    }
-
-    .card-arrow {
-      color: var(--muted);
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .empty-state {
-      color: var(--muted);
-      font-size: 17px;
-      padding: 8px 4px;
-    }
-
-    .recipe-view {
-      max-width: 760px;
-      margin: 0 auto;
     }
 
     .recipe-title {
-      margin: 0 0 12px;
-      font-size: 32px;
-      line-height: 1.2;
+      font-size: 28px;
     }
 
     .recipe-text {
       white-space: pre-wrap;
-      line-height: 1.95;
-      font-size: 17px;
+      line-height: 1.8;
     }
 
-    .recipe-placeholder {
+    .empty-state {
       color: var(--muted);
-      font-size: 18px;
-      text-align: center;
-      padding: 40px 12px;
-    }
-
-    @media (max-width: 768px) {
-      .app {
-        padding: 10px;
-      }
-
-      .app-header {
-        padding: 14px 14px 12px;
-        border-radius: 18px;
-      }
-
-      .app-title {
-        font-size: 24px;
-        margin-bottom: 12px;
-      }
-
-      .screen {
-        padding: 12px;
-        border-radius: 18px;
-        min-height: calc(100vh - 180px);
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .card {
-        min-height: 64px;
-        padding: 14px;
-      }
-
-      .card-title {
-        font-size: 16px;
-      }
-
-      .screen-title {
-        font-size: 18px;
-      }
-
-      .recipe-title {
-        font-size: 25px;
-      }
-
-      .recipe-text {
-        font-size: 16px;
-        line-height: 1.85;
-      }
     }
   </style>
 </head>
+
 <body>
   <div class="app">
     <header class="app-header">
       <h1 class="app-title">המתכונים שלי</h1>
+
       <div class="topbar">
         <button id="backBtn" class="back-btn">חזור</button>
         <h2 id="screenTitle" class="screen-title">בחר קטגוריה</h2>
       </div>
+
       <div class="category-strip" id="categoryStrip">
         <button data-category="main">מנה עיקרית</button>
         <button data-category="side">תוספת</button>
@@ -263,177 +173,62 @@
       </section>
 
       <section id="recipeScreen" class="screen">
-        <div class="recipe-view" id="recipeView">
-          <div class="recipe-placeholder">כאן יוצג המתכון שבחרת</div>
+        <div id="recipeView">
+          <div class="empty-state">בחר מתכון</div>
         </div>
       </section>
     </main>
   </div>
 
   <script src="recipes.js"></script>
-  <script>
-    const categoryLabels = {
-      main: 'מנה עיקרית',
-      side: 'תוספת',
-      dessert: 'קינוח',
-      starters: 'מנות פתיחה',
-      baked: 'מאפים',
-      breakfast: 'ארוחת בוקר',
-      salad: 'סלטים'
-    };
 
-    const categoryButtons = document.querySelectorAll('#categoryStrip button[data-category]');
+  <script>
+    const categoryButtons = document.querySelectorAll('#categoryStrip button');
     const listGrid = document.getElementById('listGrid');
-    const listScreen = document.getElementById('listScreen');
-    const recipeScreen = document.getElementById('recipeScreen');
     const recipeView = document.getElementById('recipeView');
     const screenTitle = document.getElementById('screenTitle');
     const backBtn = document.getElementById('backBtn');
 
-    let currentCategoryKey = null;
-    let pathStack = [];
-    let selectedRecipeName = '';
-
-    function escapeHtml(text) {
-      return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    function setActiveCategory(categoryKey) {
-      categoryButtons.forEach((button) => {
-        button.classList.toggle('active', button.dataset.category === categoryKey);
-      });
-    }
-
-    function showScreen(screenName) {
-      listScreen.classList.toggle('active', screenName === 'list');
-      recipeScreen.classList.toggle('active', screenName === 'recipe');
-    }
-
-    function updateHeader() {
-      if (!currentCategoryKey) {
-        screenTitle.textContent = 'בחר קטגוריה';
-        backBtn.style.display = 'none';
-        return;
-      }
-
-      if (showingRecipe()) {
-        screenTitle.textContent = selectedRecipeName || 'מתכון';
-        backBtn.style.display = 'inline-block';
-        return;
-      }
-
-      const title = pathStack.length > 0
-        ? pathStack[pathStack.length - 1]
-        : categoryLabels[currentCategoryKey];
-
-      screenTitle.textContent = title;
-      backBtn.style.display = (pathStack.length > 0 || selectedRecipeName) ? 'inline-block' : 'none';
-    }
-
-    function getCurrentNode() {
-      let node = data[currentCategoryKey];
-      for (const step of pathStack) {
-        node = node[step];
-      }
-      return node;
-    }
-
-    function showingRecipe() {
-      return recipeScreen.classList.contains('active');
-    }
+    let currentCategory = null;
+    let path = [];
 
     function renderList(node) {
       listGrid.innerHTML = '';
-      const keys = Object.keys(node || {});
 
-      if (!keys.length) {
-        listGrid.innerHTML = '<div class="empty-state">אין פריטים בקטגוריה הזו כרגע</div>';
-        return;
-      }
+      Object.keys(node).forEach(key => {
+        const item = node[key];
 
-      keys.forEach((key) => {
-        const value = node[key];
-        const card = document.createElement('button');
-        card.type = 'button';
+        const card = document.createElement('div');
         card.className = 'card';
-        card.innerHTML = '<span class="card-title">' + escapeHtml(key) + '</span><span class="card-arrow">‹</span>';
+        card.innerHTML = `<span>${key}</span><span>‹</span>`;
 
-        card.addEventListener('click', () => {
-          if (value && typeof value === 'object' && !Array.isArray(value)) {
-            pathStack.push(key);
-            selectedRecipeName = '';
-            showScreen('list');
-            renderList(value);
-            updateHeader();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        card.onclick = () => {
+          if (typeof item === 'object') {
+            path.push(key);
+            renderList(item);
           } else {
-            selectedRecipeName = key;
-            renderRecipe(key, value);
-            showScreen('recipe');
-            updateHeader();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            recipeView.innerHTML = `<h3 class="recipe-title">${key}</h3><div class="recipe-text">${item}</div>`;
+            document.getElementById('recipeScreen').classList.add('active');
+            document.getElementById('listScreen').classList.remove('active');
           }
-        });
+        };
 
         listGrid.appendChild(card);
       });
     }
 
-    function renderRecipe(name, text) {
-      if (text && text.trim() !== '') {
-        recipeView.innerHTML = '<h3 class="recipe-title">' + escapeHtml(name) + '</h3><div class="recipe-text">' + escapeHtml(text) + '</div>';
-      } else {
-        recipeView.innerHTML = '<h3 class="recipe-title">' + escapeHtml(name) + '</h3><div class="recipe-placeholder">עדיין לא הוזן מתכון לפריט הזה</div>';
-      }
-    }
-
-    function loadCategory(categoryKey) {
-      currentCategoryKey = categoryKey;
-      pathStack = [];
-      selectedRecipeName = '';
-      setActiveCategory(categoryKey);
-      renderList(data[categoryKey] || {});
-      showScreen('list');
-      updateHeader();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    backBtn.addEventListener('click', () => {
-      if (showingRecipe()) {
-        selectedRecipeName = '';
-        showScreen('list');
-        updateHeader();
-        return;
-      }
-
-      if (pathStack.length > 0) {
-        pathStack.pop();
-        renderList(getCurrentNode());
-        updateHeader();
-        return;
-      }
-
-      currentCategoryKey = null;
-      selectedRecipeName = '';
-      setActiveCategory('');
-      listGrid.innerHTML = '<div class="empty-state">בחר קטגוריה למעלה כדי להתחיל</div>';
-      showScreen('list');
-      updateHeader();
+    categoryButtons.forEach(btn => {
+      btn.onclick = () => {
+        currentCategory = btn.dataset.category;
+        path = [];
+        renderList(data[currentCategory]);
+      };
     });
 
-    categoryButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        loadCategory(button.dataset.category);
-      });
-    });
-
-    listGrid.innerHTML = '<div class="empty-state">בחר קטגוריה למעלה כדי להתחיל</div>';
-    updateHeader();
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
   </script>
 </body>
 </html>
