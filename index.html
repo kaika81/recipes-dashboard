@@ -10,30 +10,23 @@
   <link rel="icon" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
 
+  <!-- ICONS FIX -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
   <title>המתכונים שלי</title>
 
   <style>
     * { box-sizing: border-box; }
 
-    :root {
-      --bg: #f6f7fb;
-      --panel: #ffffff;
-      --panel-soft: #eef2ff;
-      --border: #d8def0;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --accent: #dbe7ff;
-      --accent-strong: #c4d7ff;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
-    }
-
     body {
       margin: 0;
       font-family: Arial;
-      background: var(--bg);
+      background: #f6f7fb;
     }
 
-    .app { padding: 16px; }
+    .app {
+      padding: 16px;
+    }
 
     .header {
       background: white;
@@ -61,12 +54,12 @@
       padding: 10px 14px;
       border-radius: 999px;
       border: none;
-      background: var(--panel-soft);
+      background: #eef2ff;
       cursor: pointer;
     }
 
     .category-strip button.active {
-      background: var(--accent);
+      background: #dbe7ff;
     }
 
     .grid {
@@ -75,17 +68,18 @@
     }
 
     .card {
+      display: flex;
+      flex-direction: row-reverse; /* RTL FIX */
+      justify-content: space-between;
+      align-items: center;
       padding: 16px;
       border-radius: 16px;
       background: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       cursor: pointer;
     }
 
     .material-symbols-outlined {
-      font-size: 48px;
+      font-size: 40px; /* BIG ICON */
     }
 
     .recipe {
@@ -101,6 +95,7 @@
 </head>
 
 <body>
+
 <div class="app">
 
   <div class="header">
@@ -109,7 +104,7 @@
       <h2 id="title">בחר קטגוריה</h2>
     </div>
 
-    <div class="category-strip" id="categories">
+    <div class="category-strip">
       <button data-cat="main">עיקרית</button>
       <button data-cat="side">תוספת</button>
       <button data-cat="dessert">קינוח</button>
@@ -153,6 +148,7 @@ function getNode() {
 
 function renderList(node) {
   listEl.innerHTML = "";
+
   Object.keys(node).forEach(key => {
     const val = node[key];
 
@@ -160,10 +156,10 @@ function renderList(node) {
     div.className = "card";
 
     div.innerHTML = `
-      <span>${key}</span>
       <span class="material-symbols-outlined">
         ${typeof val === "object" ? "folder" : "restaurant"}
       </span>
+      <span>${key}</span>
     `;
 
     div.onclick = () => {
@@ -207,6 +203,7 @@ document.getElementById("backBtn").onclick = () => {
   }
 };
 
+// Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js');
 }
