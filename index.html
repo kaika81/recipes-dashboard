@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" dir="rtl" lang="he"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,700;0,900;1,900&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -13,60 +12,60 @@
         theme: {
           extend: {
             "colors": {
-                    "primary-container": "#d9eaa3",
-                    "on-secondary-fixed-variant": "#864d2f",
-                    "on-tertiary-fixed": "#4d4634",
                     "secondary-fixed": "#ffdbcc",
                     "inverse-on-surface": "#9d9d9c",
-                    "error-dim": "#791903",
-                    "on-primary-fixed-variant": "#536129",
-                    "surface-container": "#edeeed",
-                    "on-primary-container": "#495720",
-                    "outline-variant": "#b0b2b1",
-                    "primary-fixed": "#d9eaa3",
+                    "surface-container-high": "#e7e8e7",
+                    "on-tertiary-container": "#605845",
+                    "on-tertiary-fixed-variant": "#6a624f",
                     "primary-fixed-dim": "#cbdc96",
                     "on-tertiary": "#fff8ef",
-                    "on-secondary": "#fff7f5",
-                    "on-error": "#fff7f6",
+                    "primary": "#8A9A5B", // Updated to Sage & Hearth primary
+                    "tertiary-fixed-dim": "#ebdec6",
+                    "tertiary-dim": "#5a5240",
+                    "tertiary-container": "#f9edd4",
+                    "on-secondary-fixed-variant": "#864d2f",
+                    "surface": "#faf9f8",
+                    "on-primary-fixed-variant": "#536129",
+                    "on-tertiary-fixed": "#4d4634",
+                    "surface-tint": "#8A9A5B",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#d8dad9",
+                    "outline": "#787b7a",
+                    "on-surface-variant": "#5d605f",
+                    "on-primary-container": "#495720",
+                    "inverse-primary": "#e7f9b0",
                     "on-error-container": "#6e1400",
                     "error-container": "#fd795a",
-                    "inverse-surface": "#0d0e0e",
-                    "on-secondary-fixed": "#643116",
-                    "secondary-container": "#ffdbcc",
-                    "on-background": "#303333",
-                    "surface-bright": "#faf9f8",
-                    "on-surface": "#303333",
-                    "error": "#a73b21",
-                    "surface-variant": "#e1e3e2",
-                    "tertiary-fixed-dim": "#ebdec6",
-                    "secondary-dim": "#7c4428",
                     "background": "#faf9f8",
-                    "tertiary-dim": "#5a5240",
                     "on-primary": "#f2ffc7",
-                    "tertiary-container": "#f9edd4",
-                    "surface-container-lowest": "#ffffff",
-                    "surface": "#faf9f8",
-                    "on-secondary-container": "#7b4327",
-                    "tertiary-fixed": "#f9edd4",
-                    "surface-tint": "#56652c",
-                    "on-surface-variant": "#5d605f",
-                    "secondary-fixed-dim": "#ffc9b0",
-                    "surface-dim": "#d8dad9",
-                    "tertiary": "#675e4b",
-                    "surface-container-highest": "#e1e3e2",
-                    "surface-container-low": "#f3f4f3",
-                    "surface-container-high": "#e7e8e7",
-                    "on-tertiary-fixed-variant": "#6a624f",
-                    "outline": "#787b7a",
-                    "primary-dim": "#4a5821",
-                    "primary": "#56652c",
-                    "secondary": "#8b5032",
-                    "on-tertiary-container": "#605845",
+                    "on-secondary-fixed": "#643116",
                     "on-primary-fixed": "#37440e",
-                    "inverse-primary": "#e7f9b0"
+                    "secondary-container": "#ffdbcc",
+                    "on-secondary-container": "#7b4327",
+                    "primary-fixed": "#d9eaa3",
+                    "on-error": "#fff7f6",
+                    "error": "#a73b21",
+                    "tertiary": "#675e4b",
+                    "primary-container": "#d9eaa3",
+                    "on-surface": "#303333",
+                    "outline-variant": "#b0b2b1",
+                    "surface-variant": "#e1e3e2",
+                    "on-secondary": "#fff7f5",
+                    "secondary-dim": "#7c4428",
+                    "tertiary-fixed": "#f9edd4",
+                    "surface-container-low": "#f3f4f3",
+                    "surface-container": "#edeeed",
+                    "primary-dim": "#4a5821",
+                    "on-background": "#303333",
+                    "secondary-fixed-dim": "#ffc9b0",
+                    "inverse-surface": "#0d0e0e",
+                    "secondary": "#8b5032",
+                    "surface-bright": "#faf9f8",
+                    "surface-container-highest": "#e1e3e2",
+                    "error-dim": "#791903"
             },
             "borderRadius": {
-                    "DEFAULT": "1rem",
+                    "DEFAULT": "9999px", // Sage & Hearth ROUND_FULL
                     "lg": "2rem",
                     "xl": "3rem",
                     "full": "9999px"
@@ -83,199 +82,242 @@
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            vertical-align: middle;
         }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #faf9f8;
             color: #303333;
         }
-        h1, h2, h3 {
-            font-family: 'Be Vietnam Pro', sans-serif;
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
         }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        [v-cloak] { display: none; }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-background text-on-background min-h-screen">
-<!-- Top AppBar (from Shared Components JSON) -->
-<header class="bg-[#faf9f8] dark:bg-stone-950 w-full sticky top-0 z-50 flex justify-between items-center px-6 py-4 w-full">
-<div class="flex items-center gap-4">
-<button class="text-[#56652c] dark:text-[#d9eaa3] scale-95 duration-150 active:opacity-80">
-<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32" x-data="recipeApp()">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#faf9f8]/80 dark:bg-[#1a1a1a]/80 backdrop-blur-xl">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-screen-xl mx-auto">
+<button @click="resetView()" class="hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary text-2xl">home</span>
 </button>
-<span class="font-['Be_Vietnam_Pro'] font-bold text-lg tracking-tight text-[#56652c] dark:text-[#d9eaa3]">The Culinary Atelier</span>
+<h1 class="font-headline font-bold tracking-tight text-xl italic text-primary">The Culinary Atelier</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEU3P12-iW_zV4mO_tRu19e1olw8Oa0EU9zJGMpzMbIjndQYWhaMl4vmZFVrWSHwk99V49Pq0spqzzhvZXp4Mem1-pqFmkyXQjqova7ChHoOlhbWZ0wEOOynJ5ltg3eQeNwgRX81Xmq_eqq2w_5dWikAxkA--hmEk8gJCEWxOc5_yHAak-ozaV0psdtx7oIZcFmRss1vReng_0QQt50hK-1-IJEiwpADTpX17KjB2d7FGJeORA3OvZznVwcUlt-lj7tDTzUIvXirw"/>
 </div>
-<button class="text-[#56652c] dark:text-[#d9eaa3] scale-95 duration-150 active:opacity-80">
-<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
-</button>
+</div>
 </header>
-<main class="px-6 pt-8 pb-32 max-w-2xl mx-auto">
-<!-- Hero Section without Image -->
-<div class="mb-10">
-<div class="mb-4 inline-flex items-center px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-[10px] uppercase tracking-widest font-bold">
-                Main Course
-            </div>
-<h1 class="text-4xl md:text-5xl font-black text-on-background leading-[1.1] mb-6">
-                Gourmet Lemon Rosemary Chicken
-            </h1>
-<!-- Metadata Bento-style Grid -->
-<div class="grid grid-cols-3 gap-3">
-<div class="bg-surface-container-low p-4 rounded-lg flex flex-col items-center justify-center text-center">
-<span class="material-symbols-outlined text-primary mb-2" data-icon="schedule">schedule</span>
-<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-semibold">Prep Time</span>
-<span class="text-sm font-bold">45 min</span>
+<main class="pt-20 px-6 max-w-md mx-auto space-y-8">
+<!-- Search Bar -->
+<section x-show="!selectedRecipe">
+<div class="relative group">
+<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
 </div>
-<div class="bg-surface-container-low p-4 rounded-lg flex flex-col items-center justify-center text-center">
-<span class="material-symbols-outlined text-primary mb-2" data-icon="restaurant">restaurant</span>
-<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-semibold">Servings</span>
-<span class="text-sm font-bold">4 People</span>
+<input class="w-full h-14 pr-12 pl-6 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary/20 font-body text-on-surface placeholder:text-outline-variant" placeholder="חפשו מתכון מושלם..." type="text"/>
 </div>
-<div class="bg-surface-container-low p-4 rounded-lg flex flex-col items-center justify-center text-center">
-<span class="material-symbols-outlined text-primary mb-2" data-icon="bar_chart">bar_chart</span>
-<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant font-semibold">Difficulty</span>
-<span class="text-sm font-bold">Easy</span>
+</section>
+<!-- Dynamic Category Strip -->
+<section class="-mx-6" x-show="!selectedRecipe">
+<div class="flex overflow-x-auto hide-scrollbar px-6 gap-3">
+<template :key="key" x-for="(cat, key) in data">
+<button :class="currentCategory === key ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-container-high text-on-surface-variant'" @click="selectCategory(key)" class="flex-none px-6 py-2.5 rounded-full font-label text-sm font-bold whitespace-nowrap transition-colors" x-text="cat.name">
+</button>
+</template>
 </div>
-</div>
-</div>
-<!-- Ingredients Section -->
-<section class="mb-12">
-<div class="flex items-center justify-between mb-6">
-<h2 class="text-2xl font-bold tracking-tight">Ingredients</h2>
-<span class="text-xs text-primary font-bold px-3 py-1 bg-primary-container/30 rounded-full">8 items</span>
+</section>
+<!-- List View: Subcategories or Recipes -->
+<section class="space-y-4" x-show="!selectedRecipe">
+<div class="flex items-center justify-between">
+<h3 class="font-headline text-xl font-bold text-on-surface" x-text="getViewTitle()"></h3>
+<button @click="goBack()" class="text-primary font-label text-sm font-bold flex items-center gap-1" x-show="currentPath.length &gt; 0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span> חזרה
+                </button>
 </div>
 <div class="space-y-3">
-<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
-<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
-<span class="flex-1 text-on-surface font-medium">4 organic chicken breasts</span>
-<span class="text-on-surface-variant text-sm italic">500g</span>
-</label>
-<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
-<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
-<span class="flex-1 text-on-surface font-medium">Fresh rosemary sprigs</span>
-<span class="text-on-surface-variant text-sm italic">3 sprigs</span>
-</label>
-<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
-<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
-<span class="flex-1 text-on-surface font-medium">Lemons, thinly sliced</span>
-<span class="text-on-surface-variant text-sm italic">2 large</span>
-</label>
-<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
-<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
-<span class="flex-1 text-on-surface font-medium">Extra virgin olive oil</span>
-<span class="text-on-surface-variant text-sm italic">3 tbsp</span>
-</label>
-<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
-<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
-<span class="flex-1 text-on-surface font-medium">Garlic cloves, minced</span>
-<span class="text-on-surface-variant text-sm italic">4 cloves</span>
-</label>
-<label class="flex items-center p-4 bg-surface-container-lowest rounded-xl shadow-sm cursor-pointer group">
-<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary mr-4 transition-all" type="checkbox"/>
-<span class="flex-1 text-on-surface font-medium">Sea salt &amp; black pepper</span>
-<span class="text-on-surface-variant text-sm italic">To taste</span>
-</label>
+<template :key="key" x-for="(item, key) in currentItems">
+<div @click="handleItemClick(item, key)" class="flex items-center justify-between p-5 bg-surface-container-low rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer group">
+<div class="flex gap-4 items-center">
+<div :class="item.type === 'recipe' ? 'bg-primary-container text-primary' : 'bg-tertiary-container text-tertiary'" class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-2xl" x-text="item.type === 'recipe' ? 'restaurant' : 'folder_open'"></span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-lg text-on-surface" x-text="item.name || key"></h4>
+<p class="text-xs text-on-surface-variant" x-text="item.type === 'recipe' ? 'מתכון' : 'תת-קטגוריה'"></p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_left</span>
+</div>
+</template>
 </div>
 </section>
-<!-- Preparation Steps -->
-<section class="mb-12">
-<h2 class="text-2xl font-bold tracking-tight mb-8">Preparation</h2>
-<div class="space-y-10 relative">
-<!-- Step 1 -->
-<div class="flex gap-6 relative">
-<div class="flex-none">
-<span class="text-5xl font-black text-primary/10 leading-none select-none">01</span>
-</div>
-<div class="flex-1">
-<h3 class="text-lg font-bold mb-2">Marinate the Protein</h3>
-<p class="text-on-surface-variant leading-relaxed font-body">
-                            In a large bowl, whisk together the olive oil, minced garlic, and chopped rosemary. Place the chicken breasts in the marinade, ensuring they are well coated. Cover and refrigerate for at least 30 minutes.
-                        </p>
-</div>
-</div>
-<!-- Step 2 -->
-<div class="flex gap-6 relative">
-<div class="flex-none">
-<span class="text-5xl font-black text-primary/10 leading-none select-none">02</span>
-</div>
-<div class="flex-1">
-<h3 class="text-lg font-bold mb-2">Sear for Texture</h3>
-<p class="text-on-surface-variant leading-relaxed font-body">
-                            Heat a cast-iron skillet over medium-high heat. Place the chicken breasts skin-side down and sear for 5-6 minutes until golden brown and crispy. Flip the chicken and cook for another 2 minutes.
-                        </p>
+<!-- Recipe Detail View (Simulated) -->
+<section class="space-y-6" x-show="selectedRecipe" x-transition="">
+<div class="flex items-center justify-between">
+<button @click="selectedRecipe = null" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">share</span>
+</button>
 </div>
 </div>
-<!-- Step 3 -->
-<div class="flex gap-6 relative">
-<div class="flex-none">
-<span class="text-5xl font-black text-primary/10 leading-none select-none">03</span>
-</div>
-<div class="flex-1">
-<h3 class="text-lg font-bold mb-2">Bake with Citrus</h3>
-<p class="text-on-surface-variant leading-relaxed font-body">
-                            Arrange the thinly sliced lemons around and on top of the chicken. Transfer the skillet to a preheated oven at 200°C (400°F). Roast for 15-20 minutes until the internal temperature reaches 75°C.
-                        </p>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-3xl p-8 space-y-6">
+<div>
+<h2 class="font-headline text-3xl font-black text-on-surface mb-2" x-text="selectedRecipe?.name"></h2>
+<div class="flex items-center gap-4 text-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 45 דק'</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">group</span> 4 מנות</span>
 </div>
 </div>
-<!-- Step 4 -->
-<div class="flex gap-6 relative">
-<div class="flex-none">
-<span class="text-5xl font-black text-primary/10 leading-none select-none">04</span>
+<div class="space-y-4">
+<h3 class="font-headline font-bold text-lg border-b border-outline-variant pb-2">תוכן המתכון</h3>
+<p class="font-body text-on-surface-variant leading-relaxed" x-text="selectedRecipe?.content || 'כאן יופיעו הוראות ההכנה והמרכיבים של המתכון שנבחר...'"></p>
 </div>
-<div class="flex-1">
-<h3 class="text-lg font-bold mb-2">Rest and Serve</h3>
-<p class="text-on-surface-variant leading-relaxed font-body">
-                            Remove from the oven and let the chicken rest for 5 minutes before slicing. This ensures the juices redistribute for maximum tenderness. Garnish with fresh rosemary.
-                        </p>
-</div>
+<div class="pt-4">
+<button class="w-full py-4 bg-primary text-white rounded-full font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">התחל בישול</button>
 </div>
 </div>
 </section>
-<!-- Chef's Notes (Tips) -->
-<section class="mb-12">
-<div class="bg-secondary-container p-6 rounded-xl relative overflow-hidden">
-<div class="absolute -top-4 -right-4 opacity-10">
-<span class="material-symbols-outlined text-[80px]" data-icon="lightbulb">lightbulb</span>
-</div>
+<!-- Chef's Tip (Persistent on Home) -->
+<section class="bg-surface-container-highest/30 border border-outline-variant/30 rounded-xl p-8 relative overflow-hidden" x-show="!selectedRecipe">
+<div class="relative z-10">
 <div class="flex items-center gap-2 mb-4">
-<span class="material-symbols-outlined text-on-secondary-container" data-icon="auto_awesome">auto_awesome</span>
-<h3 class="text-on-secondary-container font-bold text-lg">Chef's Notes</h3>
+<span class="material-symbols-outlined text-primary text-xl">lightbulb</span>
+<h3 class="font-label font-bold text-primary uppercase tracking-widest text-xs">טיפ השף השבועי</h3>
 </div>
-<p class="text-on-secondary-container/90 leading-relaxed font-medium">
-                    For a deeper flavor profile, add a splash of dry white wine to the skillet before transferring it to the oven. It creates a beautiful deglazed sauce that pairs perfectly with roasted potatoes or a light spring salad.
+<p class="font-body text-on-surface leading-relaxed italic text-sm">
+                    "כדי להשיג עור פריך במיוחד בעוף צלוי, ייבשו את העוף היטב בעזרת נייר סופג והשאירו אותו במקרר ללא כיסוי למשך שעה."
                 </p>
+<div class="mt-6 flex items-center gap-2">
+<div class="w-6 h-px bg-outline-variant"></div>
+<span class="text-[10px] font-bold text-outline-variant uppercase tracking-wider">שף הבית, אטליה</span>
+</div>
 </div>
 </section>
-<!-- Start Cooking Button -->
-<div class="fixed bottom-24 left-0 right-0 px-6 flex justify-center pointer-events-none">
-<button class="pointer-events-auto bg-gradient-to-r from-primary to-primary-dim text-white font-bold px-10 py-5 rounded-full shadow-lg scale-100 hover:scale-105 active:scale-95 transition-all flex items-center gap-3">
-<span class="material-symbols-outlined" data-icon="play_arrow">play_arrow</span>
-                Start Cooking Mode
-            </button>
-</div>
 </main>
-<!-- Bottom Navigation (from Shared Components JSON) -->
-<nav class="fixed bottom-0 w-full flex justify-around items-center px-4 py-4 pb-8 bg-[#faf9f8]/80 dark:bg-stone-950/80 backdrop-blur-xl rounded-t-[3rem] z-50 shadow-[0_-8px_24px_rgba(48,51,51,0.06)]">
-<div class="flex flex-col items-center justify-center text-[#303333] dark:text-stone-400 px-6 py-2 hover:text-[#8b5032] transition-all">
-<span class="material-symbols-outlined mb-1" data-icon="restaurant_menu">restaurant_menu</span>
-<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Explore</span>
-</div>
-<div class="flex flex-col items-center justify-center text-[#303333] dark:text-stone-400 px-6 py-2 hover:text-[#8b5032] transition-all">
-<span class="material-symbols-outlined mb-1" data-icon="bookmark">bookmark</span>
-<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Saved</span>
-</div>
-<!-- Active Tab: Cook -->
-<div class="flex flex-col items-center justify-center bg-[#56652c] text-white rounded-[999px] px-6 py-2 active:scale-90 duration-300">
-<span class="material-symbols-outlined mb-1" data-icon="timer">timer</span>
-<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Cook</span>
-</div>
-<div class="flex flex-col items-center justify-center text-[#303333] dark:text-stone-400 px-6 py-2 hover:text-[#8b5032] transition-all">
-<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
-<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Profile</span>
-</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#faf9f8]/80 dark:bg-[#1a1a1a]/80 backdrop-blur-xl z-50 rounded-t-[3rem] shadow-[0_-8px_24px_rgba(48,51,51,0.06)]">
+<a @click.prevent="resetView()" class="flex flex-col items-center justify-center bg-primary text-white rounded-full px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">bookmark</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">outdoor_grill</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Cooking</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Profile</span>
+</a>
 </nav>
+<script defer="" src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script>
+        function recipeApp() {
+            return {
+                data: {
+                    main: {
+                        name: 'מנה עיקרית',
+                        recipes: {
+                            chicken: { name: 'עוף בתנור', type: 'recipe', content: 'מתכון לעוף עסיסי בתנור עם תפוחי אדמה ורוזמרין...' },
+                            meat: { name: 'קציצות ברוטב', type: 'recipe', content: 'קציצות בקר נימוחות ברוטב עגבניות עשיר...' }
+                        }
+                    },
+                    side: {
+                        name: 'תוספות',
+                        sub: {
+                            rice: {
+                                name: 'אורז',
+                                recipes: {
+                                    white_rice: { name: 'אורז לבן קלאסי', type: 'recipe', content: 'הסוד לאורז לבן אחד אחד...' },
+                                    mjadra: { name: 'מג\'דרה', type: 'recipe', content: 'אורז עם עדשים ובצל מטוגן...' }
+                                }
+                            },
+                            potatoes: {
+                                name: 'תפוחי אדמה',
+                                recipes: {
+                                    mash: { name: 'פירה קרמי', type: 'recipe', content: 'פירה חלק עם חמאה וחלב...' }
+                                }
+                            }
+                        }
+                    },
+                    dessert: {
+                        name: 'קינוחים',
+                        recipes: {
+                            cake: { name: 'עוגת שוקולד', type: 'recipe', content: 'עוגת שוקולד חמה ונימוחה...' },
+                            cookies: { name: 'עוגיות שוקולד צ\'יפס', type: 'recipe', content: 'עוגיות פריכות מבחוץ ורכות מבפנים...' }
+                        }
+                    }
+                },
+                currentCategory: 'main',
+                currentPath: [],
+                selectedRecipe: null,
+
+                get currentItems() {
+                    let ref = this.data[this.currentCategory];
+                    for (const step of this.currentPath) {
+                        ref = ref.sub ? ref.sub[step] : ref.recipes[step];
+                    }
+                    
+                    const result = {};
+                    if (ref.sub) {
+                        Object.entries(ref.sub).forEach(([k, v]) => {
+                            result[k] = { ...v, type: 'subcategory' };
+                        });
+                    }
+                    if (ref.recipes) {
+                        Object.entries(ref.recipes).forEach(([k, v]) => {
+                            result[k] = { ...v, type: 'recipe' };
+                        });
+                    }
+                    return result;
+                },
+
+                selectCategory(key) {
+                    this.currentCategory = key;
+                    this.currentPath = [];
+                    this.selectedRecipe = null;
+                },
+
+                handleItemClick(item, key) {
+                    if (item.type === 'recipe') {
+                        this.selectedRecipe = item;
+                    } else {
+                        this.currentPath.push(key);
+                    }
+                },
+
+                goBack() {
+                    this.currentPath.pop();
+                },
+
+                resetView() {
+                    this.currentCategory = 'main';
+                    this.currentPath = [];
+                    this.selectedRecipe = null;
+                },
+
+                getViewTitle() {
+                    if (this.currentPath.length === 0) return this.data[this.currentCategory].name;
+                    let ref = this.data[this.currentCategory];
+                    for (let i = 0; i < this.currentPath.length; i++) {
+                        ref = ref.sub[this.currentPath[i]];
+                    }
+                    return ref.name;
+                }
+            }
+        }
+    </script>
 </body></html>
