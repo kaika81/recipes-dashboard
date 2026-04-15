@@ -5,127 +5,270 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>דשבורד מתכונים</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --panel-soft: #eef2ff;
+      --border: #d8def0;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #dbe7ff;
+      --accent-strong: #c4d7ff;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #fafafa;
-      color: #222;
-      display: flex;
-      height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
     }
-    .sidebar {
-      width: 220px;
-      background: #f0f0f0;
-      border-left: 1px solid #d8d8d8;
+
+    .app {
+      max-width: 1100px;
+      margin: 0 auto;
       padding: 16px;
-      overflow-y: auto;
     }
-    .sidebar h2 {
-      margin-top: 0;
-      font-size: 20px;
+
+    .app-header {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 18px 18px 14px;
+      margin-bottom: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    .sidebar button {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 8px;
-      border: none;
-      border-radius: 8px;
-      background: #ffffff;
-      cursor: pointer;
-      text-align: right;
-      font-size: 15px;
+
+    .app-title {
+      margin: 0 0 14px;
+      font-size: 28px;
     }
-    .sidebar button:hover { background: #e8e8e8; }
-    .content {
-      flex: 1;
-      display: flex;
-      min-width: 0;
-    }
-    .list-panel {
-      width: 340px;
-      background: #fff;
-      border-left: 1px solid #d8d8d8;
-      padding: 16px;
-      overflow-y: auto;
-    }
-    .list-header {
+
+    .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-bottom: 14px;
     }
-    .list-header h3 {
-      margin: 0;
-      font-size: 18px;
-    }
+
     .back-btn {
       border: none;
-      background: #ececec;
-      border-radius: 8px;
-      padding: 8px 12px;
+      background: var(--panel-soft);
+      border-radius: 12px;
+      padding: 10px 14px;
       cursor: pointer;
+      font-size: 14px;
       display: none;
     }
-    .item {
-      padding: 12px;
-      border: 1px solid #e5e5e5;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      background: #fff;
+
+    .back-btn:hover {
+      background: var(--accent);
     }
-    .item:hover {
-      background: #f8f8f8;
-      border-color: #cfcfcf;
-    }
-    .recipe-panel {
+
+    .screen-title {
+      margin: 0;
+      font-size: 20px;
       flex: 1;
-      padding: 24px;
-      overflow-y: auto;
     }
-    .placeholder {
-      color: #777;
-      font-size: 18px;
+
+    .category-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
     }
-    .selected-title {
-      margin-top: 0;
-      font-size: 28px;
+
+    .category-strip button {
+      border: 1px solid transparent;
+      background: var(--panel-soft);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-size: 15px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex: 0 0 auto;
     }
+
+    .category-strip button:hover,
+    .category-strip button.active {
+      background: var(--accent);
+      border-color: var(--accent-strong);
+    }
+
+    .screen {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      min-height: 420px;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--panel);
+      padding: 16px;
+      cursor: pointer;
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent-strong);
+      background: #f9fbff;
+    }
+
+    .card-title {
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    .card-arrow {
+      color: var(--muted);
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .empty-state {
+      color: var(--muted);
+      font-size: 17px;
+      padding: 8px 4px;
+    }
+
+    .recipe-view {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .recipe-title {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
     .recipe-text {
       white-space: pre-wrap;
-      font-family: Arial, sans-serif;
-      line-height: 1.7;
-      font-size: 16px;
+      line-height: 1.95;
+      font-size: 17px;
+    }
+
+    .recipe-placeholder {
+      color: var(--muted);
+      font-size: 18px;
+      text-align: center;
+      padding: 40px 12px;
+    }
+
+    @media (max-width: 768px) {
+      .app {
+        padding: 10px;
+      }
+
+      .app-header {
+        padding: 14px 14px 12px;
+        border-radius: 18px;
+      }
+
+      .app-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+
+      .screen {
+        padding: 12px;
+        border-radius: 18px;
+        min-height: calc(100vh - 180px);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card {
+        min-height: 64px;
+        padding: 14px;
+      }
+
+      .card-title {
+        font-size: 16px;
+      }
+
+      .screen-title {
+        font-size: 18px;
+      }
+
+      .recipe-title {
+        font-size: 25px;
+      }
+
+      .recipe-text {
+        font-size: 16px;
+        line-height: 1.85;
+      }
     }
   </style>
 </head>
 <body>
-  <aside class="sidebar">
-    <h2>קטגוריות</h2>
-    <button data-category="main">מנה עיקרית</button>
-    <button data-category="side">תוספת</button>
-    <button data-category="dessert">קינוח</button>
-    <button data-category="starters">מנות פתיחה</button>
-    <button data-category="baked">מאפים</button>
-    <button data-category="breakfast">ארוחת בוקר</button>
-    <button data-category="salad">סלטים</button>
-  </aside>
-
-  <main class="content">
-    <section class="list-panel">
-      <div class="list-header">
-        <h3 id="listTitle">בחר קטגוריה</h3>
+  <div class="app">
+    <header class="app-header">
+      <h1 class="app-title">המתכונים שלי</h1>
+      <div class="topbar">
         <button id="backBtn" class="back-btn">חזור</button>
+        <h2 id="screenTitle" class="screen-title">בחר קטגוריה</h2>
       </div>
-      <div id="list"></div>
-    </section>
+      <div class="category-strip" id="categoryStrip">
+        <button data-category="main">מנה עיקרית</button>
+        <button data-category="side">תוספת</button>
+        <button data-category="dessert">קינוח</button>
+        <button data-category="starters">מנות פתיחה</button>
+        <button data-category="baked">מאפים</button>
+        <button data-category="breakfast">ארוחת בוקר</button>
+        <button data-category="salad">סלטים</button>
+      </div>
+    </header>
 
-    <section class="recipe-panel">
-      <div id="recipe" class="placeholder">כאן יוצג הפריט שנבחר</div>
-    </section>
-  </main>
+    <main>
+      <section id="listScreen" class="screen active">
+        <div id="listGrid" class="grid"></div>
+      </section>
+
+      <section id="recipeScreen" class="screen">
+        <div class="recipe-view" id="recipeView">
+          <div class="recipe-placeholder">כאן יוצג המתכון שבחרת</div>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script src="recipes.js"></script>
   <script>
@@ -139,27 +282,57 @@
       salad: 'סלטים'
     };
 
-    const listEl = document.getElementById('list');
-    const listTitleEl = document.getElementById('listTitle');
-    const recipeEl = document.getElementById('recipe');
-    const backBtnEl = document.getElementById('backBtn');
+    const categoryButtons = document.querySelectorAll('#categoryStrip button[data-category]');
+    const listGrid = document.getElementById('listGrid');
+    const listScreen = document.getElementById('listScreen');
+    const recipeScreen = document.getElementById('recipeScreen');
+    const recipeView = document.getElementById('recipeView');
+    const screenTitle = document.getElementById('screenTitle');
+    const backBtn = document.getElementById('backBtn');
 
     let currentCategoryKey = null;
     let pathStack = [];
+    let selectedRecipeName = '';
 
-    function resetRecipePanel() {
-      recipeEl.className = 'placeholder';
-      recipeEl.textContent = 'כאן יוצג הפריט שנבחר';
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     }
 
-    function renderRecipe(name, text) {
-      if (text && text.trim() !== '') {
-        recipeEl.className = '';
-        recipeEl.innerHTML = '<h1 class="selected-title">' + name + '</h1><div class="recipe-text">' + text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
-      } else {
-        recipeEl.className = '';
-        recipeEl.innerHTML = '<h1 class="selected-title">' + name + '</h1>';
+    function setActiveCategory(categoryKey) {
+      categoryButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.category === categoryKey);
+      });
+    }
+
+    function showScreen(screenName) {
+      listScreen.classList.toggle('active', screenName === 'list');
+      recipeScreen.classList.toggle('active', screenName === 'recipe');
+    }
+
+    function updateHeader() {
+      if (!currentCategoryKey) {
+        screenTitle.textContent = 'בחר קטגוריה';
+        backBtn.style.display = 'none';
+        return;
       }
+
+      if (showingRecipe()) {
+        screenTitle.textContent = selectedRecipeName || 'מתכון';
+        backBtn.style.display = 'inline-block';
+        return;
+      }
+
+      const title = pathStack.length > 0
+        ? pathStack[pathStack.length - 1]
+        : categoryLabels[currentCategoryKey];
+
+      screenTitle.textContent = title;
+      backBtn.style.display = (pathStack.length > 0 || selectedRecipeName) ? 'inline-block' : 'none';
     }
 
     function getCurrentNode() {
@@ -170,61 +343,97 @@
       return node;
     }
 
-    function renderList(node, title) {
-      listEl.innerHTML = '';
-      listTitleEl.textContent = title;
-      backBtnEl.style.display = pathStack.length > 0 ? 'inline-block' : 'none';
+    function showingRecipe() {
+      return recipeScreen.classList.contains('active');
+    }
 
-      const keys = Object.keys(node);
-      if (keys.length === 0) {
-        listEl.innerHTML = '<div class="placeholder">אין פריטים בקטגוריה הזו כרגע</div>';
+    function renderList(node) {
+      listGrid.innerHTML = '';
+      const keys = Object.keys(node || {});
+
+      if (!keys.length) {
+        listGrid.innerHTML = '<div class="empty-state">אין פריטים בקטגוריה הזו כרגע</div>';
         return;
       }
 
       keys.forEach((key) => {
-        const itemEl = document.createElement('div');
-        itemEl.className = 'item';
-        itemEl.textContent = key;
-        itemEl.addEventListener('click', () => {
-          const value = node[key];
+        const value = node[key];
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'card';
+        card.innerHTML = '<span class="card-title">' + escapeHtml(key) + '</span><span class="card-arrow">‹</span>';
+
+        card.addEventListener('click', () => {
           if (value && typeof value === 'object' && !Array.isArray(value)) {
             pathStack.push(key);
-            renderList(value, key);
-            renderRecipe(key, '');
+            selectedRecipeName = '';
+            showScreen('list');
+            renderList(value);
+            updateHeader();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
+            selectedRecipeName = key;
             renderRecipe(key, value);
+            showScreen('recipe');
+            updateHeader();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         });
-        listEl.appendChild(itemEl);
+
+        listGrid.appendChild(card);
       });
+    }
+
+    function renderRecipe(name, text) {
+      if (text && text.trim() !== '') {
+        recipeView.innerHTML = '<h3 class="recipe-title">' + escapeHtml(name) + '</h3><div class="recipe-text">' + escapeHtml(text) + '</div>';
+      } else {
+        recipeView.innerHTML = '<h3 class="recipe-title">' + escapeHtml(name) + '</h3><div class="recipe-placeholder">עדיין לא הוזן מתכון לפריט הזה</div>';
+      }
     }
 
     function loadCategory(categoryKey) {
       currentCategoryKey = categoryKey;
       pathStack = [];
-      resetRecipePanel();
-      renderList(data[categoryKey], categoryLabels[categoryKey]);
+      selectedRecipeName = '';
+      setActiveCategory(categoryKey);
+      renderList(data[categoryKey] || {});
+      showScreen('list');
+      updateHeader();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    backBtnEl.addEventListener('click', () => {
-      if (!currentCategoryKey) return;
+    backBtn.addEventListener('click', () => {
+      if (showingRecipe()) {
+        selectedRecipeName = '';
+        showScreen('list');
+        updateHeader();
+        return;
+      }
+
       if (pathStack.length > 0) {
         pathStack.pop();
+        renderList(getCurrentNode());
+        updateHeader();
+        return;
       }
-      const node = getCurrentNode();
-      const title = pathStack.length > 0 ? pathStack[pathStack.length - 1] : categoryLabels[currentCategoryKey];
-      renderList(node, title);
-      resetRecipePanel();
+
+      currentCategoryKey = null;
+      selectedRecipeName = '';
+      setActiveCategory('');
+      listGrid.innerHTML = '<div class="empty-state">בחר קטגוריה למעלה כדי להתחיל</div>';
+      showScreen('list');
+      updateHeader();
     });
 
-    document.querySelectorAll('.sidebar button[data-category]').forEach((button) => {
+    categoryButtons.forEach((button) => {
       button.addEventListener('click', () => {
         loadCategory(button.dataset.category);
       });
     });
+
+    listGrid.innerHTML = '<div class="empty-state">בחר קטגוריה למעלה כדי להתחיל</div>';
+    updateHeader();
   </script>
 </body>
 </html>
-
-
-
