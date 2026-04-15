@@ -1,323 +1,401 @@
 <!DOCTYPE html>
+<html class="light" dir="rtl" lang="he">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>The Culinary Atelier</title>
 
-<html class="light" dir="rtl" lang="he"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,700;0,900;1,900&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "secondary-fixed": "#ffdbcc",
-                    "inverse-on-surface": "#9d9d9c",
-                    "surface-container-high": "#e7e8e7",
-                    "on-tertiary-container": "#605845",
-                    "on-tertiary-fixed-variant": "#6a624f",
-                    "primary-fixed-dim": "#cbdc96",
-                    "on-tertiary": "#fff8ef",
-                    "primary": "#8A9A5B", // Updated to Sage & Hearth primary
-                    "tertiary-fixed-dim": "#ebdec6",
-                    "tertiary-dim": "#5a5240",
-                    "tertiary-container": "#f9edd4",
-                    "on-secondary-fixed-variant": "#864d2f",
-                    "surface": "#faf9f8",
-                    "on-primary-fixed-variant": "#536129",
-                    "on-tertiary-fixed": "#4d4634",
-                    "surface-tint": "#8A9A5B",
-                    "surface-container-lowest": "#ffffff",
-                    "surface-dim": "#d8dad9",
-                    "outline": "#787b7a",
-                    "on-surface-variant": "#5d605f",
-                    "on-primary-container": "#495720",
-                    "inverse-primary": "#e7f9b0",
-                    "on-error-container": "#6e1400",
-                    "error-container": "#fd795a",
-                    "background": "#faf9f8",
-                    "on-primary": "#f2ffc7",
-                    "on-secondary-fixed": "#643116",
-                    "on-primary-fixed": "#37440e",
-                    "secondary-container": "#ffdbcc",
-                    "on-secondary-container": "#7b4327",
-                    "primary-fixed": "#d9eaa3",
-                    "on-error": "#fff7f6",
-                    "error": "#a73b21",
-                    "tertiary": "#675e4b",
-                    "primary-container": "#d9eaa3",
-                    "on-surface": "#303333",
-                    "outline-variant": "#b0b2b1",
-                    "surface-variant": "#e1e3e2",
-                    "on-secondary": "#fff7f5",
-                    "secondary-dim": "#7c4428",
-                    "tertiary-fixed": "#f9edd4",
-                    "surface-container-low": "#f3f4f3",
-                    "surface-container": "#edeeed",
-                    "primary-dim": "#4a5821",
-                    "on-background": "#303333",
-                    "secondary-fixed-dim": "#ffc9b0",
-                    "inverse-surface": "#0d0e0e",
-                    "secondary": "#8b5032",
-                    "surface-bright": "#faf9f8",
-                    "surface-container-highest": "#e1e3e2",
-                    "error-dim": "#791903"
-            },
-            "borderRadius": {
-                    "DEFAULT": "9999px", // Sage & Hearth ROUND_FULL
-                    "lg": "2rem",
-                    "xl": "3rem",
-                    "full": "9999px"
-            },
-            "fontFamily": {
-                    "headline": ["Be Vietnam Pro"],
-                    "body": ["Inter"],
-                    "label": ["Inter"]
-            }
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,700;0,900;1,900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed": "#ffdbcc",
+            "inverse-on-surface": "#9d9d9c",
+            "surface-container-high": "#e7e8e7",
+            "on-tertiary-container": "#605845",
+            "on-tertiary-fixed-variant": "#6a624f",
+            "primary-fixed-dim": "#cbdc96",
+            "on-tertiary": "#fff8ef",
+            "primary": "#8A9A5B",
+            "tertiary-fixed-dim": "#ebdec6",
+            "tertiary-dim": "#5a5240",
+            "tertiary-container": "#f9edd4",
+            "on-secondary-fixed-variant": "#864d2f",
+            "surface": "#faf9f8",
+            "on-primary-fixed-variant": "#536129",
+            "on-tertiary-fixed": "#4d4634",
+            "surface-tint": "#8A9A5B",
+            "surface-container-lowest": "#ffffff",
+            "surface-dim": "#d8dad9",
+            "outline": "#787b7a",
+            "on-surface-variant": "#5d605f",
+            "on-primary-container": "#495720",
+            "inverse-primary": "#e7f9b0",
+            "on-error-container": "#6e1400",
+            "error-container": "#fd795a",
+            "background": "#faf9f8",
+            "on-primary": "#f2ffc7",
+            "on-secondary-fixed": "#643116",
+            "on-primary-fixed": "#37440e",
+            "secondary-container": "#ffdbcc",
+            "on-secondary-container": "#7b4327",
+            "primary-fixed": "#d9eaa3",
+            "on-error": "#fff7f6",
+            "error": "#a73b21",
+            "tertiary": "#675e4b",
+            "primary-container": "#d9eaa3",
+            "on-surface": "#303333",
+            "outline-variant": "#b0b2b1",
+            "surface-variant": "#e1e3e2",
+            "on-secondary": "#fff7f5",
+            "secondary-dim": "#7c4428",
+            "tertiary-fixed": "#f9edd4",
+            "surface-container-low": "#f3f4f3",
+            "surface-container": "#edeeed",
+            "primary-dim": "#4a5821",
+            "on-background": "#303333",
+            "secondary-fixed-dim": "#ffc9b0",
+            "inverse-surface": "#0d0e0e",
+            "secondary": "#8b5032",
+            "surface-bright": "#faf9f8",
+            "surface-container-highest": "#e1e3e2",
+            "error-dim": "#791903"
           },
-        },
+          borderRadius: {
+            DEFAULT: "9999px",
+            lg: "2rem",
+            xl: "3rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Be Vietnam Pro"],
+            body: ["Inter"],
+            label: ["Inter"]
+          }
+        }
       }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #faf9f8;
-            color: #303333;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        [v-cloak] { display: none; }
-    </style>
+    };
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    }
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #faf9f8;
+      color: #303333;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    [x-cloak] {
+      display: none !important;
+    }
+  </style>
 </head>
+
 <body class="bg-background text-on-background min-h-screen pb-32" x-data="recipeApp()">
-<!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-[#faf9f8]/80 dark:bg-[#1a1a1a]/80 backdrop-blur-xl">
-<div class="flex items-center justify-between px-6 h-16 w-full max-w-screen-xl mx-auto">
-<button @click="resetView()" class="hover:opacity-80 transition-opacity active:scale-95 duration-200">
-<span class="material-symbols-outlined text-primary text-2xl">home</span>
-</button>
-<h1 class="font-headline font-bold tracking-tight text-xl italic text-primary">The Culinary Atelier</h1>
-<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
-<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEU3P12-iW_zV4mO_tRu19e1olw8Oa0EU9zJGMpzMbIjndQYWhaMl4vmZFVrWSHwk99V49Pq0spqzzhvZXp4Mem1-pqFmkyXQjqova7ChHoOlhbWZ0wEOOynJ5ltg3eQeNwgRX81Xmq_eqq2w_5dWikAxkA--hmEk8gJCEWxOc5_yHAak-ozaV0psdtx7oIZcFmRss1vReng_0QQt50hK-1-IJEiwpADTpX17KjB2d7FGJeORA3OvZznVwcUlt-lj7tDTzUIvXirw"/>
-</div>
-</div>
-</header>
-<main class="pt-20 px-6 max-w-md mx-auto space-y-8">
-<!-- Search Bar -->
-<section x-show="!selectedRecipe">
-<div class="relative group">
-<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-outline">search</span>
-</div>
-<input class="w-full h-14 pr-12 pl-6 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary/20 font-body text-on-surface placeholder:text-outline-variant" placeholder="חפשו מתכון מושלם..." type="text"/>
-</div>
-</section>
-<!-- Dynamic Category Strip -->
-<section class="-mx-6" x-show="!selectedRecipe">
-<div class="flex overflow-x-auto hide-scrollbar px-6 gap-3">
-<template :key="key" x-for="(cat, key) in data">
-<button :class="currentCategory === key ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-container-high text-on-surface-variant'" @click="selectCategory(key)" class="flex-none px-6 py-2.5 rounded-full font-label text-sm font-bold whitespace-nowrap transition-colors" x-text="cat.name">
-</button>
-</template>
-</div>
-</section>
-<!-- List View: Subcategories or Recipes -->
-<section class="space-y-4" x-show="!selectedRecipe">
-<div class="flex items-center justify-between">
-<h3 class="font-headline text-xl font-bold text-on-surface" x-text="getViewTitle()"></h3>
-<button @click="goBack()" class="text-primary font-label text-sm font-bold flex items-center gap-1" x-show="currentPath.length &gt; 0">
-<span class="material-symbols-outlined text-sm">arrow_forward</span> חזרה
-                </button>
-</div>
-<div class="space-y-3">
-<template :key="key" x-for="(item, key) in currentItems">
-<div @click="handleItemClick(item, key)" class="flex items-center justify-between p-5 bg-surface-container-low rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer group">
-<div class="flex gap-4 items-center">
-<div :class="item.type === 'recipe' ? 'bg-primary-container text-primary' : 'bg-tertiary-container text-tertiary'" class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-<span class="material-symbols-outlined text-2xl" x-text="item.type === 'recipe' ? 'restaurant' : 'folder_open'"></span>
-</div>
-<div>
-<h4 class="font-headline font-bold text-lg text-on-surface" x-text="item.name || key"></h4>
-<p class="text-xs text-on-surface-variant" x-text="item.type === 'recipe' ? 'מתכון' : 'תת-קטגוריה'"></p>
-</div>
-</div>
-<span class="material-symbols-outlined text-outline-variant">chevron_left</span>
-</div>
-</template>
-</div>
-</section>
-<!-- Recipe Detail View (Simulated) -->
-<section class="space-y-6" x-show="selectedRecipe" x-transition="">
-<div class="flex items-center justify-between">
-<button @click="selectedRecipe = null" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
-<span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<div class="flex gap-2">
-<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">bookmark</span>
-</button>
-<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">share</span>
-</button>
-</div>
-</div>
-<div class="bg-surface-container-lowest border border-outline-variant rounded-3xl p-8 space-y-6">
-<div>
-<h2 class="font-headline text-3xl font-black text-on-surface mb-2" x-text="selectedRecipe?.name"></h2>
-<div class="flex items-center gap-4 text-sm text-on-surface-variant">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 45 דק'</span>
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">group</span> 4 מנות</span>
-</div>
-</div>
-<div class="space-y-4">
-<h3 class="font-headline font-bold text-lg border-b border-outline-variant pb-2">תוכן המתכון</h3>
-<p class="font-body text-on-surface-variant leading-relaxed" x-text="selectedRecipe?.content || 'כאן יופיעו הוראות ההכנה והמרכיבים של המתכון שנבחר...'"></p>
-</div>
-<div class="pt-4">
-<button class="w-full py-4 bg-primary text-white rounded-full font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">התחל בישול</button>
-</div>
-</div>
-</section>
-<!-- Chef's Tip (Persistent on Home) -->
-<section class="bg-surface-container-highest/30 border border-outline-variant/30 rounded-xl p-8 relative overflow-hidden" x-show="!selectedRecipe">
-<div class="relative z-10">
-<div class="flex items-center gap-2 mb-4">
-<span class="material-symbols-outlined text-primary text-xl">lightbulb</span>
-<h3 class="font-label font-bold text-primary uppercase tracking-widest text-xs">טיפ השף השבועי</h3>
-</div>
-<p class="font-body text-on-surface leading-relaxed italic text-sm">
-                    "כדי להשיג עור פריך במיוחד בעוף צלוי, ייבשו את העוף היטב בעזרת נייר סופג והשאירו אותו במקרר ללא כיסוי למשך שעה."
-                </p>
-<div class="mt-6 flex items-center gap-2">
-<div class="w-6 h-px bg-outline-variant"></div>
-<span class="text-[10px] font-bold text-outline-variant uppercase tracking-wider">שף הבית, אטליה</span>
-</div>
-</div>
-</section>
-</main>
-<!-- BottomNavBar -->
-<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#faf9f8]/80 dark:bg-[#1a1a1a]/80 backdrop-blur-xl z-50 rounded-t-[3rem] shadow-[0_-8px_24px_rgba(48,51,51,0.06)]">
-<a @click.prevent="resetView()" class="flex flex-col items-center justify-center bg-primary text-white rounded-full px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
-<span class="material-symbols-outlined text-2xl">restaurant_menu</span>
-<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Explore</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
-<span class="material-symbols-outlined text-2xl">bookmark</span>
-<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Saved</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
-<span class="material-symbols-outlined text-2xl">outdoor_grill</span>
-<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Cooking</span>
-</a>
-<a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
-<span class="material-symbols-outlined text-2xl">person</span>
-<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Profile</span>
-</a>
-</nav>
-<script defer="" src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<script>
-        function recipeApp() {
-            return {
-                data: {
-                    main: {
-                        name: 'מנה עיקרית',
-                        recipes: {
-                            chicken: { name: 'עוף בתנור', type: 'recipe', content: 'מתכון לעוף עסיסי בתנור עם תפוחי אדמה ורוזמרין...' },
-                            meat: { name: 'קציצות ברוטב', type: 'recipe', content: 'קציצות בקר נימוחות ברוטב עגבניות עשיר...' }
-                        }
-                    },
-                    side: {
-                        name: 'תוספות',
-                        sub: {
-                            rice: {
-                                name: 'אורז',
-                                recipes: {
-                                    white_rice: { name: 'אורז לבן קלאסי', type: 'recipe', content: 'הסוד לאורז לבן אחד אחד...' },
-                                    mjadra: { name: 'מג\'דרה', type: 'recipe', content: 'אורז עם עדשים ובצל מטוגן...' }
-                                }
-                            },
-                            potatoes: {
-                                name: 'תפוחי אדמה',
-                                recipes: {
-                                    mash: { name: 'פירה קרמי', type: 'recipe', content: 'פירה חלק עם חמאה וחלב...' }
-                                }
-                            }
-                        }
-                    },
-                    dessert: {
-                        name: 'קינוחים',
-                        recipes: {
-                            cake: { name: 'עוגת שוקולד', type: 'recipe', content: 'עוגת שוקולד חמה ונימוחה...' },
-                            cookies: { name: 'עוגיות שוקולד צ\'יפס', type: 'recipe', content: 'עוגיות פריכות מבחוץ ורכות מבפנים...' }
-                        }
-                    }
-                },
-                currentCategory: 'main',
-                currentPath: [],
-                selectedRecipe: null,
+  <header class="fixed top-0 w-full z-50 bg-[#faf9f8]/80 backdrop-blur-xl">
+    <div class="flex items-center justify-between px-6 h-16 w-full max-w-screen-xl mx-auto">
+      <button @click="resetView()" class="hover:opacity-80 transition-opacity active:scale-95 duration-200">
+        <span class="material-symbols-outlined text-primary text-2xl">home</span>
+      </button>
 
-                get currentItems() {
-                    let ref = this.data[this.currentCategory];
-                    for (const step of this.currentPath) {
-                        ref = ref.sub ? ref.sub[step] : ref.recipes[step];
-                    }
-                    
-                    const result = {};
-                    if (ref.sub) {
-                        Object.entries(ref.sub).forEach(([k, v]) => {
-                            result[k] = { ...v, type: 'subcategory' };
-                        });
-                    }
-                    if (ref.recipes) {
-                        Object.entries(ref.recipes).forEach(([k, v]) => {
-                            result[k] = { ...v, type: 'recipe' };
-                        });
-                    }
-                    return result;
-                },
+      <h1 class="font-headline font-bold tracking-tight text-xl italic text-primary">
+        The Culinary Atelier
+      </h1>
 
-                selectCategory(key) {
-                    this.currentCategory = key;
-                    this.currentPath = [];
-                    this.selectedRecipe = null;
-                },
+      <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+        <img
+          alt="User profile"
+          class="w-full h-full object-cover"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEU3P12-iW_zV4mO_tRu19e1olw8Oa0EU9zJGMpzMbIjndQYWhaMl4vmZFVrWSHwk99V49Pq0spqzzhvZXp4Mem1-pqFmkyXQjqova7ChHoOlhbWZ0wEOOynJ5ltg3eQeNwgRX81Xmq_eqq2w_5dWikAxkA--hmEk8gJCEWxOc5_yHAak-ozaV0psdtx7oIZcFmRss1vReng_0QQt50hK-1-IJEiwpADTpX17KjB2d7FGJeORA3OvZznVwcUlt-lj7tDTzUIvXirw"
+        />
+      </div>
+    </div>
+  </header>
 
-                handleItemClick(item, key) {
-                    if (item.type === 'recipe') {
-                        this.selectedRecipe = item;
-                    } else {
-                        this.currentPath.push(key);
-                    }
-                },
+  <main class="pt-20 px-6 max-w-md mx-auto space-y-8">
+    <section x-show="!selectedRecipe">
+      <div class="relative group">
+        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+          <span class="material-symbols-outlined text-outline">search</span>
+        </div>
+        <input
+          x-model="searchQuery"
+          class="w-full h-14 pr-12 pl-6 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary/20 font-body text-on-surface placeholder:text-outline-variant"
+          placeholder="חפשו מתכון מושלם..."
+          type="text"
+        />
+      </div>
+    </section>
 
-                goBack() {
-                    this.currentPath.pop();
-                },
+    <section class="-mx-6" x-show="!selectedRecipe">
+      <div class="flex overflow-x-auto hide-scrollbar px-6 gap-3">
+        <template x-for="(label, key) in categoryLabels" :key="key">
+          <button
+            :class="currentCategory === key ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-container-high text-on-surface-variant'"
+            @click="selectCategory(key)"
+            class="flex-none px-6 py-2.5 rounded-full font-label text-sm font-bold whitespace-nowrap transition-colors"
+            x-text="label"
+          ></button>
+        </template>
+      </div>
+    </section>
 
-                resetView() {
-                    this.currentCategory = 'main';
-                    this.currentPath = [];
-                    this.selectedRecipe = null;
-                },
+    <section class="space-y-4" x-show="!selectedRecipe">
+      <div class="flex items-center justify-between">
+        <h3 class="font-headline text-xl font-bold text-on-surface" x-text="getViewTitle()"></h3>
+        <button
+          @click="goBack()"
+          class="text-primary font-label text-sm font-bold flex items-center gap-1"
+          x-show="currentPath.length > 0"
+        >
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          חזרה
+        </button>
+      </div>
 
-                getViewTitle() {
-                    if (this.currentPath.length === 0) return this.data[this.currentCategory].name;
-                    let ref = this.data[this.currentCategory];
-                    for (let i = 0; i < this.currentPath.length; i++) {
-                        ref = ref.sub[this.currentPath[i]];
-                    }
-                    return ref.name;
-                }
+      <div class="space-y-3">
+        <template x-for="item in filteredItems" :key="item.key">
+          <div
+            @click="handleItemClick(item)"
+            class="flex items-center justify-between p-5 bg-surface-container-low rounded-xl border border-transparent hover:border-outline-variant transition-all cursor-pointer group"
+          >
+            <div class="flex gap-4 items-center">
+              <div
+                :class="item.type === 'recipe' ? 'bg-primary-container text-primary' : 'bg-tertiary-container text-tertiary'"
+                class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <span
+                  class="material-symbols-outlined text-2xl"
+                  x-text="item.type === 'recipe' ? 'restaurant' : 'folder_open'"
+                ></span>
+              </div>
+
+              <div>
+                <h4 class="font-headline font-bold text-lg text-on-surface" x-text="item.name"></h4>
+                <p
+                  class="text-xs text-on-surface-variant"
+                  x-text="item.type === 'recipe' ? 'מתכון' : 'תת-קטגוריה'"
+                ></p>
+              </div>
+            </div>
+
+            <span class="material-symbols-outlined text-outline-variant">chevron_left</span>
+          </div>
+        </template>
+
+        <div
+          x-show="filteredItems.length === 0"
+          class="p-5 bg-surface-container-low rounded-xl text-sm text-on-surface-variant"
+        >
+          לא נמצאו פריטים להצגה.
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-6" x-cloak x-show="selectedRecipe" x-transition>
+      <div class="flex items-center justify-between">
+        <button @click="selectedRecipe = null" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+
+        <div class="flex gap-2">
+          <button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">bookmark</span>
+          </button>
+          <button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">share</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-3xl p-8 space-y-6">
+        <div>
+          <h2 class="font-headline text-3xl font-black text-on-surface mb-2" x-text="selectedRecipe?.name"></h2>
+          <div class="flex items-center gap-4 text-sm text-on-surface-variant">
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">schedule</span> 45 דק'
+            </span>
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">group</span> 4 מנות
+            </span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-headline font-bold text-lg border-b border-outline-variant pb-2">תוכן המתכון</h3>
+          <p class="font-body text-on-surface-variant leading-relaxed whitespace-pre-wrap" x-text="selectedRecipe?.content || ''"></p>
+        </div>
+
+        <div class="pt-4">
+          <button class="w-full py-4 bg-primary text-white rounded-full font-bold shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+            התחל בישול
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-surface-container-highest/30 border border-outline-variant/30 rounded-xl p-8 relative overflow-hidden" x-show="!selectedRecipe">
+      <div class="relative z-10">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="material-symbols-outlined text-primary text-xl">lightbulb</span>
+          <h3 class="font-label font-bold text-primary uppercase tracking-widest text-xs">טיפ השף השבועי</h3>
+        </div>
+        <p class="font-body text-on-surface leading-relaxed italic text-sm">
+          "כדי להשיג עור פריך במיוחד בעוף צלוי, ייבשו את העוף היטב בעזרת נייר סופג והשאירו אותו במקרר ללא כיסוי למשך שעה."
+        </p>
+        <div class="mt-6 flex items-center gap-2">
+          <div class="w-6 h-px bg-outline-variant"></div>
+          <span class="text-[10px] font-bold text-outline-variant uppercase tracking-wider">שף הבית, אטליה</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#faf9f8]/80 backdrop-blur-xl z-50 rounded-t-[3rem] shadow-[0_-8px_24px_rgba(48,51,51,0.06)]">
+    <a @click.prevent="resetView()" class="flex flex-col items-center justify-center bg-primary text-white rounded-full px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
+      <span class="material-symbols-outlined text-2xl">restaurant_menu</span>
+      <span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Explore</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+      <span class="material-symbols-outlined text-2xl">bookmark</span>
+      <span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Saved</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+      <span class="material-symbols-outlined text-2xl">outdoor_grill</span>
+      <span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Cooking</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-[#303333]/60 px-5 py-2 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+      <span class="material-symbols-outlined text-2xl">person</span>
+      <span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Profile</span>
+    </a>
+  </nav>
+
+  <script src="recipes.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    function recipeApp() {
+      return {
+        categoryLabels: {
+          main: 'מנה עיקרית',
+          side: 'תוספת',
+          dessert: 'קינוח',
+          starters: 'מנות פתיחה',
+          baked: 'מאפים',
+          breakfast: 'ארוחת בוקר',
+          salad: 'סלטים'
+        },
+
+        currentCategory: 'main',
+        currentPath: [],
+        selectedRecipe: null,
+        searchQuery: '',
+
+        getCategoryData(key) {
+          if (!window.data || typeof window.data !== 'object') return {};
+          return window.data[key] || {};
+        },
+
+        getCurrentNode() {
+          let ref = this.getCategoryData(this.currentCategory);
+          for (const step of this.currentPath) {
+            if (!ref || typeof ref !== 'object') return {};
+            ref = ref[step];
+          }
+          return ref || {};
+        },
+
+        get currentItems() {
+          const ref = this.getCurrentNode();
+          const result = [];
+
+          if (!ref || typeof ref !== 'object') return result;
+
+          Object.entries(ref).forEach(([key, value]) => {
+            if (value && typeof value === 'object' && !Array.isArray(value)) {
+              result.push({
+                key,
+                name: key,
+                type: 'subcategory',
+                value
+              });
+            } else {
+              result.push({
+                key,
+                name: key,
+                type: 'recipe',
+                content: typeof value === 'string' ? value : ''
+              });
             }
+          });
+
+          return result;
+        },
+
+        get filteredItems() {
+          const q = this.searchQuery.trim().toLowerCase();
+          if (!q) return this.currentItems;
+
+          return this.currentItems.filter((item) =>
+            item.name.toLowerCase().includes(q) ||
+            (item.content || '').toLowerCase().includes(q)
+          );
+        },
+
+        selectCategory(key) {
+          this.currentCategory = key;
+          this.currentPath = [];
+          this.selectedRecipe = null;
+          this.searchQuery = '';
+        },
+
+        handleItemClick(item) {
+          if (item.type === 'recipe') {
+            this.selectedRecipe = {
+              name: item.name,
+              content: item.content || ''
+            };
+          } else {
+            this.currentPath.push(item.key);
+            this.selectedRecipe = null;
+          }
+        },
+
+        goBack() {
+          if (this.currentPath.length > 0) {
+            this.currentPath.pop();
+          }
+        },
+
+        resetView() {
+          this.currentCategory = 'main';
+          this.currentPath = [];
+          this.selectedRecipe = null;
+          this.searchQuery = '';
+        },
+
+        getViewTitle() {
+          if (!this.currentCategory) return 'קטגוריות';
+          if (this.currentPath.length === 0) {
+            return this.categoryLabels[this.currentCategory] || '';
+          }
+          return this.currentPath[this.currentPath.length - 1];
         }
-    </script>
-</body></html>
+      };
+    }
+  </script>
+</body>
+</html>
