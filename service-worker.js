@@ -1,4 +1,4 @@
-const CACHE_NAME = 'recipes-app-v2';
+const CACHE_NAME = 'recipes-app-v1';
 
 const URLS_TO_CACHE = [
   './',
