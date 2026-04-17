@@ -245,5 +245,5 @@ const data = {
 
   salad: {}
 };
-  fridaydinner: {}
+  fridayDinner: {}
 };
