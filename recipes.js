@@ -245,3 +245,5 @@ const data = {
 
   salad: {}
 };
+  fridaydinner: {}
+};
