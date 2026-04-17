@@ -3,123 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>בדיקת עיצוב</title>
+  <title>המתכונים שלי</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
   <div class="app">
     <div class="screen">
-
       <div class="topbar">
-        <button class="back-btn" aria-label="חזור">‹</button>
+        <button id="backBtn" class="back-btn" aria-label="חזור">‹</button>
 
         <div class="title-wrap">
-          <div class="eyebrow">תפריט ניהול</div>
-          <div class="title">בחר קטגוריה</div>
-          <div class="subtitle">בחירה מהירה ומדויקת מתוך הקטגוריות הקיימות</div>
+          <div id="title" class="title">בחר קטגוריה</div>
         </div>
       </div>
 
-      <div class="hero">
-        <div class="hero-label">מערכת ניהול מנות</div>
-        <div class="hero-title">קטלוג מסודר ונקי</div>
-        <div class="hero-text">
-          כל קטגוריה מוצגת בצורה ברורה עם מראה מקצועי שמתאים לאפליקציה רצינית במובייל.
-        </div>
+      <div id="categories" class="categories"></div>
+
+      <div id="recipeView" class="recipe-view hidden">
+        <h2 id="recipeTitle" class="recipe-title"></h2>
+        <pre id="recipeContent" class="recipe-content"></pre>
       </div>
-
-      <div class="categories">
-        <button class="category main">
-          <div class="category-right">
-            <div class="category-icon">🍗</div>
-            <div class="category-texts">
-              <div class="category-title">מנה עיקרית</div>
-              <div class="category-desc">מנות בשר, עוף, דגים ותבשילים</div>
-            </div>
-          </div>
-          <div class="category-arrow">›</div>
-        </button>
-
-        <button class="category side">
-          <div class="category-right">
-            <div class="category-icon">🍚</div>
-            <div class="category-texts">
-              <div class="category-title">תוספת</div>
-              <div class="category-desc">אורז, תפוחי אדמה, ירקות ועוד</div>
-            </div>
-          </div>
-          <div class="category-arrow">›</div>
-        </button>
-
-        <button class="category dessert">
-          <div class="category-right">
-            <div class="category-icon">🍰</div>
-            <div class="category-texts">
-              <div class="category-title">קינוח</div>
-              <div class="category-desc">עוגות, קרמים, מאפים מתוקים</div>
-            </div>
-          </div>
-          <div class="category-arrow">›</div>
-        </button>
-
-        <button class="category starter">
-          <div class="category-right">
-            <div class="category-icon">🥗</div>
-            <div class="category-texts">
-              <div class="category-title">מנות פתיחה</div>
-              <div class="category-desc">מנות קלות, ראשונות והגשה מוקדמת</div>
-            </div>
-          </div>
-          <div class="category-arrow">›</div>
-        </button>
-
-        <button class="category baked">
-          <div class="category-right">
-            <div class="category-icon">🥐</div>
-            <div class="category-texts">
-              <div class="category-title">מאפים</div>
-              <div class="category-desc">מלוחים, לחמים ומאפים טריים</div>
-            </div>
-          </div>
-          <div class="category-arrow">›</div>
-        </button>
-
-        <button class="category breakfast">
-          <div class="category-right">
-            <div class="category-icon">🍳</div>
-            <div class="category-texts">
-              <div class="category-title">ארוחת בוקר</div>
-              <div class="category-desc">כריכים, ביצים, גבינות ותוספות</div>
-            </div>
-          </div>
-          <div class="category-arrow">›</div>
-        </button>
-
-        <button class="category salads">
-          <div class="category-right">
-            <div class="category-icon">🥬</div>
-            <div class="category-texts">
-              <div class="category-title">סלטים</div>
-              <div class="category-desc">ירקות טריים, סלטים מוכנים ומיוחדים</div>
-            </div>
-          </div>
-          <div class="category-arrow">›</div>
-        </button>
-
-        <button class="category friday">
-          <div class="category-right">
-            <div class="category-icon">🍲</div>
-            <div class="category-texts">
-              <div class="category-title">ארוחות שישי</div>
-              <div class="category-desc">מנות מסורתיות והגשה משפחתית</div>
-            </div>
-          </div>
-          <div class="category-arrow">›</div>
-        </button>
-      </div>
-
     </div>
   </div>
+
+  <script src="recipes.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
