@@ -243,7 +243,7 @@ const data = {
 - מערבבים ביצה + גבינה + חמאה לפני האכילה`
   },
 
-  salad: {}
+  salad: {},
 
   fridayDinner: {}
 };
