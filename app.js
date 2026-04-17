@@ -59,16 +59,16 @@ const recipeContent = document.getElementById("recipeContent");
 let currentCategory = null;
 let pathStack = [];
 
+function isObject(value) {
+  return value && typeof value === "object" && !Array.isArray(value);
+}
+
 function getNode() {
   let node = currentCategory ? data[currentCategory] : data;
   for (const step of pathStack) {
     node = node[step];
   }
   return node || {};
-}
-
-function isSubcategory(value) {
-  return value && typeof value === "object" && !Array.isArray(value);
 }
 
 function showRecipe(name, content) {
@@ -91,15 +91,14 @@ function renderCategories(node) {
   const entries = Object.entries(node || {});
 
   entries.forEach(([key, value]) => {
-    const meta =
-      !currentCategory && categoryMeta[key]
-        ? categoryMeta[key]
-        : {
-            title: key,
-            desc: isSubcategory(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
-            icon: isSubcategory(value) ? "📁" : "🍽️",
-            className: ""
-          };
+    const meta = !currentCategory && categoryMeta[key]
+      ? categoryMeta[key]
+      : {
+          title: key,
+          desc: isObject(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
+          icon: isObject(value) ? "📁" : "🍽️",
+          className: ""
+        };
 
     const button = document.createElement("button");
     button.className = `category ${meta.className}`.trim();
@@ -125,7 +124,7 @@ function renderCategories(node) {
         return;
       }
 
-      if (isSubcategory(value)) {
+      if (isObject(value)) {
         pathStack.push(key);
         titleEl.textContent = key;
         renderCategories(value);
@@ -145,8 +144,8 @@ backBtn.addEventListener("click", () => {
       pathStack.length > 0
         ? pathStack[pathStack.length - 1]
         : currentCategory
-          ? categoryMeta[currentCategory]?.title || currentCategory
-          : "בחר קטגוריה";
+        ? categoryMeta[currentCategory]?.title || currentCategory
+        : "בחר קטגוריה";
     return;
   }
 
@@ -167,5 +166,9 @@ backBtn.addEventListener("click", () => {
   }
 });
 
-titleEl.textContent = "בחר קטגוריה";
-renderCategories(data);
+if (typeof data === "undefined") {
+  titleEl.textContent = "שגיאה בטעינת המתכונים";
+} else {
+  titleEl.textContent = "בחר קטגוריה";
+  renderCategories(data);
+}
