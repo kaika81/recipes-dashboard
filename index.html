@@ -2,246 +2,124 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#8A9A5B">
-  <link rel="icon" href="icon.png">
-  <link rel="apple-touch-icon" href="icon.png">
-
-  <title>המתכונים שלי</title>
-
-  <style>
-    * { box-sizing: border-box; }
-
-    :root {
-      --bg: #f6f7fb;
-      --panel: #ffffff;
-      --panel-soft: #eef2ff;
-      --border: #d8def0;
-      --text: #1f2937;
-      --accent: #dbe7ff;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg);
-      font-size: 20px;
-    }
-
-    .app {
-      padding: 20px;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .header {
-      background: white;
-      padding: 20px;
-      border-radius: 20px;
-      margin-bottom: 16px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    #backBtn {
-      font-size: 22px;
-      padding: 14px 18px;
-      border-radius: 14px;
-      border: none;
-      background: var(--panel-soft);
-      cursor: pointer;
-    }
-
-    #title {
-      font-size: 30px;
-      font-weight: bold;
-    }
-
-    /* 🔥 קטגוריות אנכיות */
-    .category-strip {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .category-strip button {
-      padding: 18px;
-      border-radius: 16px;
-      border: none;
-      background: var(--panel-soft);
-      font-size: 22px;
-      font-weight: bold;
-      cursor: pointer;
-      text-align: right;
-    }
-
-    .grid {
-      display: grid;
-      gap: 16px;
-    }
-
-    .card {
-      padding: 22px;
-      border-radius: 20px;
-      background: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 120px;
-      font-size: 22px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .card span:last-child {
-      font-size: 44px;
-    }
-
-    .recipe {
-      background: white;
-      padding: 24px;
-      border-radius: 20px;
-    }
-
-    .recipe h2 {
-      font-size: 34px;
-      margin-top: 0;
-    }
-
-    .recipe pre {
-      font-size: 22px;
-      line-height: 2;
-      white-space: pre-wrap;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>בדיקת עיצוב</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <div class="app">
+    <div class="screen">
 
-<div class="app">
+      <div class="topbar">
+        <button class="back-btn" aria-label="חזור">‹</button>
 
-  <div class="header">
-    <div class="topbar">
-      <button id="backBtn">⬅</button>
-      <div id="title">בחר קטגוריה1.1</div>
-    </div>
+        <div class="title-wrap">
+          <div class="eyebrow">תפריט ניהול</div>
+          <div class="title">בחר קטגוריה</div>
+          <div class="subtitle">בחירה מהירה ומדויקת מתוך הקטגוריות הקיימות</div>
+        </div>
+      </div>
 
-    <!-- 🔥 קטגוריות אנכיות -->
-    <div class="category-strip">
-      <button data-cat="main">מנה עיקרית</button>
-      <button data-cat="side">תוספת</button>
-      <button data-cat="dessert">קינוח</button>
-      <button data-cat="starters">מנות פתיחה</button>
-      <button data-cat="baked">מאפים</button>
-      <button data-cat="breakfast">ארוחת בוקר</button>
-      <button data-cat="salad">סלטים</button>
-      <button data-cat="fridayDinner">ארוחות שישי</button>
+      <div class="hero">
+        <div class="hero-label">מערכת ניהול מנות</div>
+        <div class="hero-title">קטלוג מסודר ונקי</div>
+        <div class="hero-text">
+          כל קטגוריה מוצגת בצורה ברורה עם מראה מקצועי שמתאים לאפליקציה רצינית במובייל.
+        </div>
+      </div>
+
+      <div class="categories">
+        <button class="category main">
+          <div class="category-right">
+            <div class="category-icon">🍗</div>
+            <div class="category-texts">
+              <div class="category-title">מנה עיקרית</div>
+              <div class="category-desc">מנות בשר, עוף, דגים ותבשילים</div>
+            </div>
+          </div>
+          <div class="category-arrow">›</div>
+        </button>
+
+        <button class="category side">
+          <div class="category-right">
+            <div class="category-icon">🍚</div>
+            <div class="category-texts">
+              <div class="category-title">תוספת</div>
+              <div class="category-desc">אורז, תפוחי אדמה, ירקות ועוד</div>
+            </div>
+          </div>
+          <div class="category-arrow">›</div>
+        </button>
+
+        <button class="category dessert">
+          <div class="category-right">
+            <div class="category-icon">🍰</div>
+            <div class="category-texts">
+              <div class="category-title">קינוח</div>
+              <div class="category-desc">עוגות, קרמים, מאפים מתוקים</div>
+            </div>
+          </div>
+          <div class="category-arrow">›</div>
+        </button>
+
+        <button class="category starter">
+          <div class="category-right">
+            <div class="category-icon">🥗</div>
+            <div class="category-texts">
+              <div class="category-title">מנות פתיחה</div>
+              <div class="category-desc">מנות קלות, ראשונות והגשה מוקדמת</div>
+            </div>
+          </div>
+          <div class="category-arrow">›</div>
+        </button>
+
+        <button class="category baked">
+          <div class="category-right">
+            <div class="category-icon">🥐</div>
+            <div class="category-texts">
+              <div class="category-title">מאפים</div>
+              <div class="category-desc">מלוחים, לחמים ומאפים טריים</div>
+            </div>
+          </div>
+          <div class="category-arrow">›</div>
+        </button>
+
+        <button class="category breakfast">
+          <div class="category-right">
+            <div class="category-icon">🍳</div>
+            <div class="category-texts">
+              <div class="category-title">ארוחת בוקר</div>
+              <div class="category-desc">כריכים, ביצים, גבינות ותוספות</div>
+            </div>
+          </div>
+          <div class="category-arrow">›</div>
+        </button>
+
+        <button class="category salads">
+          <div class="category-right">
+            <div class="category-icon">🥬</div>
+            <div class="category-texts">
+              <div class="category-title">סלטים</div>
+              <div class="category-desc">ירקות טריים, סלטים מוכנים ומיוחדים</div>
+            </div>
+          </div>
+          <div class="category-arrow">›</div>
+        </button>
+
+        <button class="category friday">
+          <div class="category-right">
+            <div class="category-icon">🍲</div>
+            <div class="category-texts">
+              <div class="category-title">ארוחות שישי</div>
+              <div class="category-desc">מנות מסורתיות והגשה משפחתית</div>
+            </div>
+          </div>
+          <div class="category-arrow">›</div>
+        </button>
+      </div>
+
     </div>
   </div>
-
-  <div id="list" class="grid"></div>
-  <div id="recipe" class="recipe hidden"></div>
-
-</div>
-
-<script src="recipes.js"></script>
-
-<script>
-let currentCategory = null;
-let path = [];
-
-const listEl = document.getElementById("list");
-const recipeEl = document.getElementById("recipe");
-const titleEl = document.getElementById("title");
-
-function showList() {
-  listEl.classList.remove("hidden");
-  recipeEl.classList.add("hidden");
-}
-
-function showRecipe() {
-  listEl.classList.add("hidden");
-  recipeEl.classList.remove("hidden");
-}
-
-function getNode() {
-  let node = data[currentCategory];
-  path.forEach(p => node = node[p]);
-  return node;
-}
-
-function renderList(node) {
-  listEl.innerHTML = "";
-
-  Object.keys(node).forEach(key => {
-    const val = node[key];
-
-    const div = document.createElement("div");
-    div.className = "card";
-
-    div.innerHTML = `
-      <span>${key}</span>
-      <span>${typeof val === "object" ? "📁" : "🍽️"}</span>
-    `;
-
-    div.onclick = () => {
-      if (typeof val === "object") {
-        path.push(key);
-        renderList(val);
-        titleEl.textContent = key;
-      } else {
-        recipeEl.innerHTML = "<h2>" + key + "</h2><pre>" + val + "</pre>";
-        showRecipe();
-        titleEl.textContent = key;
-      }
-    };
-
-    listEl.appendChild(div);
-  });
-}
-
-function loadCategory(cat) {
-  currentCategory = cat;
-  path = [];
-  renderList(data[cat]);
-  showList();
-  titleEl.textContent = cat;
-}
-
-document.querySelectorAll("[data-cat]").forEach(btn => {
-  btn.onclick = () => loadCategory(btn.dataset.cat);
-});
-
-document.getElementById("backBtn").onclick = () => {
-  if (!recipeEl.classList.contains("hidden")) {
-    showList();
-    return;
-  }
-
-  if (path.length > 0) {
-    path.pop();
-    renderList(getNode());
-    return;
-  }
-};
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js');
-}
-</script>
-
 </body>
 </html>
