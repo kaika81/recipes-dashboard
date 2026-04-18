@@ -24,7 +24,7 @@ const categoryMeta = {
     className: "starters"
   },
   baked: {
-    title: "מאפים",
+    title: "מאפים ועוגיות",
     desc: "מלוחים, לחמים ומאפים טריים",
     icon: "🥐",
     className: "baked"
