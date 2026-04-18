@@ -160,6 +160,7 @@ function renderCategories(node) {
         titleEl.textContent = categoryMeta[key]?.title || key;
         renderCategories(data[key]);
         scrollToTop();
+        history.pushState({}, "");
         return;
       }
 
@@ -168,8 +169,10 @@ function renderCategories(node) {
         titleEl.textContent = key;
         renderCategories(value);
         scrollToTop();
+        history.pushState({}, "");
       } else {
         showRecipe(key, value);
+        history.pushState({}, "");
       }
     });
 
@@ -210,7 +213,7 @@ backBtn.addEventListener("click", () => {
 });
 
 if (typeof data === "undefined") {
-  titleEl.textContent = "שגיאה בטעינת המתכ11ונים";
+  titleEl.textContent = "שגיאה בטעינת המתכונים";
 } else {
   titleEl.textContent = "בחר קטגוריה";
   renderCategories(data);
@@ -226,3 +229,5 @@ if ("serviceWorker" in navigator) {
       );
   });
 }
+window.addEventListener("popstate", () => {
+  backBtn.click();
