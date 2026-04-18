@@ -229,5 +229,7 @@ if ("serviceWorker" in navigator) {
       );
   });
 }
+
 window.addEventListener("popstate", () => {
   backBtn.click();
+});
