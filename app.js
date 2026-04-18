@@ -96,14 +96,38 @@ function renderCategories(node) {
   const entries = Object.entries(node || {});
 
   entries.forEach(([key, value]) => {
-    const meta = !currentCategory && categoryMeta[key]
-      ? categoryMeta[key]
-      : {
-          title: key,
-          desc: isObject(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
-          icon: isObject(value) ? "📁" : "🍽️",
-          className: ""
-        };
+function getIcon(key, value) {
+  if (isObject(value)) {
+    // תתי קטגוריות
+    if (key.includes("אורז")) return "🍚";
+    if (key.includes("פסטה")) return "🍝";
+    if (key.includes("סלט")) return "🥗";
+    if (key.includes("קינוח")) return "🍰";
+    if (key.includes("בשר")) return "🥩";
+    if (key.includes("דג")) return "🐟";
+    return "📁";
+  } else {
+    // מתכונים
+    if (key.includes("עוף")) return "🍗";
+    if (key.includes("המבורגר")) return "🍔";
+    if (key.includes("סטייק")) return "🥩";
+    if (key.includes("דג")) return "🐟";
+    if (key.includes("פסטה")) return "🍝";
+    if (key.includes("אורז")) return "🍚";
+    if (key.includes("סלט")) return "🥗";
+    if (key.includes("עוגה") || key.includes("קינוח")) return "🍰";
+    return "🍽️";
+  }
+}
+
+const meta = !currentCategory && categoryMeta[key]
+  ? categoryMeta[key]
+  : {
+      title: key,
+      desc: isObject(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
+      icon: getIcon(key, value),
+      className: ""
+    };
 
     const button = document.createElement("button");
     button.className = `category ${meta.className}`.trim();
