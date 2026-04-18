@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "מנה 1עיקרית",
+    title: "מנה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -167,7 +167,7 @@ backBtn.addEventListener("click", () => {
 });
 
 if (typeof data === "undefined") {
-  titleEl.textContent = "שגיאה בטעינת המתכונים";
+  titleEl.textContent = "שגי11אה בטעינת המתכונים";
 } else {
   titleEl.textContent = "בחר קטגוריה";
   renderCategories(data);
