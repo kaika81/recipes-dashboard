@@ -69,10 +69,43 @@ function isObject(value) {
 
 function getNode() {
   let node = currentCategory ? data[currentCategory] : data;
+
   for (const step of pathStack) {
     node = node[step];
   }
+
   return node || {};
+}
+
+function getIcon(key, value) {
+  if (isObject(value)) {
+    if (key.includes("אורז")) return "🍚";
+    if (key.includes("פסטה")) return "🍝";
+    if (key.includes("סלט")) return "🥗";
+    if (key.includes("קינוח")) return "🍰";
+    if (key.includes("בשר")) return "🥩";
+    if (key.includes("דג")) return "🐟";
+    if (key.includes("עוף")) return "🍗";
+    if (key.includes("ארוחת")) return "🍽️";
+    return "📁";
+  }
+
+  if (key.includes("עוף")) return "🍗";
+  if (key.includes("המבורגר")) return "🍔";
+  if (key.includes("סטייק")) return "🥩";
+  if (key.includes("צלי")) return "🥩";
+  if (key.includes("דג")) return "🐟";
+  if (key.includes("סלמון")) return "🐟";
+  if (key.includes("פסטה")) return "🍝";
+  if (key.includes("אורז")) return "🍚";
+  if (key.includes("סלט")) return "🥗";
+  if (key.includes("עוגה")) return "🍰";
+  if (key.includes("קינוח")) return "🍰";
+  if (key.includes("חצ׳פורי")) return "🧀";
+  if (key.includes("בטטה")) return "🍠";
+  if (key.includes("תפוח")) return "🥔";
+
+  return "🍽️";
 }
 
 function showRecipe(name, content) {
@@ -96,38 +129,14 @@ function renderCategories(node) {
   const entries = Object.entries(node || {});
 
   entries.forEach(([key, value]) => {
-function getIcon(key, value) {
-  if (isObject(value)) {
-    // תתי קטגוריות
-    if (key.includes("אורז")) return "🍚";
-    if (key.includes("פסטה")) return "🍝";
-    if (key.includes("סלט")) return "🥗";
-    if (key.includes("קינוח")) return "🍰";
-    if (key.includes("בשר")) return "🥩";
-    if (key.includes("דג")) return "🐟";
-    return "📁";
-  } else {
-    // מתכונים
-    if (key.includes("עוף")) return "🍗";
-    if (key.includes("המבורגר")) return "🍔";
-    if (key.includes("סטייק")) return "🥩";
-    if (key.includes("דג")) return "🐟";
-    if (key.includes("פסטה")) return "🍝";
-    if (key.includes("אורז")) return "🍚";
-    if (key.includes("סלט")) return "🥗";
-    if (key.includes("עוגה") || key.includes("קינוח")) return "🍰";
-    return "🍽️";
-  }
-}
-
-const meta = !currentCategory && categoryMeta[key]
-  ? categoryMeta[key]
-  : {
-      title: key,
-      desc: isObject(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
-      icon: getIcon(key, value),
-      className: ""
-    };
+    const meta = !currentCategory && categoryMeta[key]
+      ? categoryMeta[key]
+      : {
+          title: key,
+          desc: isObject(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
+          icon: getIcon(key, value),
+          className: ""
+        };
 
     const button = document.createElement("button");
     button.className = `category ${meta.className}`.trim();
@@ -205,4 +214,15 @@ if (typeof data === "undefined") {
 } else {
   titleEl.textContent = "בחר קטגוריה";
   renderCategories(data);
+}
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(() => console.log("Service Worker registered"))
+      .catch((error) =>
+        console.log("Service Worker registration failed:", error)
+      );
+  });
 }
