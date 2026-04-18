@@ -24,7 +24,7 @@ const categoryMeta = {
     className: "starters"
   },
   baked: {
-    title: "מאפים ועוגיות",
+    title: "מאפים",
     desc: "מלוחים, לחמים ומאפים טריים",
     icon: "🥐",
     className: "baked"
@@ -59,6 +59,10 @@ const recipeContent = document.getElementById("recipeContent");
 let currentCategory = null;
 let pathStack = [];
 
+function scrollToTop() {
+  window.scrollTo(0, 0);
+}
+
 function isObject(value) {
   return value && typeof value === "object" && !Array.isArray(value);
 }
@@ -77,6 +81,7 @@ function showRecipe(name, content) {
   recipeTitle.textContent = name;
   recipeContent.textContent = content || "עדיין לא הוזן מתכון לפריט הזה";
   titleEl.textContent = name;
+  scrollToTop();
 }
 
 function hideRecipe() {
@@ -121,6 +126,7 @@ function renderCategories(node) {
         pathStack = [];
         titleEl.textContent = categoryMeta[key]?.title || key;
         renderCategories(data[key]);
+        scrollToTop();
         return;
       }
 
@@ -128,6 +134,7 @@ function renderCategories(node) {
         pathStack.push(key);
         titleEl.textContent = key;
         renderCategories(value);
+        scrollToTop();
       } else {
         showRecipe(key, value);
       }
@@ -146,6 +153,7 @@ backBtn.addEventListener("click", () => {
         : currentCategory
         ? categoryMeta[currentCategory]?.title || currentCategory
         : "בחר קטגוריה";
+    scrollToTop();
     return;
   }
 
@@ -156,6 +164,7 @@ backBtn.addEventListener("click", () => {
         ? pathStack[pathStack.length - 1]
         : categoryMeta[currentCategory]?.title || currentCategory;
     renderCategories(getNode());
+    scrollToTop();
     return;
   }
 
@@ -163,6 +172,7 @@ backBtn.addEventListener("click", () => {
     currentCategory = null;
     titleEl.textContent = "בחר קטגוריה";
     renderCategories(data);
+    scrollToTop();
   }
 });
 
