@@ -167,7 +167,7 @@ backBtn.addEventListener("click", () => {
 });
 
 if (typeof data === "undefined") {
-  titleEl.textContent = "שגי11אה בטעינת המתכונים";
+  titleEl.textContent = "שגיאה בטעינת המתכונים";
 } else {
   titleEl.textContent = "בחר קטגוריה";
   renderCategories(data);
