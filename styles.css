@@ -177,6 +177,36 @@ body {
   display: none;
 }
 
+.shopping-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.shopping-form input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.shopping-form button {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  background: #8A9A5B;
+  color: white;
+  font-size: 16px;
+}
+
+.shopping-item {
+  background: white;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
 .main .category-icon { background: linear-gradient(180deg, #eff6ff, #e0ecff); }
 .side .category-icon { background: linear-gradient(180deg, #f8fafc, #edf2f7); }
 .dessert .category-icon { background: linear-gradient(180deg, #fff7ed, #ffedd5); }
@@ -185,6 +215,7 @@ body {
 .breakfast .category-icon { background: linear-gradient(180deg, #f5f3ff, #ede9fe); }
 .salad .category-icon { background: linear-gradient(180deg, #ecfeff, #cffafe); }
 .fridayDinner .category-icon { background: linear-gradient(180deg, #fdf2f8, #fce7f3); }
+.shopping .category-icon { background: linear-gradient(180deg, #f0fdf4, #dcfce7); }
 
 @media (max-width: 380px) {
   .title {
