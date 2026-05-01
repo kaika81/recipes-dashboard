@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "00מנה עיקרית",
+    title: "מנה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -67,7 +67,7 @@ const shoppingInput = document.getElementById("shoppingInput");
 const addShoppingItemBtn = document.getElementById("addShoppingItem");
 const shoppingList = document.getElementById("shoppingList");
 
-const SHOPPING_API_URL = "https://script.google.com/macros/library/d/1hJk_RbJl-DFNpUjyzggfXwdl64W6uwAT2jeWN7ZhuGAn5ekMGzPMu0xL/2";
+const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr6fUl_T_CFgcTqnnWU4cCqnZLQjvqOYY9LABJJrl2IB3G6cujfWPhs/exec";
 
 let currentCategory = null;
 let pathStack = [];
