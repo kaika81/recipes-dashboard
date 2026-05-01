@@ -605,6 +605,8 @@ const data = {
 
   salad: {},
 
+  shopping: {},
+
   fridayDinner: {
     "צלי בקר": `מרכיבים:
 - 1.5–2 ק״ג נתח כתף (מס’ 5)
