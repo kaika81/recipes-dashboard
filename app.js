@@ -46,6 +46,12 @@ const categoryMeta = {
     desc: "מנות מסורתיות והגשה משפחתית",
     icon: "🍲",
     className: "fridayDinner"
+  },
+  shopping: {
+    title: "רשימת קניות",
+    desc: "רשימה משותפת לכל המשפחה",
+    icon: "🛒",
+    className: "shopping"
   }
 };
 
@@ -56,6 +62,13 @@ const recipeView = document.getElementById("recipeView");
 const recipeTitle = document.getElementById("recipeTitle");
 const recipeContent = document.getElementById("recipeContent");
 
+const shoppingView = document.getElementById("shoppingView");
+const shoppingInput = document.getElementById("shoppingInput");
+const addShoppingItemBtn = document.getElementById("addShoppingItem");
+const shoppingList = document.getElementById("shoppingList");
+
+const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr6fUl_T_CFgcTqnnWU4cCqnZLQjvqOYY9LABJJrl2IB3G6cujfWPhs/exec";
+
 let currentCategory = null;
 let pathStack = [];
 
@@ -65,6 +78,18 @@ function scrollToTop() {
 
 function isObject(value) {
   return value && typeof value === "object" && !Array.isArray(value);
+}
+
+function hideAllViews() {
+  categoriesEl.classList.add("hidden");
+  recipeView.classList.add("hidden");
+  shoppingView.classList.add("hidden");
+}
+
+function showCategories() {
+  categoriesEl.classList.remove("hidden");
+  recipeView.classList.add("hidden");
+  shoppingView.classList.add("hidden");
 }
 
 function getNode() {
@@ -86,7 +111,6 @@ function getIcon(key, value) {
     if (key.includes("בשר")) return "🥩";
     if (key.includes("דג")) return "🐟";
     if (key.includes("עוף")) return "🍗";
-    if (key.includes("ארוחת")) return "🍽️";
     return "📁";
   }
 
@@ -109,7 +133,7 @@ function getIcon(key, value) {
 }
 
 function showRecipe(name, content) {
-  categoriesEl.classList.add("hidden");
+  hideAllViews();
   recipeView.classList.remove("hidden");
   recipeTitle.textContent = name;
   recipeContent.textContent = content || "עדיין לא הוזן מתכון לפריט הזה";
@@ -117,14 +141,9 @@ function showRecipe(name, content) {
   scrollToTop();
 }
 
-function hideRecipe() {
-  recipeView.classList.add("hidden");
-  categoriesEl.classList.remove("hidden");
-}
-
 function renderCategories(node) {
   categoriesEl.innerHTML = "";
-  hideRecipe();
+  showCategories();
 
   const entries = Object.entries(node || {});
 
@@ -154,6 +173,18 @@ function renderCategories(node) {
     `;
 
     button.addEventListener("click", () => {
+      if (key === "shopping" && !currentCategory) {
+        currentCategory = null;
+        pathStack = [];
+        hideAllViews();
+        shoppingView.classList.remove("hidden");
+        titleEl.textContent = "רשימת קניות";
+        loadShoppingList();
+        scrollToTop();
+        history.pushState({}, "");
+        return;
+      }
+
       if (!currentCategory) {
         currentCategory = key;
         pathStack = [];
@@ -181,8 +212,17 @@ function renderCategories(node) {
 }
 
 backBtn.addEventListener("click", () => {
+  if (!shoppingView.classList.contains("hidden")) {
+    currentCategory = null;
+    pathStack = [];
+    titleEl.textContent = "בחר קטגוריה";
+    renderCategories(data);
+    scrollToTop();
+    return;
+  }
+
   if (!recipeView.classList.contains("hidden")) {
-    hideRecipe();
+    showCategories();
     titleEl.textContent =
       pathStack.length > 0
         ? pathStack[pathStack.length - 1]
@@ -211,6 +251,50 @@ backBtn.addEventListener("click", () => {
     scrollToTop();
   }
 });
+
+async function loadShoppingList() {
+  shoppingList.textContent = "טוען רשימה...";
+
+  try {
+    const response = await fetch(SHOPPING_API_URL);
+    const items = await response.json();
+
+    shoppingList.innerHTML = "";
+
+    if (items.length === 0) {
+      shoppingList.textContent = "הרשימה ריקה";
+      return;
+    }
+
+    items.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "shopping-item";
+      div.textContent = item.item;
+      shoppingList.appendChild(div);
+    });
+  } catch (error) {
+    shoppingList.textContent = "שגיאה בטעינת הרשימה";
+    console.log(error);
+  }
+}
+
+async function addShoppingItem() {
+  const item = shoppingInput.value.trim();
+
+  if (!item) return;
+
+  await fetch(SHOPPING_API_URL, {
+    method: "POST",
+    body: JSON.stringify({ item })
+  });
+
+  shoppingInput.value = "";
+  loadShoppingList();
+}
+
+if (addShoppingItemBtn) {
+  addShoppingItemBtn.addEventListener("click", addShoppingItem);
+}
 
 if (typeof data === "undefined") {
   titleEl.textContent = "שגיאה בטעינת המתכונים";
