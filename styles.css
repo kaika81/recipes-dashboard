@@ -52,7 +52,8 @@ body {
   gap: 12px;
 }
 
-.back-btn {
+.back-btn,
+.shopping-top-btn {
   width: 52px;
   height: 52px;
   border: 1px solid var(--border);
@@ -65,7 +66,8 @@ body {
   flex-shrink: 0;
 }
 
-.back-btn:active {
+.back-btn:active,
+.shopping-top-btn:active {
   transform: scale(0.96);
 }
 
