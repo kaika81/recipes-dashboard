@@ -76,6 +76,38 @@ const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr
 let currentCategory = null;
 let pathStack = [];
 
+function getUsername() {
+  return localStorage.getItem("recipeAppUsername") || "";
+}
+
+function saveUsername() {
+  const username = usernameInput.value.trim();
+
+  if (!username) return;
+
+  localStorage.setItem("recipeAppUsername", username);
+  userView.classList.add("hidden");
+  categoriesEl.classList.remove("hidden");
+  titleEl.textContent = `שלום ${username}`;
+}
+
+function checkUsername() {
+  const username = getUsername();
+
+  if (!username) {
+    categoriesEl.classList.add("hidden");
+    recipeView.classList.add("hidden");
+    shoppingView.classList.add("hidden");
+    userView.classList.remove("hidden");
+    titleEl.textContent = "ברוכים הבאים";
+    return;
+  }
+
+  userView.classList.add("hidden");
+  categoriesEl.classList.remove("hidden");
+  titleEl.textContent = `שלום ${username}`;
+}
+
 function scrollToTop() {
   window.scrollTo(0, 0);
 }
@@ -299,12 +331,15 @@ async function addShoppingItem() {
 if (addShoppingItemBtn) {
   addShoppingItemBtn.addEventListener("click", addShoppingItem);
 }
+if (saveUsernameBtn) {
+  saveUsernameBtn.addEventListener("click", saveUsername);
+}
 
 if (typeof data === "undefined") {
   titleEl.textContent = "שגיאה בטעינת המתכונים";
 } else {
-  titleEl.textContent = "בחר קטגוריה";
   renderCategories(data);
+  checkUsername();
 }
 
 if ("serviceWorker" in navigator) {
