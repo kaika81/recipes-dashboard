@@ -313,12 +313,24 @@ async function loadShoppingList() {
       return;
     }
 
-    items.forEach((item) => {
-      const div = document.createElement("div");
-      div.className = "shopping-item";
-      div.textContent = item.item;
-      shoppingList.appendChild(div);
-    });
+items.forEach((item) => {
+  const div = document.createElement("div");
+  div.className = "shopping-item";
+
+  const text = document.createElement("span");
+  text.textContent = item.item;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "shopping-delete-btn";
+  deleteBtn.textContent = "🗑️";
+  deleteBtn.addEventListener("click", () => {
+    deleteShoppingItem(item.id);
+  });
+
+  div.appendChild(text);
+  div.appendChild(deleteBtn);
+  shoppingList.appendChild(div);
+});
   } catch (error) {
     shoppingList.textContent = "שגיאה בטעינת הרשימה";
     console.log(error);
@@ -336,6 +348,18 @@ async function addShoppingItem() {
   });
 
   shoppingInput.value = "";
+  loadShoppingList();
+}
+
+async function deleteShoppingItem(id) {
+  await fetch(SHOPPING_API_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      action: "delete",
+      id: id
+    })
+  });
+
   loadShoppingList();
 }
 
