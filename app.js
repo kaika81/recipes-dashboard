@@ -62,6 +62,10 @@ const recipeView = document.getElementById("recipeView");
 const recipeTitle = document.getElementById("recipeTitle");
 const recipeContent = document.getElementById("recipeContent");
 
+const userView = document.getElementById("userView");
+const usernameInput = document.getElementById("usernameInput");
+const saveUsernameBtn = document.getElementById("saveUsernameBtn");
+
 const shoppingView = document.getElementById("shoppingView");
 const shoppingInput = document.getElementById("shoppingInput");
 const addShoppingItemBtn = document.getElementById("addShoppingItem");
