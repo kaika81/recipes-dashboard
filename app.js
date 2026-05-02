@@ -46,12 +46,6 @@ const categoryMeta = {
     desc: "מנות מסורתיות והגשה משפחתית",
     icon: "🍲",
     className: "fridayDinner"
-  },
-  shopping: {
-    title: "רשימת קניות",
-    desc: "רשימה משותפת לכל המשפחה",
-    icon: "🛒",
-    className: "shopping"
   }
 };
 
