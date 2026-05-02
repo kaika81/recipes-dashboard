@@ -205,6 +205,17 @@ body {
   padding: 14px;
   border-radius: 14px;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shopping-delete-btn {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .main .category-icon { background: linear-gradient(180deg, #eff6ff, #e0ecff); }
