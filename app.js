@@ -58,6 +58,7 @@ const categoryMeta = {
 const titleEl = document.getElementById("title");
 const categoriesEl = document.getElementById("categories");
 const backBtn = document.getElementById("backBtn");
+const shoppingBtn = document.getElementById("shoppingBtn");
 const recipeView = document.getElementById("recipeView");
 const recipeTitle = document.getElementById("recipeTitle");
 const recipeContent = document.getElementById("recipeContent");
@@ -368,6 +369,24 @@ if (addShoppingItemBtn) {
 }
 if (saveUsernameBtn) {
   saveUsernameBtn.addEventListener("click", saveUsername);
+}
+
+if (shoppingBtn) {
+  shoppingBtn.addEventListener("click", () => {
+    if (!canAccessShoppingList()) {
+      alert("אין לך הרשאה לגשת לרשימת הקניות");
+      return;
+    }
+
+    currentCategory = null;
+    pathStack = [];
+    hideAllViews();
+    shoppingView.classList.remove("hidden");
+    titleEl.textContent = "רשימת קניות";
+    loadShoppingList();
+    scrollToTop();
+    history.pushState({}, "");
+  });
 }
 
 if (typeof data === "undefined") {
