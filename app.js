@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "00מנה עיקרית",
+    title: "מנה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
