@@ -173,9 +173,13 @@ function getIcon(key, value) {
 function showRecipe(name, content) {
   hideAllViews();
   recipeView.classList.remove("hidden");
-  recipeTitle.textContent = name;
-  recipeContent.textContent = content || "עדיין לא הוזן מתכון לפריט הזה";
-  titleEl.textContent = name;
+recipeTitle.textContent = name;
+
+recipeContent.innerHTML =
+  (content && content.replace(/\n/g, "<br>")) ||
+  "עדיין לא הוזן מתכון לפריט הזה";
+
+titleEl.textContent = name;
   scrollToTop();
 }
 
