@@ -67,6 +67,7 @@ const addShoppingItemBtn = document.getElementById("addShoppingItem");
 const shoppingList = document.getElementById("shoppingList");
 
 const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr6fUl_T_CFgcTqnnWU4cCqnZLQjvqOYY9LABJJrl2IB3G6cujfWPhs/exec";
+const RECIPES_API_URL = "https://script.google.com/macros/s/AKfycbwC2_7HUTE7u_Bb6PeEEYTn0K8ARuERGcrDKCyMUbXoYrAt_rdr61uM6oyX7cldg-je/exec";
 
 const SHOPPING_ALLOWED_USERS = ["גיא", "מוניקה", "ליאן", "אמה"];
 
@@ -383,12 +384,20 @@ if (shoppingBtn) {
   });
 }
 
-if (typeof data === "undefined") {
-  titleEl.textContent = "שגיאה בטעינת המתכונים";
-} else {
-  renderCategories(data);
-  checkUsername();
+async function loadRecipes() {
+  try {
+    const response = await fetch(RECIPES_API_URL);
+    window.data = await response.json();
+
+    renderCategories(data);
+    checkUsername();
+  } catch (error) {
+    titleEl.textContent = "שגיאה בטעינת המתכונים";
+    console.log(error);
+  }
 }
+
+loadRecipes();
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
