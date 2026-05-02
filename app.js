@@ -73,11 +73,17 @@ const shoppingList = document.getElementById("shoppingList");
 
 const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr6fUl_T_CFgcTqnnWU4cCqnZLQjvqOYY9LABJJrl2IB3G6cujfWPhs/exec";
 
+const SHOPPING_ALLOWED_USERS = ["גיא", "מוניקה", "ליאן", "אמה"];
+
 let currentCategory = null;
 let pathStack = [];
 
 function getUsername() {
   return localStorage.getItem("recipeAppUsername") || "";
+}
+
+function canAccessShoppingList() {
+  return SHOPPING_ALLOWED_USERS.includes(getUsername());
 }
 
 function saveUsername() {
@@ -209,17 +215,22 @@ function renderCategories(node) {
     `;
 
     button.addEventListener("click", () => {
-      if (key === "shopping" && !currentCategory) {
-        currentCategory = null;
-        pathStack = [];
-        hideAllViews();
-        shoppingView.classList.remove("hidden");
-        titleEl.textContent = "רשימת קניות";
-        loadShoppingList();
-        scrollToTop();
-        history.pushState({}, "");
-        return;
-      }
+     if (key === "shopping" && !currentCategory) {
+  if (!canAccessShoppingList()) {
+    alert("אין לך הרשאה לגשת לרשימת הקניות");
+    return;
+  }
+
+  currentCategory = null;
+  pathStack = [];
+  hideAllViews();
+  shoppingView.classList.remove("hidden");
+  titleEl.textContent = "רשימת קניות";
+  loadShoppingList();
+  scrollToTop();
+  history.pushState({}, "");
+  return;
+}
 
       if (!currentCategory) {
         currentCategory = key;
