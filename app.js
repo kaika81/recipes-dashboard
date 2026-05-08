@@ -389,14 +389,30 @@ if (shoppingBtn) {
 }
 
 async function loadRecipes() {
+  const cachedRecipes = localStorage.getItem("recipesData");
+
+  if (cachedRecipes) {
+    window.data = JSON.parse(cachedRecipes);
+    renderCategories(data);
+    checkUsername();
+  } else {
+    titleEl.textContent = "טוען מתכונים...";
+  }
+
   try {
     const response = await fetch(RECIPES_API_URL);
-    window.data = await response.json();
+    const freshRecipes = await response.json();
 
+    localStorage.setItem("recipesData", JSON.stringify(freshRecipes));
+
+    window.data = freshRecipes;
     renderCategories(data);
     checkUsername();
   } catch (error) {
-    titleEl.textContent = "שגיאה בטעינת המתכונים";
+    if (!cachedRecipes) {
+      titleEl.textContent = "שגיאה בטעינת המתכונים";
+    }
+
     console.log(error);
   }
 }
