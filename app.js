@@ -75,10 +75,7 @@ const newRecipeContent = document.getElementById("newRecipeContent");
 const saveNewRecipeBtn = document.getElementById("saveNewRecipeBtn");
 const addRecipeStatus = document.getElementById("addRecipeStatus");
 
-const SHOPPING_API_URL = "...";
-
 const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr6fUl_T_CFgcTqnnWU4cCqnZLQjvqOYY9LABJJrl2IB3G6cujfWPhs/exec";
-const RECIPES_API_URL = "./recipes.json";
 
 const SHOPPING_ALLOWED_USERS = ["גיא", "מוניקה", "ליאן", "אמה"];
 
