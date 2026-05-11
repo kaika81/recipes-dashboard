@@ -253,6 +253,10 @@ function renderCategories(node) {
     button.className = `category ${meta.className}`.trim();
     button.type = "button";
 
+    const descText = !currentCategory
+      ? getRecipeExamples(value) || meta.desc
+      : meta.desc;
+    
         button.innerHTML = `
       <div class="category-right">
         <div class="category-icon">${meta.icon}</div>
