@@ -392,11 +392,40 @@ async function loadRecipes() {
   try {
     titleEl.textContent = "טוען מתכונים...";
 
-    const response = await fetch("./recipes.json");
-    window.data = await response.json();
+    const snapshot = await window.firebaseGetDocs(
+      window.firebaseCollection(window.firebaseDb, "recipes")
+    );
+
+    const recipes = {};
+
+    snapshot.forEach((doc) => {
+      const recipe = doc.data();
+
+      const category = recipe.category;
+      const subcategory = recipe.subcategory;
+      const title = recipe.title;
+      const content = recipe.content;
+
+      if (!recipes[category]) {
+        recipes[category] = {};
+      }
+
+      if (subcategory) {
+        if (!recipes[category][subcategory]) {
+          recipes[category][subcategory] = {};
+        }
+
+        recipes[category][subcategory][title] = content;
+      } else {
+        recipes[category][title] = content;
+      }
+    });
+
+    window.data = recipes;
 
     renderCategories(data);
     checkUsername();
+
   } catch (error) {
     titleEl.textContent = "שגיאה בטעינת המתכונים";
     console.log(error);
@@ -404,6 +433,8 @@ async function loadRecipes() {
 }
 
 loadRecipes();
+
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
