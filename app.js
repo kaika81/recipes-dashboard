@@ -1,57 +1,50 @@
 const categoryMeta = {
-  breakfast: {
-    title: "ארוחת בוקר",
-    desc: "...",
-    icon: "...",
-    className: "breakfast"
-  },
-
-  starters: {
-    title: "מנות פתיחה",
-    desc: "...",
-    icon: "...",
-    className: "starters"
-  },
-
-  salad: {
-    title: "סלטים",
-    desc: "...",
-    icon: "...",
-    className: "salad"
-  },
-
   main: {
     title: "מנה עיקרית",
-    desc: "...",
-    icon: "...",
+    desc: "מנות בשר, עוף, דגים ותבשילים",
+    icon: "🍗",
     className: "main"
   },
-
   side: {
-    title: "תוספות",
-    desc: "...",
-    icon: "...",
+    title: "תוספת",
+    desc: "אורז, תפוחי אדמה, ירקות ועוד",
+    icon: "🍚",
     className: "side"
   },
-
-  baked: {
-    title: "מאפים",
-    desc: "...",
-    icon: "...",
-    className: "baked"
-  },
-
   dessert: {
-    title: "קינוחים",
-    desc: "...",
-    icon: "...",
+    title: "קינוח",
+    desc: "עוגות, קרמים, מאפים מתוקים",
+    icon: "🍰",
     className: "dessert"
   },
-
+  starters: {
+    title: "מנות פתיחה",
+    desc: "מנות קלות, ראשונות והגשה מוקדמת",
+    icon: "🥗",
+    className: "starters"
+  },
+  baked: {
+    title: "מאפים",
+    desc: "מלוחים, לחמים ומאפים טריים",
+    icon: "🥐",
+    className: "baked"
+  },
+  breakfast: {
+    title: "ארוחת בוקר",
+    desc: "כריכים, ביצים, גבינות ותוספות",
+    icon: "🍳",
+    className: "breakfast"
+  },
+  salad: {
+    title: "סלטים",
+    desc: "ירקות טריים, סלטים מוכנים ומיוחדים",
+    icon: "🥬",
+    className: "salad"
+  },
   fridayDinner: {
-    title: "ארוחת שישי",
-    desc: "...",
-    icon: "...",
+    title: "ארוחות שישי",
+    desc: "מנות מסורתיות והגשה משפחתית",
+    icon: "🍲",
     className: "fridayDinner"
   }
 };
