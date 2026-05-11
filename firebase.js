@@ -22,3 +22,5 @@ const db = getFirestore(app);
 window.firebaseDb = db;
 window.firebaseCollection = collection;
 window.firebaseGetDocs = getDocs;
+
+window.dispatchEvent(new Event("firebaseReady"));
