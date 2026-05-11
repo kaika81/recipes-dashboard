@@ -178,7 +178,7 @@ function getIcon(key, value) {
     return match.icon;
   }
 
-  return "🍽️";
+  return "🥘";
 }
 
 
