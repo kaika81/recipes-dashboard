@@ -180,7 +180,7 @@ function getIcon(key, value) {
 
   return "🍽️";
 }
-}
+
 
 function getRecipeExamples(categoryData) {
   const examples = [];
@@ -320,7 +320,7 @@ backBtn.addEventListener("click", () => {
   if (!shoppingView.classList.contains("hidden")) {
     currentCategory = null;
     pathStack = [];
-    titleEl.textContent = "בחרייי קטגוריה";
+    titleEl.textContent = "בחרי קטגוריה";
     renderCategories(data);
     scrollToTop();
     return;
@@ -333,7 +333,7 @@ backBtn.addEventListener("click", () => {
         ? pathStack[pathStack.length - 1]
         : currentCategory
         ? categoryMeta[currentCategory]?.title || currentCategory
-        : "בחריי קטגוריה";
+        : "בחר קטגוריה";
     scrollToTop();
     return;
   }
@@ -351,7 +351,7 @@ backBtn.addEventListener("click", () => {
 
   if (currentCategory) {
     currentCategory = null;
-    titleEl.textContent = "בחריי קטגוריה";
+    titleEl.textContent = "בחר קטגוריה";
     renderCategories(data);
     scrollToTop();
   }
