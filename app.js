@@ -261,7 +261,7 @@ console.log("icon check:", key, meta.icon);
     
         button.innerHTML = `
       <div class="category-right">
-        <div class="category-icon">${meta.icon}</div>
+        <div class="category-icon">TEST-${meta.icon}</div>
         <div class="category-texts">
           <div class="category-title">${meta.title}</div>
           <div class="category-desc">${
