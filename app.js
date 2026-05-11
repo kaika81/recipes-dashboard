@@ -427,7 +427,7 @@ async function loadRecipes() {
     checkUsername();
 
   } catch (error) {
-    titleEl.textContent = "שגיאההה בטעינת המתכונים";
+    titleEl.textContent = "שגיאה בטעינת המתכונים";
     console.log(error);
   }
 }
