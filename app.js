@@ -186,10 +186,15 @@ function getRecipeExamples(categoryData) {
   const examples = [];
 
   function collectRecipes(node) {
-    Object.entries(node || {}).forEach(([key, value]) => {
+    if (!node) return;
+
+    Object.entries(node).forEach(([key, value]) => {
       if (typeof value === "string") {
         examples.push(key);
-      } else if (isObject(value)) {
+        return;
+      }
+
+      if (isObject(value)) {
         collectRecipes(value);
       }
     });
