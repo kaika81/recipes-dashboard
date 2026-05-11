@@ -205,6 +205,24 @@ function getRecipeExamples(categoryData) {
   return examples.slice(0, 3).join(" · ");
 }
 
+function countRecipes(node) {
+  let count = 0;
+
+  function walk(obj) {
+    Object.values(obj || {}).forEach((value) => {
+      if (typeof value === "string") {
+        count++;
+      } else if (isObject(value)) {
+        walk(value);
+      }
+    });
+  }
+
+  walk(node);
+
+  return count;
+}
+
 function showRecipe(name, content) {
   hideAllViews();
   recipeView.classList.remove("hidden");
@@ -263,7 +281,14 @@ console.log("icon check:", key, meta.icon);
       <div class="category-right">
         <div class="category-icon">${meta.icon}</div>
         <div class="category-texts">
-          <div class="category-title">${meta.title}</div>
+          <div class="category-title">
+  ${meta.title}
+  ${
+    isObject(value)
+      ? `(${countRecipes(value)})`
+      : ""
+  }
+</div>
           <div class="category-desc">${
             !currentCategory
               ? getRecipeExamples(value) || meta.desc
