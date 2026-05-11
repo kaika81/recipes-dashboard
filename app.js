@@ -3,56 +3,56 @@ const categoryMeta = {
     title: "ארוחת בוקר",
     desc: "...",
     icon: "...",
-    className: "..."
+    className: "breakfast"
   },
 
   starters: {
     title: "מנות פתיחה",
     desc: "...",
     icon: "...",
-    className: "..."
+    className: "starters"
   },
 
   salad: {
     title: "סלטים",
     desc: "...",
     icon: "...",
-    className: "..."
+    className: "salad"
   },
 
   main: {
     title: "מנה עיקרית",
     desc: "...",
     icon: "...",
-    className: "..."
+    className: "main"
   },
 
   side: {
     title: "תוספות",
     desc: "...",
     icon: "...",
-    className: "..."
+    className: "side"
   },
 
   baked: {
     title: "מאפים",
     desc: "...",
     icon: "...",
-    className: "..."
+    className: "baked"
   },
 
   dessert: {
     title: "קינוחים",
     desc: "...",
     icon: "...",
-    className: "..."
+    className: "dessert"
   },
 
   fridayDinner: {
     title: "ארוחת שישי",
     desc: "...",
     icon: "...",
-    className: "..."
+    className: "fridayDinner"
   }
 };
 
