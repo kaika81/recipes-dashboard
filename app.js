@@ -504,6 +504,12 @@ if (saveNewRecipeBtn) {
 
 if (addRecipeBtn) {
   addRecipeBtn.addEventListener("click", () => {
+
+    if (!canAddRecipe()) {
+      alert("אין לך הרשאה להוסיף מתכון");
+      return;
+    }
+
     hideAllViews();
     addRecipeView.classList.remove("hidden");
     titleEl.textContent = "הוסף מתכון";
