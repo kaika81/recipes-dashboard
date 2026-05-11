@@ -79,6 +79,8 @@ const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr
 
 const SHOPPING_ALLOWED_USERS = ["גיא", "מוניקה", "ליאן", "אמה"];
 
+const RECIPE_ALLOWED_USERS = ["גיא"];
+
 let currentCategory = null;
 let pathStack = [];
 
@@ -88,6 +90,10 @@ function getUsername() {
 
 function canAccessShoppingList() {
   return SHOPPING_ALLOWED_USERS.includes(getUsername());
+}
+
+function canAddRecipe() {
+  return RECIPE_ALLOWED_USERS.includes(getUsername());
 }
 
 function saveUsername() {
