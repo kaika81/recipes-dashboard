@@ -55,6 +55,7 @@ const categoryMeta = {
     className: "..."
   }
 };
+
 const titleEl = document.getElementById("title");
 const categoriesEl = document.getElementById("categories");
 const backBtn = document.getElementById("backBtn");
