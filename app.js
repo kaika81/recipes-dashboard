@@ -281,11 +281,11 @@ console.log("icon check:", key, meta.icon);
       <div class="category-right">
         <div class="category-icon">${meta.icon}</div>
         <div class="category-texts">
-          <div class="category-title">
+         <div class="category-title">
   ${meta.title}
   ${
     isObject(value)
-      ? `(${countRecipes(value)})`
+      ? `(${countRecipes(value)} מתכונים)`
       : ""
   }
 </div>
