@@ -6,13 +6,13 @@ const categoryMeta = {
     className: "main"
   },
   side: {
-    title: "תוספת",
+    title: "תוספות",
     desc: "אורז, תפוחי אדמה, ירקות ועוד",
     icon: "🍚",
     className: "side"
   },
   dessert: {
-    title: "קינוח",
+    title: "קינוחים",
     desc: "עוגות, קרמים, מאפים מתוקים",
     icon: "🍰",
     className: "dessert"
@@ -196,6 +196,17 @@ titleEl.textContent = name;
 function renderCategories(node) {
   categoriesEl.innerHTML = "";
   showCategories();
+
+  const categoryOrder = [
+    "breakfast",
+    "starters",
+    "salad",
+    "main",
+    "side",
+    "baked",
+    "dessert",
+    "fridayDinner"
+  ];
 
   const entries = Object.entries(node || {});
 
