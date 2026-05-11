@@ -39,16 +39,52 @@
         <pre id="recipeContent" class="recipe-content"></pre>
       </div>
 
-      <div id="shoppingView" class="recipe-view hidden">
-        <h2 class="recipe-title">רשימת קניות</h2>
+<div id="shoppingView" class="recipe-view hidden">
+  <h2 class="recipe-title">רשימת קניות</h2>
 
-        <div class="shopping-form">
-          <input id="shoppingInput" type="text" placeholder="מה להוסיף לרשימה?" />
-          <button id="addShoppingItem">הוסף</button>
-        </div>
+  <div class="shopping-form">
+    <input id="shoppingInput" type="text" placeholder="מה להוסיף לרשימה?" />
+    <button id="addShoppingItem">הוסף</button>
+  </div>
 
-        <div id="shoppingList"></div>
-      </div>
+  <div id="shoppingList"></div>
+</div>
+
+<div id="addRecipeView" class="recipe-view hidden">
+  <h2 class="recipe-title">הוסף מתכון</h2>
+
+  <label class="form-label">קטגוריה</label>
+  <select id="newRecipeCategory" class="form-input">
+    <option value="main">מנה עיקרית</option>
+    <option value="side">תוספות</option>
+    <option value="dessert">קינוחים</option>
+    <option value="starters">מנות פתיחה</option>
+    <option value="baked">מאפים</option>
+    <option value="breakfast">ארוחת בוקר</option>
+    <option value="salad">סלטים</option>
+    <option value="fridayDinner">ארוחות שישי</option>
+  </select>
+
+  <label class="form-label">תת קטגוריה</label>
+  <input id="newRecipeSubcategory" class="form-input" type="text" placeholder="לא חובה, למשל: עוף / פסטה" />
+
+  <label class="form-label">שם מתכון</label>
+  <input id="newRecipeTitle" class="form-input" type="text" placeholder="למשל: שניצל" />
+
+  <label class="form-label">תוכן המתכון</label>
+  <textarea id="newRecipeContent" class="form-input recipe-textarea" placeholder="מרכיבים:
+- ...
+
+אופן הכנה:
+1. ...
+
+שדרוגים:
+- ..."></textarea>
+
+  <button id="saveNewRecipeBtn" class="primary-action-btn">שמור מתכון</button>
+
+  <div id="addRecipeStatus" class="success"></div>
+</div>
     </div>
   </div>
 
