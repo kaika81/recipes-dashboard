@@ -333,7 +333,7 @@ backBtn.addEventListener("click", () => {
         ? pathStack[pathStack.length - 1]
         : currentCategory
         ? categoryMeta[currentCategory]?.title || currentCategory
-        : "בחר קטגוריה";
+        : "בחריי קטגוריה";
     scrollToTop();
     return;
   }
@@ -351,7 +351,7 @@ backBtn.addEventListener("click", () => {
 
   if (currentCategory) {
     currentCategory = null;
-    titleEl.textContent = "בחר קטגוריה";
+    titleEl.textContent = "בחריי קטגוריה";
     renderCategories(data);
     scrollToTop();
   }
