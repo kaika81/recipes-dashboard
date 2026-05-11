@@ -239,3 +239,37 @@ body {
     font-size: 18px;
   }
 }
+
+.form-label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.form-input {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.recipe-textarea {
+  min-height: 260px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.primary-action-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: #8A9A5B;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+}
