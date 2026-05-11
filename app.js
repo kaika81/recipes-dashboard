@@ -320,7 +320,7 @@ backBtn.addEventListener("click", () => {
   if (!shoppingView.classList.contains("hidden")) {
     currentCategory = null;
     pathStack = [];
-    titleEl.textContent = "בחר קטגוריה";
+    titleEl.textContent = "בחרייי קטגוריה";
     renderCategories(data);
     scrollToTop();
     return;
