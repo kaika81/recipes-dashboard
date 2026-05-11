@@ -53,6 +53,7 @@ const titleEl = document.getElementById("title");
 const categoriesEl = document.getElementById("categories");
 const backBtn = document.getElementById("backBtn");
 const shoppingBtn = document.getElementById("shoppingBtn");
+const addRecipeBtn = document.getElementById("addRecipeBtn");
 const recipeView = document.getElementById("recipeView");
 const recipeTitle = document.getElementById("recipeTitle");
 const recipeContent = document.getElementById("recipeContent");
@@ -65,6 +66,16 @@ const shoppingView = document.getElementById("shoppingView");
 const shoppingInput = document.getElementById("shoppingInput");
 const addShoppingItemBtn = document.getElementById("addShoppingItem");
 const shoppingList = document.getElementById("shoppingList");
+
+const addRecipeView = document.getElementById("addRecipeView");
+const newRecipeCategory = document.getElementById("newRecipeCategory");
+const newRecipeSubcategory = document.getElementById("newRecipeSubcategory");
+const newRecipeTitle = document.getElementById("newRecipeTitle");
+const newRecipeContent = document.getElementById("newRecipeContent");
+const saveNewRecipeBtn = document.getElementById("saveNewRecipeBtn");
+const addRecipeStatus = document.getElementById("addRecipeStatus");
+
+const SHOPPING_API_URL = "...";
 
 const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr6fUl_T_CFgcTqnnWU4cCqnZLQjvqOYY9LABJJrl2IB3G6cujfWPhs/exec";
 const RECIPES_API_URL = "./recipes.json";
@@ -122,12 +133,14 @@ function hideAllViews() {
   categoriesEl.classList.add("hidden");
   recipeView.classList.add("hidden");
   shoppingView.classList.add("hidden");
+  addRecipeView.classList.add("hidden");
 }
 
 function showCategories() {
   categoriesEl.classList.remove("hidden");
   recipeView.classList.add("hidden");
   shoppingView.classList.add("hidden");
+  addRecipeView.classList.add("hidden");
 }
 
 function getNode() {
@@ -337,6 +350,43 @@ items.forEach((item) => {
   }
 }
 
+async function saveNewRecipe() {
+  const category = newRecipeCategory.value;
+  const subcategory = newRecipeSubcategory.value.trim();
+  const title = newRecipeTitle.value.trim();
+  const content = newRecipeContent.value.trim();
+
+  if (!title || !content) {
+    alert("יש למלא שם מתכון ותוכן");
+    return;
+  }
+
+  try {
+    await window.firebaseAddDoc(
+      window.firebaseCollection(window.firebaseDb, "recipes"),
+      {
+        category,
+        subcategory,
+        title,
+        content,
+        createdAt: new Date().toISOString(),
+        createdBy: getUsername()
+      }
+    );
+
+    addRecipeStatus.textContent = "המתכון נשמר בהצלחה ✔";
+
+    newRecipeSubcategory.value = "";
+    newRecipeTitle.value = "";
+    newRecipeContent.value = "";
+
+    await loadRecipes();
+  } catch (error) {
+    addRecipeStatus.textContent = "שגיאה בשמירת המתכון";
+    console.log(error);
+  }
+}
+
 async function addShoppingItem() {
   const item = shoppingInput.value.trim();
 
@@ -368,6 +418,20 @@ if (addShoppingItemBtn) {
 }
 if (saveUsernameBtn) {
   saveUsernameBtn.addEventListener("click", saveUsername);
+}
+
+if (saveNewRecipeBtn) {
+  saveNewRecipeBtn.addEventListener("click", saveNewRecipe);
+}
+
+if (addRecipeBtn) {
+  addRecipeBtn.addEventListener("click", () => {
+    hideAllViews();
+    addRecipeView.classList.remove("hidden");
+    titleEl.textContent = "הוסף מתכון";
+    scrollToTop();
+    history.pushState({}, "");
+  });
 }
 
 if (shoppingBtn) {
