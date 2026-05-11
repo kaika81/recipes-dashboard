@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ייבוא מתכונים</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 24px;
+      background: #f5f5f5;
+    }
+
+    .box {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      background: #8A9A5B;
+      color: white;
+      cursor: pointer;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: #f1f1f1;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>ייבוא מתכונים ל־Firebase</h1>
+    <p>לחץ פעם אחת בלבד כדי להעביר את כל המתכונים מ־recipes.json ל־Firebase.</p>
+
+    <button id="importBtn">ייבא מתכונים</button>
+
+    <pre id="status">ממתין...</pre>
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script src="import-recipes.js"></script>
+</body>
+</html>
