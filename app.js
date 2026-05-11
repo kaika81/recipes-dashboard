@@ -151,6 +151,7 @@ function getNode() {
 }
 
 function getIcon(key, value) {
+  
   if (isObject(value)) {
     if (key.includes("אורז")) return "🍚";
     if (key.includes("פסטה")) return "🍝";
@@ -178,6 +179,25 @@ function getIcon(key, value) {
   if (key.includes("תפוח")) return "🥔";
 
   return "🍽️";
+}
+}
+
+function getRecipeExamples(categoryData) {
+  const examples = [];
+
+  function collectRecipes(node) {
+    Object.entries(node || {}).forEach(([key, value]) => {
+      if (typeof value === "string") {
+        examples.push(key);
+      } else if (isObject(value)) {
+        collectRecipes(value);
+      }
+    });
+  }
+
+  collectRecipes(categoryData);
+
+  return examples.slice(0, 3).join(" · ");
 }
 
 function showRecipe(name, content) {
@@ -228,12 +248,16 @@ function renderCategories(node) {
     button.className = `category ${meta.className}`.trim();
     button.type = "button";
 
-    button.innerHTML = `
+        button.innerHTML = `
       <div class="category-right">
         <div class="category-icon">${meta.icon}</div>
         <div class="category-texts">
           <div class="category-title">${meta.title}</div>
-          <div class="category-desc">${meta.desc}</div>
+          <div class="category-desc">${
+            !currentCategory
+              ? getRecipeExamples(value) || meta.desc
+              : meta.desc
+          }</div>
         </div>
       </div>
       <div class="category-arrow">›</div>
