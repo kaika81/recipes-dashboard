@@ -208,7 +208,11 @@ function renderCategories(node) {
     "fridayDinner"
   ];
 
-  const entries = Object.entries(node || {});
+  const entries = !currentCategory
+    ? categoryOrder
+        .filter((key) => node && node[key])
+        .map((key) => [key, node[key]])
+    : Object.entries(node || {});
 
   entries.forEach(([key, value]) => {
     const meta = !currentCategory && categoryMeta[key]
