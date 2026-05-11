@@ -427,12 +427,14 @@ async function loadRecipes() {
     checkUsername();
 
   } catch (error) {
-    titleEl.textContent = "שגיאה בטעינת המתכונים";
+    titleEl.textContent = "שגיאההה בטעינת המתכונים";
     console.log(error);
   }
 }
 
-loadRecipes();
+window.addEventListener("firebaseReady", () => {
+  loadRecipes();
+});
 
 
 if ("serviceWorker" in navigator) {
