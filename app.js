@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "מנה עיקרית",
+    title: "מנההה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -151,34 +151,34 @@ function getNode() {
 }
 
 function getIcon(key, value) {
-  
-  if (isObject(value)) {
-    if (key.includes("אורז")) return "🍚";
-    if (key.includes("פסטה")) return "🍝";
-    if (key.includes("סלט")) return "🥗";
-    if (key.includes("קינוח")) return "🍰";
-    if (key.includes("בשר")) return "🥩";
-    if (key.includes("דג")) return "🐟";
-    if (key.includes("עוף")) return "🍗";
-    return "📁";
+  const text = String(key || "");
+
+  const iconRules = [
+    { words: ["עוף", "פרגית", "שניצל"], icon: "🍗" },
+    { words: ["בשר", "סטייק", "צלי", "קציצה", "קציצות", "המבורגר"], icon: "🥩" },
+    { words: ["דג", "דגים", "סלמון", "טונה"], icon: "🐟" },
+    { words: ["פסטה", "ספגטי", "רביולי", "ניוקי"], icon: "🍝" },
+    { words: ["אורז", "ריזוטו"], icon: "🍚" },
+    { words: ["תפוח אדמה", "תפוחי אדמה", "פירה"], icon: "🥔" },
+    { words: ["בטטה"], icon: "🍠" },
+    { words: ["סלט", "ירקות"], icon: "🥗" },
+    { words: ["מרק"], icon: "🍲" },
+    { words: ["לחם", "חלה", "פיתה", "מאפה", "בורקס", "חצ׳פורי"], icon: "🥐" },
+    { words: ["גבינה", "גבינות"], icon: "🧀" },
+    { words: ["ביצה", "ביצים", "חביתה", "שקשוקה"], icon: "🍳" },
+    { words: ["עוגה", "קינוח", "שוקולד", "עוגיות", "מוס"], icon: "🍰" },
+    { words: ["רוטב", "מטבל", "טחינה"], icon: "🥣" }
+  ];
+
+  const match = iconRules.find((rule) =>
+    rule.words.some((word) => text.includes(word))
+  );
+
+  if (match) {
+    return match.icon;
   }
 
-  if (key.includes("עוף")) return "🍗";
-  if (key.includes("המבורגר")) return "🍔";
-  if (key.includes("סטייק")) return "🥩";
-  if (key.includes("צלי")) return "🥩";
-  if (key.includes("דג")) return "🐟";
-  if (key.includes("סלמון")) return "🐟";
-  if (key.includes("פסטה")) return "🍝";
-  if (key.includes("אורז")) return "🍚";
-  if (key.includes("סלט")) return "🥗";
-  if (key.includes("עוגה")) return "🍰";
-  if (key.includes("קינוח")) return "🍰";
-  if (key.includes("חצ׳פורי")) return "🧀";
-  if (key.includes("בטטה")) return "🍠";
-  if (key.includes("תפוח")) return "🥔";
-
-  return "🍽️";
+  return isObject(value) ? "📁" : "🍽️";
 }
 
 
