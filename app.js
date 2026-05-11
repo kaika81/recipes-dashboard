@@ -1,54 +1,60 @@
 const categoryMeta = {
-  main: {
-    title: "מנה עיקרית",
-    desc: "מנות בשר, עוף, דגים ותבשילים",
-    icon: "🍗",
-    className: "main"
-  },
-  side: {
-    title: "תוספת",
-    desc: "אורז, תפוחי אדמה, ירקות ועוד",
-    icon: "🍚",
-    className: "side"
-  },
-  dessert: {
-    title: "קינוח",
-    desc: "עוגות, קרמים, מאפים מתוקים",
-    icon: "🍰",
-    className: "dessert"
-  },
-  starters: {
-    title: "מנות פתיחה",
-    desc: "מנות קלות, ראשונות והגשה מוקדמת",
-    icon: "🥗",
-    className: "starters"
-  },
-  baked: {
-    title: "מאפים",
-    desc: "מלוחים, לחמים ומאפים טריים",
-    icon: "🥐",
-    className: "baked"
-  },
   breakfast: {
     title: "ארוחת בוקר",
-    desc: "כריכים, ביצים, גבינות ותוספות",
-    icon: "🍳",
-    className: "breakfast"
+    desc: "...",
+    icon: "...",
+    className: "..."
   },
+
+  starters: {
+    title: "מנות פתיחה",
+    desc: "...",
+    icon: "...",
+    className: "..."
+  },
+
   salad: {
     title: "סלטים",
-    desc: "ירקות טריים, סלטים מוכנים ומיוחדים",
-    icon: "🥬",
-    className: "salad"
+    desc: "...",
+    icon: "...",
+    className: "..."
   },
+
+  main: {
+    title: "מנה עיקרית",
+    desc: "...",
+    icon: "...",
+    className: "..."
+  },
+
+  side: {
+    title: "תוספות",
+    desc: "...",
+    icon: "...",
+    className: "..."
+  },
+
+  baked: {
+    title: "מאפים",
+    desc: "...",
+    icon: "...",
+    className: "..."
+  },
+
+  dessert: {
+    title: "קינוחים",
+    desc: "...",
+    icon: "...",
+    className: "..."
+  },
+
   fridayDinner: {
-    title: "ארוחות שישי",
-    desc: "מנות מסורתיות והגשה משפחתית",
-    icon: "🍲",
-    className: "fridayDinner"
+    title: "ארוחת שישי",
+    desc: "...",
+    icon: "...",
+    className: "..."
   }
 };
-
 const titleEl = document.getElementById("title");
 const categoriesEl = document.getElementById("categories");
 const backBtn = document.getElementById("backBtn");
