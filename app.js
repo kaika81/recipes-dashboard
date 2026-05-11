@@ -240,14 +240,16 @@ function renderCategories(node) {
     : Object.entries(node || {});
 
   entries.forEach(([key, value]) => {
-    const meta = !currentCategory && categoryMeta[key]
-      ? categoryMeta[key]
-      : {
-          title: key,
-          desc: isObject(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
-          icon: getIcon(key, value),
-          className: ""
-        };
+   const meta = !currentCategory && categoryMeta[key]
+  ? categoryMeta[key]
+  : {
+      title: key,
+      desc: isObject(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
+      icon: getIcon(key, value),
+      className: ""
+    };
+
+console.log("icon check:", key, meta.icon);
 
     const button = document.createElement("button");
     button.className = `category ${meta.className}`.trim();
