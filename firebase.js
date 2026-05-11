@@ -4,7 +4,9 @@ import {
   getFirestore,
   collection,
   getDocs,
-  addDoc
+  addDoc,
+  doc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -24,5 +26,7 @@ window.firebaseDb = db;
 window.firebaseCollection = collection;
 window.firebaseGetDocs = getDocs;
 window.firebaseAddDoc = addDoc;
+window.firebaseDoc = doc;
+window.firebaseSetDoc = setDoc;
 
 window.dispatchEvent(new Event("firebaseReady"));
