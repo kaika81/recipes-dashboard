@@ -210,11 +210,11 @@ function countRecipes(node) {
 
   function walk(obj) {
     Object.values(obj || {}).forEach((value) => {
-      if (typeof value === "string") {
-        count++;
-      } else if (isObject(value)) {
-        walk(value);
-      }
+if (typeof value === "string" && value.trim() !== "") {
+  count++;
+} else if (isObject(value)) {
+  walk(value);
+}
     });
   }
 
@@ -281,11 +281,11 @@ console.log("icon check:", key, meta.icon);
       <div class="category-right">
         <div class="category-icon">${meta.icon}</div>
         <div class="category-texts">
-         <div class="category-title">
+<div class="category-title">
   ${meta.title}
   ${
     isObject(value)
-      ? `(${countRecipes(value)} מתכונים)`
+      ? `(${countRecipes(value)})`
       : ""
   }
 </div>
