@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "מנייההה עיקרית",
+    title: "מנה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -132,6 +132,10 @@ function isObject(value) {
   return value && typeof value === "object" && !Array.isArray(value);
 }
 
+function isRecipe(value) {
+  return isObject(value) && "content" in value && "id" in value;
+}
+
 function hideAllViews() {
   categoriesEl.classList.add("hidden");
   recipeView.classList.add("hidden");
@@ -195,14 +199,14 @@ function getRecipeExamples(categoryData) {
     if (!node) return;
 
     Object.entries(node).forEach(([key, value]) => {
-      if (typeof value === "string") {
-        examples.push(key);
-        return;
-      }
+     if (typeof value === "string" || isRecipe(value)) {
+  examples.push(key);
+  return;
+}
 
-      if (isObject(value)) {
-        collectRecipes(value);
-      }
+if (isObject(value)) {
+  collectRecipes(value);
+}
     });
   }
 
@@ -216,7 +220,16 @@ function countRecipes(node) {
 
   function walk(obj) {
     Object.values(obj || {}).forEach((value) => {
-if (typeof value === "string" && value.trim() !== "") {
+if (
+  typeof value === "string" &&
+  value.trim() !== ""
+) {
+  count++;
+} else if (
+  isRecipe(value) &&
+  value.content &&
+  value.content.trim() !== ""
+) {
   count++;
 } else if (isObject(value)) {
   walk(value);
@@ -374,16 +387,16 @@ console.log("icon check:", key, meta.icon);
         return;
       }
 
-      if (isObject(value)) {
-        pathStack.push(key);
-        titleEl.textContent = key;
-        renderCategories(value);
-        scrollToTop();
-        history.pushState({}, "");
-      } else {
-        showRecipe(key, value);
-        history.pushState({}, "");
-      }
+      if (isRecipe(value) || typeof value === "string") {
+  showRecipe(key, value);
+  history.pushState({}, "");
+} else if (isObject(value)) {
+  pathStack.push(key);
+  titleEl.textContent = key;
+  renderCategories(value);
+  scrollToTop();
+  history.pushState({}, "");
+}
     });
 
     categoriesEl.appendChild(button);
