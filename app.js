@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "מנה עיקרית",
+    title: "מנההה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -322,7 +322,7 @@ function renderCategories(node) {
   ? categoryMeta[key]
   : {
       title: key,
-      desc: isObject(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
+     desc: isObject(value) && !isRecipe(value) ? "פתח תת-קטגוריה" : "פתח מתכון",
       icon: getIcon(key, value),
       className: ""
     };
@@ -344,7 +344,7 @@ console.log("icon check:", key, meta.icon);
 <div class="category-title">
   ${meta.title}
   ${
-    isObject(value)
+    isObject(value) && !isRecipe(value)
       ? `(${countRecipes(value)})`
       : ""
   }
