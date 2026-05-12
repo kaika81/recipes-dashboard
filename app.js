@@ -255,15 +255,13 @@ recipeContent.innerHTML =
     if (!confirmed) return;
 
     try {
-      await window.firebaseSetDoc(
-        window.firebaseDoc(
-          window.firebaseDb,
-          "recipes",
-          recipeData.id
-        ),
-        {},
-        { merge: false }
-      );
+await window.firebaseDeleteDoc(
+  window.firebaseDoc(
+    window.firebaseDb,
+    "recipes",
+    recipeData.id
+  )
+);
 
       alert("המתכון נמחק");
 
