@@ -195,17 +195,25 @@ function getIcon(key, value) {
 function getRecipeExamples(categoryData) {
   const examples = [];
 
-  // במסך הראשי: להציג שמות של תתי קטגוריות
-  if (!currentCategory) {
-    Object.entries(categoryData || {}).forEach(([key, value]) => {
-      if (isObject(value) && !isRecipe(value)) {
-        examples.push(key);
-      }
-    });
+  Object.entries(categoryData || {}).forEach(([key, value]) => {
+    if (isObject(value) && !isRecipe(value)) {
+      examples.push(key);
+      return;
+    }
 
-    return examples.slice(0, 3).join(" · ");
-  }
+    if (typeof value === "string" && value.trim() !== "") {
+      examples.push(key);
+      return;
+    }
 
+    if (isRecipe(value) && value.content && value.content.trim() !== "") {
+      examples.push(key);
+      return;
+    }
+  });
+
+  return examples.slice(0, 3).join(" · ");
+}
   // בתוך קטגוריה / תת קטגוריה: להציג שמות מתכונים עם תוכן
   function collectRecipes(node) {
     if (!node) return;
