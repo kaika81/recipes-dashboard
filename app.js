@@ -448,6 +448,19 @@ async function saveNewRecipe() {
     return;
   }
 
+const existingCategoryData = data?.[category] || {};
+
+if (
+  subcategory &&
+  typeof existingCategoryData[subcategory] === "string"
+) {
+  alert(
+    `"${subcategory}" הוא מתכון קיים ולא תת־קטגוריה.\n` +
+    "אם אתה רוצה לעדכן אותו, צריך להשתמש בעריכת מתכון."
+  );
+  return;
+}
+  
   try {
     await window.firebaseAddDoc(
       window.firebaseCollection(window.firebaseDb, "recipes"),
