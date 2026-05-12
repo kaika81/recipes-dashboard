@@ -356,9 +356,7 @@ console.log("icon check:", key, meta.icon);
     button.className = `category ${meta.className}`.trim();
     button.type = "button";
 
-    const descText = !currentCategory
-      ? getRecipeExamples(value) || meta.desc
-      : meta.desc;
+    const descText = getRecipeExamples(value) || meta.desc;
     
         button.innerHTML = `
       <div class="category-right">
