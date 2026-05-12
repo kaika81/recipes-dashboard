@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "מנההה עיקרית",
+    title: "מנה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -195,18 +195,39 @@ function getIcon(key, value) {
 function getRecipeExamples(categoryData) {
   const examples = [];
 
+  // במסך הראשי: להציג שמות של תתי קטגוריות
+  if (!currentCategory) {
+    Object.entries(categoryData || {}).forEach(([key, value]) => {
+      if (isObject(value) && !isRecipe(value)) {
+        examples.push(key);
+      }
+    });
+
+    return examples.slice(0, 3).join(" · ");
+  }
+
+  // בתוך קטגוריה / תת קטגוריה: להציג שמות מתכונים עם תוכן
   function collectRecipes(node) {
     if (!node) return;
 
     Object.entries(node).forEach(([key, value]) => {
-     if (typeof value === "string" || isRecipe(value)) {
-  examples.push(key);
-  return;
-}
+      if (typeof value === "string") {
+        if (value.trim() !== "") {
+          examples.push(key);
+        }
+        return;
+      }
 
-if (isObject(value)) {
-  collectRecipes(value);
-}
+      if (isRecipe(value)) {
+        if (value.content && value.content.trim() !== "") {
+          examples.push(key);
+        }
+        return;
+      }
+
+      if (isObject(value)) {
+        collectRecipes(value);
+      }
     });
   }
 
@@ -220,20 +241,23 @@ function countRecipes(node) {
 
   function walk(obj) {
     Object.values(obj || {}).forEach((value) => {
-if (
-  typeof value === "string" &&
-  value.trim() !== ""
-) {
-  count++;
-} else if (
-  isRecipe(value) &&
-  value.content &&
-  value.content.trim() !== ""
-) {
-  count++;
-} else if (isObject(value)) {
-  walk(value);
-}
+      if (typeof value === "string") {
+        if (value.trim() !== "") {
+          count++;
+        }
+        return;
+      }
+
+      if (isRecipe(value)) {
+        if (value.content && value.content.trim() !== "") {
+          count++;
+        }
+        return;
+      }
+
+      if (isObject(value)) {
+        walk(value);
+      }
     });
   }
 
@@ -241,7 +265,6 @@ if (
 
   return count;
 }
-
 function showRecipe(name, recipeData) {
   hideAllViews();
   recipeView.classList.remove("hidden");
