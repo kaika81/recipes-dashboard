@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "מנהה עיקרית",
+    title: "מנה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -470,10 +470,12 @@ newRecipeContent.value = "";
 await loadRecipes();
 
 currentCategory = category;
-pathStack = subcategory ? [subcategory] : [];
-titleEl.textContent = subcategory || categoryMeta[category]?.title || category;
-renderCategories(getNode());
+pathStack = [];
+titleEl.textContent = categoryMeta[category]?.title || category;
+renderCategories(data[category]);
 scrollToTop();
+
+alert("המתכון נוסף בהצלחה");
   } catch (error) {
     addRecipeStatus.textContent = "שגיאה בשמירת המתכון";
     console.log(error);
