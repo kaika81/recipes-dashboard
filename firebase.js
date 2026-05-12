@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 
 import {
   getFirestore,
+  deleteDoc,
   collection,
   getDocs,
   addDoc,
@@ -28,5 +29,5 @@ window.firebaseGetDocs = getDocs;
 window.firebaseAddDoc = addDoc;
 window.firebaseDoc = doc;
 window.firebaseSetDoc = setDoc;
-
+window.firebaseDeleteDoc = deleteDoc;
 window.dispatchEvent(new Event("firebaseReady"));
