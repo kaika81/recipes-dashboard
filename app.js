@@ -350,6 +350,15 @@ console.log("icon check:", key, meta.icon);
 }
 
 backBtn.addEventListener("click", () => {
+  if (!addRecipeView.classList.contains("hidden")) {
+    currentCategory = null;
+    pathStack = [];
+    titleEl.textContent = "בחר קטגוריה";
+    renderCategories(data);
+    scrollToTop();
+    return;
+  }
+
   if (!shoppingView.classList.contains("hidden")) {
     currentCategory = null;
     pathStack = [];
@@ -452,13 +461,19 @@ async function saveNewRecipe() {
       }
     );
 
-    addRecipeStatus.textContent = "המתכון נשמר בהצלחה ✔";
+   addRecipeStatus.textContent = "המתכון נשמר בהצלחה ✔";
 
-    newRecipeSubcategory.value = "";
-    newRecipeTitle.value = "";
-    newRecipeContent.value = "";
+newRecipeSubcategory.value = "";
+newRecipeTitle.value = "";
+newRecipeContent.value = "";
 
-    await loadRecipes();
+await loadRecipes();
+
+currentCategory = category;
+pathStack = subcategory ? [subcategory] : [];
+titleEl.textContent = subcategory || categoryMeta[category]?.title || category;
+renderCategories(getNode());
+scrollToTop();
   } catch (error) {
     addRecipeStatus.textContent = "שגיאה בשמירת המתכון";
     console.log(error);
