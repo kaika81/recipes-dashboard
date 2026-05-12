@@ -214,35 +214,6 @@ function getRecipeExamples(categoryData) {
 
   return examples.slice(0, 3).join(" · ");
 }
-  // בתוך קטגוריה / תת קטגוריה: להציג שמות מתכונים עם תוכן
-  function collectRecipes(node) {
-    if (!node) return;
-
-    Object.entries(node).forEach(([key, value]) => {
-      if (typeof value === "string") {
-        if (value.trim() !== "") {
-          examples.push(key);
-        }
-        return;
-      }
-
-      if (isRecipe(value)) {
-        if (value.content && value.content.trim() !== "") {
-          examples.push(key);
-        }
-        return;
-      }
-
-      if (isObject(value)) {
-        collectRecipes(value);
-      }
-    });
-  }
-
-  collectRecipes(categoryData);
-
-  return examples.slice(0, 3).join(" · ");
-}
 
 function countRecipes(node) {
   let count = 0;
@@ -273,6 +244,7 @@ function countRecipes(node) {
 
   return count;
 }
+
 function showRecipe(name, recipeData) {
   hideAllViews();
   recipeView.classList.remove("hidden");
