@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "מנה עיקרית",
+    title: "מנההה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -229,14 +229,57 @@ if (typeof value === "string" && value.trim() !== "") {
   return count;
 }
 
-function showRecipe(name, content) {
+function showRecipe(name, recipeData) {
   hideAllViews();
   recipeView.classList.remove("hidden");
 recipeTitle.textContent = name;
 
+const content =
+  typeof recipeData === "string"
+    ? recipeData
+    : recipeData?.content || "";
+
 recipeContent.innerHTML =
   (content && content.replace(/\n/g, "<br>")) ||
   "עדיין לא הוזן מתכון לפריט הזה";
+
+  if (getUsername() === "גיא" && recipeData?.id) {
+  const deleteBtn = document.createElement("button");
+
+  deleteBtn.textContent = "🗑️ מחק מתכון";
+  deleteBtn.className = "delete-recipe-btn";
+
+  deleteBtn.addEventListener("click", async () => {
+    const confirmed = confirm("למחוק את המתכון?");
+
+    if (!confirmed) return;
+
+    try {
+      await window.firebaseSetDoc(
+        window.firebaseDoc(
+          window.firebaseDb,
+          "recipes",
+          recipeData.id
+        ),
+        {},
+        { merge: false }
+      );
+
+      alert("המתכון נמחק");
+
+      currentCategory = null;
+      pathStack = [];
+
+      await loadRecipes();
+
+    } catch (error) {
+      console.log(error);
+      alert("שגיאה במחיקה");
+    }
+  });
+
+  recipeContent.appendChild(deleteBtn);
+}
 
 titleEl.textContent = name;
   scrollToTop();
@@ -578,6 +621,7 @@ async function loadRecipes() {
 
     snapshot.forEach((doc) => {
       const recipe = doc.data();
+      const recipeId = doc.id;
 
       const category = recipe.category;
       const subcategory = recipe.subcategory;
@@ -593,9 +637,15 @@ async function loadRecipes() {
           recipes[category][subcategory] = {};
         }
 
-        recipes[category][subcategory][title] = content;
+        recipes[category][subcategory][title] = {
+  content,
+  id: recipeId
+};
       } else {
-        recipes[category][title] = content;
+        recipes[category][title] = {
+  content,
+  id: recipeId
+};
       }
     });
 
