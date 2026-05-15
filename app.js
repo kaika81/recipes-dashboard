@@ -50,7 +50,12 @@ const categoryMeta = {
 };
 
 const titleEl = document.getElementById("title");
+const homeView = document.getElementById("homeView");
+
 const categoriesEl = document.getElementById("categories");
+
+const recipesHomeBtn = document.getElementById("recipesHomeBtn");
+const shoppingHomeBtn = document.getElementById("shoppingHomeBtn");
 const backBtn = document.getElementById("backBtn");
 const shoppingBtn = document.getElementById("shoppingBtn");
 const addRecipeBtn = document.getElementById("addRecipeBtn");
@@ -105,8 +110,8 @@ function saveUsername() {
 
   localStorage.setItem("recipeAppUsername", username);
   userView.classList.add("hidden");
-  categoriesEl.classList.remove("hidden");
-  titleEl.textContent = `שלום ${username}`;
+
+showHome();
 }
 
 function checkUsername() {
@@ -139,6 +144,7 @@ function isRecipe(value) {
 }
 
 function hideAllViews() {
+  homeView.classList.add("hidden");
   categoriesEl.classList.add("hidden");
   recipeView.classList.add("hidden");
   shoppingView.classList.add("hidden");
@@ -150,6 +156,14 @@ function showCategories() {
   recipeView.classList.add("hidden");
   shoppingView.classList.add("hidden");
   addRecipeView.classList.add("hidden");
+}
+
+function showHome() {
+  hideAllViews();
+
+  homeView.classList.remove("hidden");
+
+  titleEl.textContent = `שלום ${getUsername()}`;
 }
 
 function getNode() {
@@ -443,14 +457,15 @@ backBtn.addEventListener("click", () => {
     return;
   }
 
-  if (!shoppingView.classList.contains("hidden")) {
-    currentCategory = null;
-    pathStack = [];
-    titleEl.textContent = "בחרי קטגוריה";
-    renderCategories(data);
-    scrollToTop();
-    return;
-  }
+ if (!shoppingView.classList.contains("hidden")) {
+  currentCategory = null;
+  pathStack = [];
+
+  showHome();
+
+  scrollToTop();
+  return;
+}
 
   if (!recipeView.classList.contains("hidden")) {
     showCategories();
@@ -476,11 +491,12 @@ backBtn.addEventListener("click", () => {
   }
 
   if (currentCategory) {
-    currentCategory = null;
-    titleEl.textContent = "בחר קטגוריה";
-    renderCategories(data);
-    scrollToTop();
-  }
+  currentCategory = null;
+
+  showHome();
+
+  scrollToTop();
+}
 });
 
 async function loadShoppingList() {
@@ -695,20 +711,22 @@ if (addRecipeBtn) {
       return;
     }
 
-    editingRecipeId = null;
-    editingRecipeCategory = null;
+    ...
+  });
+}
 
-    saveNewRecipeBtn.textContent = "שמור מתכון";
-    addRecipeStatus.textContent = "";
+if (recipesHomeBtn) {
+  recipesHomeBtn.addEventListener("click", () => {
 
-    newRecipeSubcategory.value = "";
-    newRecipeTitle.value = "";
-    newRecipeContent.value = "";
+    currentCategory = null;
+    pathStack = [];
 
-    hideAllViews();
-    addRecipeView.classList.remove("hidden");
-    titleEl.textContent = "הוסף מתכון";
+    titleEl.textContent = "קטגוריות";
+
+    renderCategories(data);
+
     scrollToTop();
+
     history.pushState({}, "");
   });
 }
@@ -727,6 +745,30 @@ if (shoppingBtn) {
     titleEl.textContent = "רשימת קניות";
     loadShoppingList();
     scrollToTop();
+    history.pushState({}, "");
+  });
+}
+
+if (shoppingHomeBtn) {
+  shoppingHomeBtn.addEventListener("click", () => {
+    if (!canAccessShoppingList()) {
+      alert("אין לך הרשאה לגשת לרשימת הקניות");
+      return;
+    }
+
+    currentCategory = null;
+    pathStack = [];
+
+    hideAllViews();
+
+    shoppingView.classList.remove("hidden");
+
+    titleEl.textContent = "רשימת קניות";
+
+    loadShoppingList();
+
+    scrollToTop();
+
     history.pushState({}, "");
   });
 }
