@@ -283,3 +283,25 @@ body {
   font-size: 17px;
   font-weight: 700;
 }
+
+.edit-recipe-btn,
+.delete-recipe-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.edit-recipe-btn {
+  background: #8A9A5B;
+  color: white;
+}
+
+.delete-recipe-btn {
+  background: #fee2e2;
+  color: #991b1b;
+}
