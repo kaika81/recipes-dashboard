@@ -156,10 +156,9 @@ function hideAllViews() {
 }
 
 function showCategories() {
+  hideAllViews();
+
   categoriesEl.classList.remove("hidden");
-  recipeView.classList.add("hidden");
-  shoppingView.classList.add("hidden");
-  addRecipeView.classList.add("hidden");
 }
 
 function getRandomRecipeFromData() {
@@ -497,14 +496,15 @@ console.log("icon check:", key, meta.icon);
 }
 
 backBtn.addEventListener("click", () => {
-  if (!addRecipeView.classList.contains("hidden")) {
-    currentCategory = null;
-    pathStack = [];
-    titleEl.textContent = "בחר קטגוריה";
-    renderCategories(data);
-    scrollToTop();
-    return;
-  }
+if (!addRecipeView.classList.contains("hidden")) {
+  currentCategory = null;
+  pathStack = [];
+
+  showHome();
+
+  scrollToTop();
+  return;
+}
 
  if (!shoppingView.classList.contains("hidden")) {
   currentCategory = null;
