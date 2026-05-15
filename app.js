@@ -55,7 +55,12 @@ const homeView = document.getElementById("homeView");
 const categoriesEl = document.getElementById("categories");
 
 const recipesHomeBtn = document.getElementById("recipesHomeBtn");
+
+const recipesHomeBtn2 = document.getElementById("recipesHomeBtn2");
+
 const shoppingHomeBtn = document.getElementById("shoppingHomeBtn");
+
+const addRecipeHomeBtn = document.getElementById("addRecipeHomeBtn");
 const backBtn = document.getElementById("backBtn");
 const shoppingBtn = document.getElementById("shoppingBtn");
 const addRecipeBtn = document.getElementById("addRecipeBtn");
@@ -702,46 +707,61 @@ if (saveNewRecipeBtn) {
   saveNewRecipeBtn.addEventListener("click", saveNewRecipe);
 }
 
+function openAddRecipeScreen() {
+
+  if (!canAddRecipe()) {
+    alert("אין לך הרשאה להוסיף מתכון");
+    return;
+  }
+
+  editingRecipeId = null;
+  editingRecipeCategory = null;
+
+  saveNewRecipeBtn.textContent = "שמור מתכון";
+  addRecipeStatus.textContent = "";
+
+  newRecipeSubcategory.value = "";
+  newRecipeTitle.value = "";
+  newRecipeContent.value = "";
+
+  hideAllViews();
+
+  addRecipeView.classList.remove("hidden");
+
+  titleEl.textContent = "הוסף מתכון";
+
+  scrollToTop();
+
+  history.pushState({}, "");
+}
+
 if (addRecipeBtn) {
-  addRecipeBtn.addEventListener("click", () => {
+  addRecipeBtn.addEventListener("click", openAddRecipeScreen);
+}
 
-    if (!canAddRecipe()) {
-      alert("אין לך הרשאה להוסיף מתכון");
-      return;
-    }
+if (addRecipeHomeBtn) {
+  addRecipeHomeBtn.addEventListener("click", openAddRecipeScreen);
+}
 
-    editingRecipeId = null;
-    editingRecipeCategory = null;
+function openRecipesScreen() {
+  currentCategory = null;
+  pathStack = [];
 
-    saveNewRecipeBtn.textContent = "שמור מתכון";
-    addRecipeStatus.textContent = "";
+  titleEl.textContent = "קטגוריות";
 
-    newRecipeSubcategory.value = "";
-    newRecipeTitle.value = "";
-    newRecipeContent.value = "";
+  renderCategories(data);
 
-    hideAllViews();
-    addRecipeView.classList.remove("hidden");
-    titleEl.textContent = "הוסף מתכון";
-    scrollToTop();
-    history.pushState({}, "");
-  });
+  scrollToTop();
+
+  history.pushState({}, "");
 }
 
 if (recipesHomeBtn) {
-  recipesHomeBtn.addEventListener("click", () => {
+  recipesHomeBtn.addEventListener("click", openRecipesScreen);
+}
 
-    currentCategory = null;
-    pathStack = [];
-
-    titleEl.textContent = "קטגוריות";
-
-    renderCategories(data);
-
-    scrollToTop();
-
-    history.pushState({}, "");
-  });
+if (recipesHomeBtn2) {
+  recipesHomeBtn2.addEventListener("click", openRecipesScreen);
 }
 
 if (shoppingBtn) {
