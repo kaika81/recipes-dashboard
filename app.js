@@ -162,12 +162,57 @@ function showCategories() {
   addRecipeView.classList.add("hidden");
 }
 
+function getRandomRecipeFromData() {
+  const recipes = [];
+
+  function walk(node) {
+    Object.entries(node || {}).forEach(([key, value]) => {
+
+      if (isRecipe(value)) {
+        recipes.push({
+          title: key,
+          data: value
+        });
+
+        return;
+      }
+
+      if (isObject(value)) {
+        walk(value);
+      }
+    });
+  }
+
+  walk(data);
+
+  if (recipes.length === 0) {
+    return null;
+  }
+
+  return recipes[
+    Math.floor(Math.random() * recipes.length)
+  ];
+}
+
 function showHome() {
   hideAllViews();
 
   homeView.classList.remove("hidden");
 
   titleEl.textContent = `שלום ${getUsername()}`;
+
+  const homeUserName = document.getElementById("homeUserName");
+  const homeRecipeOfDay = document.getElementById("homeRecipeOfDay");
+
+  if (homeUserName) {
+    homeUserName.textContent = `${getUsername()} 👋`;
+  }
+
+  const randomRecipe = getRandomRecipeFromData();
+
+  if (homeRecipeOfDay && randomRecipe) {
+    homeRecipeOfDay.textContent = randomRecipe.title;
+  }
 }
 
 function getNode() {
