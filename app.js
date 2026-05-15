@@ -75,9 +75,9 @@ const newRecipeContent = document.getElementById("newRecipeContent");
 const saveNewRecipeBtn = document.getElementById("saveNewRecipeBtn");
 const addRecipeStatus = document.getElementById("addRecipeStatus");
 
-const SHOPPING_API_URL = "https://script.google.com/macros/s/AKfycbzJ4koLQ0XOjNr6fUl_T_CFgcTqnnWU4cCqnZLQjvqOYY9LABJJrl2IB3G6cujfWPhs/exec";
-
 const SHOPPING_ALLOWED_USERS = ["גיא", "מוניקה", "ליאן", "אמה"];
+
+const SHOPPING_COLLECTION = "shoppingItems";
 
 const RECIPE_ALLOWED_USERS = ["גיא"];
 
@@ -455,11 +455,26 @@ backBtn.addEventListener("click", () => {
 });
 
 async function loadShoppingList() {
+  if (!canAccessShoppingList()) {
+    shoppingList.textContent = "אין לך הרשאה לצפות ברשימת הקניות";
+    return;
+  }
+
   shoppingList.textContent = "טוען רשימה...";
 
   try {
-    const response = await fetch(SHOPPING_API_URL);
-    const items = await response.json();
+    const snapshot = await window.firebaseGetDocs(
+      window.firebaseCollection(window.firebaseDb, SHOPPING_COLLECTION)
+    );
+
+    const items = [];
+
+    snapshot.forEach((docSnap) => {
+      items.push({
+        id: docSnap.id,
+        ...docSnap.data()
+      });
+    });
 
     shoppingList.innerHTML = "";
 
@@ -468,30 +483,29 @@ async function loadShoppingList() {
       return;
     }
 
-items.forEach((item) => {
-  const div = document.createElement("div");
-  div.className = "shopping-item";
+    items.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "shopping-item";
 
-  const text = document.createElement("span");
-  text.textContent = item.item;
+      const text = document.createElement("span");
+      text.textContent = item.text;
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.className = "shopping-delete-btn";
-  deleteBtn.textContent = "🗑️";
-  deleteBtn.addEventListener("click", () => {
-    deleteShoppingItem(item.id);
-  });
+      const deleteBtn = document.createElement("button");
+      deleteBtn.className = "shopping-delete-btn";
+      deleteBtn.textContent = "🗑️";
+      deleteBtn.addEventListener("click", () => {
+        deleteShoppingItem(item.id);
+      });
 
-  div.appendChild(text);
-  div.appendChild(deleteBtn);
-  shoppingList.appendChild(div);
-});
+      div.appendChild(text);
+      div.appendChild(deleteBtn);
+      shoppingList.appendChild(div);
+    });
   } catch (error) {
     shoppingList.textContent = "שגיאה בטעינת הרשימה";
     console.log(error);
   }
 }
-
 async function saveNewRecipe() {
   const category = newRecipeCategory.value;
   const subcategory = newRecipeSubcategory.value.trim();
@@ -551,27 +565,37 @@ alert("המתכון נוסף בהצלחה");
 }
 
 async function addShoppingItem() {
+  if (!canAccessShoppingList()) {
+    alert("אין לך הרשאה לעדכן את רשימת הקניות");
+    return;
+  }
+
   const item = shoppingInput.value.trim();
 
   if (!item) return;
 
-  await fetch(SHOPPING_API_URL, {
-    method: "POST",
-    body: JSON.stringify({ item })
-  });
+  await window.firebaseAddDoc(
+    window.firebaseCollection(window.firebaseDb, SHOPPING_COLLECTION),
+    {
+      text: item,
+      createdBy: getUsername(),
+      createdAt: new Date().toISOString()
+    }
+  );
 
   shoppingInput.value = "";
   loadShoppingList();
 }
 
 async function deleteShoppingItem(id) {
-  await fetch(SHOPPING_API_URL, {
-    method: "POST",
-    body: JSON.stringify({
-      action: "delete",
-      id: id
-    })
-  });
+  if (!canAccessShoppingList()) {
+    alert("אין לך הרשאה לעדכן את רשימת הקניות");
+    return;
+  }
+
+  await window.firebaseDeleteDoc(
+    window.firebaseDoc(window.firebaseDb, SHOPPING_COLLECTION, id)
+  );
 
   loadShoppingList();
 }
