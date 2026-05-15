@@ -30,6 +30,8 @@ body {
 
 .app {
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
   padding:
     calc(env(safe-area-inset-top) + 18px)
     16px
@@ -90,6 +92,9 @@ body {
 
 .category {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
   min-height: 96px;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.94);
@@ -129,6 +134,8 @@ body {
 
 .category-texts {
   min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .category-title {
@@ -136,6 +143,9 @@ body {
   font-weight: 700;
   color: var(--text);
   margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .category-desc {
