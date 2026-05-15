@@ -35,45 +35,126 @@
 
 <div id="homeView" class="home-view">
 
-  <div class="home-greeting">
-    <div class="home-hi">שלום 👋</div>
-    <div class="home-sub">
-      מה בא לך לבשל היום?
+  <div class="home-blob home-blob-1"></div>
+  <div class="home-blob home-blob-2"></div>
+
+  <div class="home-inner">
+
+    <div class="home-greeting">
+      <p class="home-hi">שלום,</p>
+
+      <p class="home-name" id="homeUserName">
+        גיא 👋
+      </p>
+
+      <p class="home-sub">
+        מה מבשלים היום?
+      </p>
     </div>
-  </div>
 
-  <div class="home-actions">
+    <div class="home-hero">
 
-    <button id="recipesHomeBtn" class="home-card">
-      <div class="home-card-icon">📚</div>
+      <div class="home-hero-blob"></div>
+      <div class="home-hero-blob-2"></div>
 
-      <div class="home-card-texts">
-        <div class="home-card-title">מתכונים</div>
-        <div class="home-card-desc">
-          כל המתכונים המשפחתיים
-        </div>
+      <div class="home-hero-tag">
+        🌿 מתכון היום
       </div>
 
-      <div class="home-card-arrow">›</div>
-    </button>
+      <p class="home-hero-title">
+        המתכונים<br>
+        <em>המשפחתיים</em> שלנו
+      </p>
 
-    <button id="shoppingHomeBtn" class="home-card">
-      <div class="home-card-icon">🛒</div>
+      <p class="home-hero-sub">
+        כל הטעמים שאוהבים במקום אחד
+      </p>
 
-      <div class="home-card-texts">
-        <div class="home-card-title">רשימת קניות</div>
-        <div class="home-card-desc">
-          רשימת קניות משפחתית
+      <button
+        id="recipesHomeBtn"
+        class="home-hero-btn"
+        type="button"
+      >
+        למתכונים ›
+      </button>
+
+    </div>
+
+    <p class="home-section-label">
+      פעולות מהירות
+    </p>
+
+    <div class="home-actions-grid">
+
+      <button
+        id="recipesHomeBtn2"
+        class="home-action-card"
+        type="button"
+      >
+        <div class="home-action-icon">
+          📚
         </div>
-      </div>
 
-      <div class="home-card-arrow">›</div>
-    </button>
+        <div>
+          <p class="home-action-name">
+            המתכונים שלי
+          </p>
+
+          <p class="home-action-desc">
+            כל האוסף המשפחתי
+          </p>
+        </div>
+      </button>
+
+      <button
+        id="shoppingHomeBtn"
+        class="home-action-card"
+        type="button"
+      >
+        <div class="home-action-icon">
+          🛒
+        </div>
+
+        <div>
+          <p class="home-action-name">
+            רשימת קניות
+          </p>
+
+          <p class="home-action-desc">
+            מה צריך לקנות
+          </p>
+        </div>
+      </button>
+
+      <button
+        id="addRecipeHomeBtn"
+        class="home-action-card wide"
+        type="button"
+      >
+        <div class="home-action-icon">
+          ➕
+        </div>
+
+        <div>
+          <p class="home-action-name">
+            הוסף מתכון חדש
+          </p>
+
+          <p class="home-action-desc">
+            שמירת מתכון משפחתי
+          </p>
+        </div>
+
+        <div class="home-card-chevron">
+          ›
+        </div>
+      </button>
+
+    </div>
 
   </div>
 
 </div>
-
 <div id="categories" class="categories hidden"></div>
 
 <div id="recipeView" class="recipe-view hidden">
