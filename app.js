@@ -83,6 +83,9 @@ const RECIPE_ALLOWED_USERS = ["גיא"];
 let currentCategory = null;
 let pathStack = [];
 
+let editingRecipeId = null;
+let editingRecipeCategory = null;
+
 function getUsername() {
   return localStorage.getItem("recipeAppUsername") || "";
 }
@@ -259,6 +262,33 @@ recipeContent.innerHTML =
   "עדיין לא הוזן מתכון לפריט הזה";
 
   if (getUsername() === "גיא" && recipeData?.id) {
+  const editBtn = document.createElement("button");
+
+  editBtn.textContent = "✏️ ערוך מתכון";
+  editBtn.className = "edit-recipe-btn";
+
+  editBtn.addEventListener("click", () => {
+    editingRecipeId = recipeData.id;
+    editingRecipeCategory = currentCategory;
+
+    hideAllViews();
+    addRecipeView.classList.remove("hidden");
+
+    newRecipeCategory.value = currentCategory || "";
+    newRecipeSubcategory.value = pathStack.length > 0 ? pathStack[pathStack.length - 1] : "";
+    newRecipeTitle.value = name;
+    newRecipeContent.value = content;
+
+    saveNewRecipeBtn.textContent = "שמור שינויים";
+    addRecipeStatus.textContent = "";
+    titleEl.textContent = "עריכת מתכון";
+
+    scrollToTop();
+    history.pushState({}, "");
+  });
+
+  recipeContent.appendChild(editBtn);
+
   const deleteBtn = document.createElement("button");
 
   deleteBtn.textContent = "🗑️ מחק מתכון";
@@ -511,9 +541,56 @@ async function saveNewRecipe() {
   const title = newRecipeTitle.value.trim();
   const content = newRecipeContent.value.trim();
 
+  if (!canAddRecipe()) {
+    alert("אין לך הרשאה לשמור מתכון");
+    return;
+  }
+
   if (!title || !content) {
     alert("יש למלא שם מתכון ותוכן");
     return;
+  }
+
+  if (editingRecipeId) {
+    try {
+      await window.firebaseSetDoc(
+        window.firebaseDoc(window.firebaseDb, "recipes", editingRecipeId),
+        {
+          category,
+          subcategory,
+          title,
+          content,
+          updatedAt: new Date().toISOString(),
+          updatedBy: getUsername()
+        },
+        { merge: true }
+      );
+
+      editingRecipeId = null;
+      editingRecipeCategory = null;
+
+      saveNewRecipeBtn.textContent = "שמור מתכון";
+      addRecipeStatus.textContent = "המתכון עודכן בהצלחה ✔";
+
+      newRecipeSubcategory.value = "";
+      newRecipeTitle.value = "";
+      newRecipeContent.value = "";
+
+      await loadRecipes();
+
+      currentCategory = category;
+      pathStack = subcategory ? [subcategory] : [];
+      titleEl.textContent = subcategory || categoryMeta[category]?.title || category;
+      renderCategories(getNode());
+      scrollToTop();
+
+      alert("המתכון עודכן בהצלחה");
+      return;
+    } catch (error) {
+      addRecipeStatus.textContent = "שגיאה בעדכון המתכון";
+      console.log(error);
+      return;
+    }
   }
 
 const existingCategoryData = data?.[category] || {};
@@ -617,6 +694,16 @@ if (addRecipeBtn) {
       alert("אין לך הרשאה להוסיף מתכון");
       return;
     }
+
+    editingRecipeId = null;
+    editingRecipeCategory = null;
+
+    saveNewRecipeBtn.textContent = "שמור מתכון";
+    addRecipeStatus.textContent = "";
+
+    newRecipeSubcategory.value = "";
+    newRecipeTitle.value = "";
+    newRecipeContent.value = "";
 
     hideAllViews();
     addRecipeView.classList.remove("hidden");
