@@ -1,6 +1,6 @@
 const categoryMeta = {
   main: {
-    title: "מנה עיקרית",
+    title: "מנההה עיקרית",
     desc: "מנות בשר, עוף, דגים ותבשילים",
     icon: "🍗",
     className: "main"
@@ -77,7 +77,9 @@ const addRecipeStatus = document.getElementById("addRecipeStatus");
 
 const SHOPPING_ALLOWED_USERS = ["גיא", "מוניקה", "ליאן", "אמה"];
 
-const SHOPPING_COLLECTION = "shoppingItems";
+loadShoppingList()
+addShoppingItem()
+deleteShoppingItem()
 
 const RECIPE_ALLOWED_USERS = ["גיא"];
 
