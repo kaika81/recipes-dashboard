@@ -127,8 +127,7 @@ function checkUsername() {
   }
 
   userView.classList.add("hidden");
-  categoriesEl.classList.remove("hidden");
-  titleEl.textContent = `שלום ${username}`;
+showHome();
 }
 
 function scrollToTop() {
@@ -711,7 +710,21 @@ if (addRecipeBtn) {
       return;
     }
 
-    ...
+    editingRecipeId = null;
+    editingRecipeCategory = null;
+
+    saveNewRecipeBtn.textContent = "שמור מתכון";
+    addRecipeStatus.textContent = "";
+
+    newRecipeSubcategory.value = "";
+    newRecipeTitle.value = "";
+    newRecipeContent.value = "";
+
+    hideAllViews();
+    addRecipeView.classList.remove("hidden");
+    titleEl.textContent = "הוסף מתכון";
+    scrollToTop();
+    history.pushState({}, "");
   });
 }
 
