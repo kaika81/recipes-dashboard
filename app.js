@@ -50,6 +50,7 @@ const categoryMeta = {
 };
 
 const titleEl = document.getElementById("title");
+const mainTopbar = document.getElementById("mainTopbar");
 const homeView = document.getElementById("homeView");
 
 const categoriesEl = document.getElementById("categories");
@@ -158,6 +159,10 @@ function hideAllViews() {
 function showCategories() {
   hideAllViews();
 
+  if (mainTopbar) {
+    mainTopbar.classList.remove("hidden");
+  }
+
   categoriesEl.classList.remove("hidden");
 }
 
@@ -197,6 +202,10 @@ function showHome() {
   hideAllViews();
 
   homeView.classList.remove("hidden");
+
+  if (mainTopbar) {
+    mainTopbar.classList.add("hidden");
+  }
 
   titleEl.textContent = `שלום ${getUsername()}`;
 
@@ -312,6 +321,9 @@ function countRecipes(node) {
 function showRecipe(name, recipeData) {
   hideAllViews();
   recipeView.classList.remove("hidden");
+  if (mainTopbar) {
+  mainTopbar.classList.remove("hidden");
+}
 recipeTitle.textContent = name;
 
 const content =
@@ -539,12 +551,24 @@ if (!addRecipeView.classList.contains("hidden")) {
     return;
   }
 
-  if (currentCategory) {
+ if (currentCategory) {
   currentCategory = null;
+
+  titleEl.textContent = "קטגוריות";
+  renderCategories(data);
+
+  scrollToTop();
+  return;
+}
+
+if (!categoriesEl.classList.contains("hidden")) {
+  currentCategory = null;
+  pathStack = [];
 
   showHome();
 
   scrollToTop();
+  return;
 }
 });
 
