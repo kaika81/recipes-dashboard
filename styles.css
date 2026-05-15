@@ -305,3 +305,77 @@ body {
   background: #fee2e2;
   color: #991b1b;
 }
+
+.home-view {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.home-greeting {
+  padding: 12px 4px;
+}
+
+.home-hi {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.home-sub {
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.home-card {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 22px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  text-align: right;
+}
+
+.home-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.home-card-texts {
+  flex: 1;
+}
+
+.home-card-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.home-card-desc {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.home-card-arrow {
+  font-size: 26px;
+  color: #94a3b8;
+}
