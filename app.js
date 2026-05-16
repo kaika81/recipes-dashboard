@@ -171,17 +171,16 @@ function getRandomRecipeFromData() {
 
   function walk(node) {
     Object.entries(node || {}).forEach(([key, value]) => {
-
-      if (isRecipe(value)) {
+      if (isRecipe(value) && value.content && value.content.trim() !== "") {
         recipes.push({
-          title: key,
+          title: value.title || key,
           data: value
         });
 
         return;
       }
 
-      if (isObject(value)) {
+      if (isObject(value) && !isRecipe(value)) {
         walk(value);
       }
     });
@@ -197,7 +196,6 @@ function getRandomRecipeFromData() {
     Math.floor(Math.random() * recipes.length)
   ];
 }
-
 function showHome() {
   hideAllViews();
 
@@ -216,11 +214,13 @@ function showHome() {
     homeUserName.textContent = `${getUsername()} 👋`;
   }
 
-  const randomRecipe = getRandomRecipeFromData();
+const randomRecipe = getRandomRecipeFromData();
 
-  if (homeRecipeOfDay && randomRecipe) {
-    homeRecipeOfDay.textContent = randomRecipe.title;
-  }
+window.recipeOfDay = randomRecipe;
+
+if (homeRecipeOfDay && randomRecipe) {
+  homeRecipeOfDay.textContent = randomRecipe.title;
+}
 }
 
 function getNode() {
@@ -826,7 +826,7 @@ function openRecipesScreen() {
 }
 
 if (recipesHomeBtn) {
-  recipesHomeBtn.addEventListener("click", openRecipesScreen);
+  recipesHomeBtn.addEventListener("click", openRecipeOfDay);
 }
 
 if (recipesHomeBtn2) {
@@ -875,6 +875,20 @@ if (shoppingHomeBtn) {
   });
 }
 
+function openRecipeOfDay() {
+  if (!window.recipeOfDay) {
+    openRecipesScreen();
+    return;
+  }
+
+  showRecipe(
+    window.recipeOfDay.title,
+    window.recipeOfDay.data
+  );
+
+  history.pushState({}, "");
+}
+
 async function loadRecipes() {
   try {
     titleEl.textContent = "טוען מתכונים...";
@@ -903,12 +917,14 @@ async function loadRecipes() {
           recipes[category][subcategory] = {};
         }
 
-        recipes[category][subcategory][title] = {
+    recipes[category][subcategory][title] = {
+  title,
   content,
   id: recipeId
 };
       } else {
-        recipes[category][title] = {
+recipes[category][title] = {
+  title,
   content,
   id: recipeId
 };
