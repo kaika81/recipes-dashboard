@@ -882,9 +882,15 @@ if (shoppingBtn) {
     history.pushState({}, "");
   });
 }
-
 if (shoppingHomeBtn) {
   shoppingHomeBtn.addEventListener("click", () => {
+    if (!canAccessShoppingList()) {
+      alert("אין לך הרשאה לגשת לרשימת הקניות");
+      return;
+    }
+
+    currentCategory = null;
+    pathStack = [];
 
     hideAllViews();
 
@@ -903,21 +909,6 @@ if (shoppingHomeBtn) {
     history.pushState({}, "");
   });
 }
-
-    hideAllViews();
-
-    shoppingView.classList.remove("hidden");
-
-    titleEl.textContent = "רשימת קניות";
-
-    loadShoppingList();
-
-    scrollToTop();
-
-    history.pushState({}, "");
-  });
-}
-
 function openRecipeOfDay() {
   if (!window.recipeOfDay) {
     openRecipesScreen();
