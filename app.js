@@ -864,24 +864,45 @@ if (shoppingBtn) {
 
     currentCategory = null;
     pathStack = [];
+
     hideAllViews();
+
+    if (mainTopbar) {
+      mainTopbar.classList.remove("hidden");
+    }
+
     shoppingView.classList.remove("hidden");
+
     titleEl.textContent = "רשימת קניות";
+
     loadShoppingList();
+
     scrollToTop();
+
     history.pushState({}, "");
   });
 }
 
 if (shoppingHomeBtn) {
   shoppingHomeBtn.addEventListener("click", () => {
-    if (!canAccessShoppingList()) {
-      alert("אין לך הרשאה לגשת לרשימת הקניות");
-      return;
+
+    hideAllViews();
+
+    if (mainTopbar) {
+      mainTopbar.classList.remove("hidden");
     }
 
-    currentCategory = null;
-    pathStack = [];
+    shoppingView.classList.remove("hidden");
+
+    titleEl.textContent = "רשימת קניות";
+
+    loadShoppingList();
+
+    scrollToTop();
+
+    history.pushState({}, "");
+  });
+}
 
     hideAllViews();
 
