@@ -384,14 +384,15 @@ body {
 
 .home-floating-image {
   position: absolute;
-  top: 95px;
-  left: -140px;
-  width: 300px;
-  opacity: 0.28;
-  filter: blur(0.4px);
+  top: 35px;
+  left: -110px;
+  width: 170px;
+  opacity: 0.16;
+  filter: blur(1px);
   z-index: 0;
   pointer-events: none;
 }
+
 .home-hero-blob {
   position: absolute;
   right: -40px;
