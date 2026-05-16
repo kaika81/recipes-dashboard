@@ -170,17 +170,53 @@
         <pre id="recipeContent" class="recipe-content"></pre>
       </div>
 
-<div id="shoppingView" class="recipe-view hidden">
-  <h2 class="recipe-title">רשימת קניות</h2>
+<div id="shoppingView" class="shopping-view hidden">
 
-  <div class="shopping-form">
-    <input id="shoppingInput" type="text" placeholder="מה להוסיף לרשימה?" />
-    <button id="addShoppingItem">הוסף</button>
+  <div class="shopping-header-card">
+
+    <div class="shopping-header-icon">
+      🛒
+    </div>
+
+    <div>
+      <div class="shopping-header-title">
+        רשימת קניות
+      </div>
+
+      <div class="shopping-header-subtitle">
+        מה צריך לקנות לבית?
+      </div>
+    </div>
+
   </div>
 
-  <div id="shoppingList"></div>
-</div>
+  <div class="shopping-form-card">
 
+    <input
+      id="shoppingInput"
+      type="text"
+      placeholder="הוסף פריט לרשימה"
+    />
+
+    <button
+      id="addShoppingItem"
+      type="button"
+    >
+      +
+    </button>
+
+  </div>
+
+  <p class="shopping-section-label">
+    הפריטים שלי
+  </p>
+
+  <div
+    id="shoppingList"
+    class="shopping-list"
+  ></div>
+
+</div>
 <div id="addRecipeView" class="recipe-view hidden">
   <h2 class="recipe-title">הוסף מתכון</h2>
 
