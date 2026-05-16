@@ -602,23 +602,45 @@ async function loadShoppingList() {
     }
 
     items.forEach((item) => {
-      const div = document.createElement("div");
-      div.className = "shopping-item";
+  const div = document.createElement("div");
+  div.className = "shopping-item-card";
 
-      const text = document.createElement("span");
-      text.textContent = item.text;
+  const icon = document.createElement("div");
+  icon.className = "shopping-item-icon";
+  icon.textContent = "🛍️";
 
-      const deleteBtn = document.createElement("button");
-      deleteBtn.className = "shopping-delete-btn";
-      deleteBtn.textContent = "🗑️";
-      deleteBtn.addEventListener("click", () => {
-        deleteShoppingItem(item.id);
-      });
+  const texts = document.createElement("div");
+  texts.className = "shopping-item-texts";
 
-      div.appendChild(text);
-      div.appendChild(deleteBtn);
-      shoppingList.appendChild(div);
-    });
+  const text = document.createElement("div");
+  text.className = "shopping-item-name";
+  text.textContent = item.text;
+
+  const meta = document.createElement("div");
+  meta.className = "shopping-item-meta";
+  meta.textContent = item.createdBy
+    ? `נוסף על ידי ${item.createdBy}`
+    : "פריט ברשימה";
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "shopping-delete-btn";
+  deleteBtn.type = "button";
+  deleteBtn.textContent = "🗑️";
+
+  deleteBtn.addEventListener("click", () => {
+    deleteShoppingItem(item.id);
+  });
+
+  texts.appendChild(text);
+  texts.appendChild(meta);
+
+  div.appendChild(icon);
+  div.appendChild(texts);
+  div.appendChild(deleteBtn);
+
+  shoppingList.appendChild(div);
+});
+    
   } catch (error) {
     shoppingList.textContent = "שגיאה בטעינת הרשימה";
     console.log(error);
