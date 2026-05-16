@@ -361,11 +361,11 @@ body {
 
 .home-floating-image {
   position: absolute;
-  top: 35px;
-  left: -110px;
-  width: 170px;
-  opacity: 0.16;
-  filter: blur(1px);
+  top: 8px;
+  left: 10px;
+  width: 145px;
+  opacity: 0.34;
+  filter: blur(0.2px);
   z-index: 0;
   pointer-events: none;
 }
