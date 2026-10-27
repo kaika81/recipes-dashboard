@@ -86,7 +86,7 @@ const newRecipeContent = document.getElementById("newRecipeContent");
 const saveNewRecipeBtn = document.getElementById("saveNewRecipeBtn");
 const addRecipeStatus = document.getElementById("addRecipeStatus");
 
-const SHOPPING_ALLOWED_USERS = ["גיא", "מוניקה", "ליאן", "אמה"];
+const SHOPPING_ALLOWED_USERS = ["גיא", "מוניקה","מימי", "ליאן", "אמה"];
 
 const SHOPPING_COLLECTION = "shoppingItems";
 
